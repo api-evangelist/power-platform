@@ -1,0 +1,201 @@
+name: Microsoft Power Platform APIs
+description: Collection of APIs for Microsoft Power Platform services including Power Apps, Power Automate, Power BI, and Power Virtual Agents
+image: https://powerplatform.microsoft.com/images/power-platform-logo.png
+created: '2024-01-15'
+modified: '2024-01-15'
+specificationVersion: '0.16'
+url: https://powerplatform.microsoft.com/apis.json
+tags:
+- Power Platform
+- Low-Code
+- No-Code
+- Business Applications
+- Microsoft
+apis:
+- name: Power Apps API
+  description: REST API for creating, managing, and deploying Power Apps applications
+  image: https://powerplatform.microsoft.com/images/powerapps-logo.png
+  baseURL: https://api.powerapps.com
+  humanURL: https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview
+  tags:
+  - Power Apps
+  - Canvas Apps
+  - Model-driven Apps
+  - Applications
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview
+  - type: OpenAPI
+    url: https://api.powerapps.com/openapi/v1
+  - type: Authentication
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/authenticate
+  - type: Rate Limits
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/api-limits
+  - type: Pricing
+    url: https://powerapps.microsoft.com/pricing/
+  contact:
+  - type: Support
+    url: https://powerapps.microsoft.com/support/
+- name: Dataverse API (Common Data Service)
+  description: Web API for Microsoft Dataverse, providing data storage and business logic capabilities
+  image: https://powerplatform.microsoft.com/images/dataverse-logo.png
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+  humanURL: https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview
+  tags:
+  - Dataverse
+  - CDS
+  - Data Platform
+  - Database
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview
+  - type: OpenAPI
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/webapi/openapi
+  - type: OData
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/webapi/web-api-properties
+  - type: Authentication
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/authenticate-oauth
+  - type: SDKs
+    url: https://docs.microsoft.com/powerapps/developer/data-platform/developer-tools
+  contact:
+  - type: Support
+    url: https://powerapps.microsoft.com/support/
+- name: Power Automate API
+  description: API for creating, managing, and running automated workflows
+  image: https://powerplatform.microsoft.com/images/powerautomate-logo.png
+  baseURL: https://api.flow.microsoft.com
+  humanURL: https://docs.microsoft.com/power-automate/web-api
+  tags:
+  - Power Automate
+  - Flow
+  - Workflow
+  - Automation
+  - RPA
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/power-automate/web-api
+  - type: OpenAPI
+    url: https://api.flow.microsoft.com/openapi/v1
+  - type: Authentication
+    url: https://docs.microsoft.com/power-automate/web-api#authentication
+  - type: Connectors
+    url: https://docs.microsoft.com/connectors/
+  - type: Pricing
+    url: https://flow.microsoft.com/pricing/
+  contact:
+  - type: Support
+    url: https://flow.microsoft.com/support/
+- name: Power BI REST API
+  description: REST API for embedding, managing, and interacting with Power BI reports and datasets
+  image: https://powerplatform.microsoft.com/images/powerbi-logo.png
+  baseURL: https://api.powerbi.com
+  humanURL: https://docs.microsoft.com/rest/api/power-bi/
+  tags:
+  - Power BI
+  - Analytics
+  - Business Intelligence
+  - Reporting
+  - Dashboards
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/rest/api/power-bi/
+  - type: OpenAPI
+    url: https://api.powerbi.com/v1.0/myorg/swagger.json
+  - type: Authentication
+    url: https://docs.microsoft.com/power-bi/developer/embedded/embed-tokens
+  - type: SDKs
+    url: https://docs.microsoft.com/javascript/api/overview/powerbi/
+  - type: Embedding
+    url: https://docs.microsoft.com/power-bi/developer/embedded/embedding
+  - type: Pricing
+    url: https://powerbi.microsoft.com/pricing/
+  contact:
+  - type: Support
+    url: https://powerbi.microsoft.com/support/
+- name: Power Virtual Agents API
+  description: API for managing and deploying conversational AI chatbots
+  image: https://powerplatform.microsoft.com/images/pva-logo.png
+  baseURL: https://api.powerva.microsoft.com
+  humanURL: https://docs.microsoft.com/power-virtual-agents/
+  tags:
+  - Power Virtual Agents
+  - Chatbots
+  - Conversational AI
+  - Virtual Agents
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/power-virtual-agents/
+  - type: Authentication
+    url: https://docs.microsoft.com/power-virtual-agents/configuration-authentication
+  - type: Bot Framework
+    url: https://docs.microsoft.com/power-virtual-agents/publication-connect-bot-to-azure-bot-service
+  - type: Pricing
+    url: https://powervirtualagents.microsoft.com/pricing/
+  contact:
+  - type: Support
+    url: https://powervirtualagents.microsoft.com/support/
+- name: Power Platform Admin API
+  description: API for administrative operations across Power Platform environments
+  image: https://powerplatform.microsoft.com/images/admin-logo.png
+  baseURL: https://api.bap.microsoft.com
+  humanURL: https://docs.microsoft.com/power-platform/admin/admin-documentation
+  tags:
+  - Administration
+  - Governance
+  - Management
+  - Environments
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/power-platform/admin/admin-documentation
+  - type: PowerShell
+    url: https://docs.microsoft.com/power-platform/admin/powerapps-powershell
+  - type: CLI
+    url: https://docs.microsoft.com/power-platform/developer/cli/introduction
+  - type: Governance
+    url: https://docs.microsoft.com/power-platform/admin/governance-considerations
+  contact:
+  - type: Support
+    url: https://admin.powerplatform.microsoft.com/support
+- name: Power Platform Connectors API
+  description: API for custom and certified connectors that extend Power Platform capabilities
+  image: https://powerplatform.microsoft.com/images/connectors-logo.png
+  baseURL: https://api.connectors.microsoft.com
+  humanURL: https://docs.microsoft.com/connectors/
+  tags:
+  - Connectors
+  - Integration
+  - Custom Connectors
+  - APIs
+  properties:
+  - type: Documentation
+    url: https://docs.microsoft.com/connectors/
+  - type: Custom Connectors
+    url: https://docs.microsoft.com/connectors/custom-connectors/
+  - type: Connector Certification
+    url: https://docs.microsoft.com/connectors/custom-connectors/submit-certification
+  - type: OpenAPI Support
+    url: https://docs.microsoft.com/connectors/custom-connectors/define-openapi-definition
+  contact:
+  - type: Support
+    url: https://powerapps.microsoft.com/support/
+common:
+- type: Developer Portal
+  url: https://docs.microsoft.com/power-platform/
+- type: Community
+  url: https://powerusers.microsoft.com/
+- type: Blog
+  url: https://powerapps.microsoft.com/blog/
+- type: GitHub
+  url: https://github.com/microsoft/PowerPlatform
+- type: Learning Path
+  url: https://docs.microsoft.com/learn/powerplatform/
+- type: Status
+  url: https://status.powerplatform.microsoft.com/
+- type: Privacy Policy
+  url: https://privacy.microsoft.com/privacystatement
+- type: Terms of Service
+  url: https://www.microsoft.com/licensing/terms/
+maintainers:
+- name: Microsoft Corporation
+  email: powerplatform-support@microsoft.com
+  url: https://www.microsoft.com
