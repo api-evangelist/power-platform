@@ -1,0 +1,1528 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Microsoft Power Platform REST API",
+    "description": "Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.",
+    "version": "2022-03-01-preview",
+    "contact": {
+      "name": "Microsoft Power Platform Support",
+      "url": "https://admin.powerplatform.microsoft.com/support"
+    },
+    "license": {
+      "name": "Microsoft API Terms of Use",
+      "url": "https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.powerplatform.com",
+      "description": "Power Platform Unified API endpoint"
+    },
+    {
+      "url": "https://api.bap.microsoft.com",
+      "description": "Business Application Platform (BAP) legacy endpoint for environment management"
+    }
+  ],
+  "security": [
+    {
+      "oauth2": []
+    },
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Environments",
+      "description": "Operations for listing, creating, and managing Power Platform environments. Environments are containers that store apps, flows, data, and other resources."
+    },
+    {
+      "name": "Applications",
+      "description": "Operations for managing application packages within Power Platform environments, including listing available packages, installing applications, and checking installation status."
+    },
+    {
+      "name": "Flow Runs",
+      "description": "Operations for monitoring and retrieving Power Automate flow run history within environments."
+    },
+    {
+      "name": "Licensing",
+      "description": "Operations for managing billing policies and licensing across the Power Platform tenant."
+    }
+  ],
+  "paths": {
+    "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments": {
+      "get": {
+        "operationId": "listEnvironments",
+        "summary": "List environments",
+        "description": "Retrieves a list of all Power Platform environments for the tenant. The response includes environment properties such as display name, location, SKU type, provisioning state, capacity, linked Dataverse metadata, and runtime endpoints. Requires tenant admin or Power Platform admin permissions.",
+        "tags": ["Environments"],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2020-10-01"
+            },
+            "description": "The API version to use for this request."
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "examples": ["properties.capacity,properties.addons"]
+            },
+            "description": "Comma-separated list of related properties to expand. Supported values include properties.capacity and properties.addons."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of environments for the tenant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request requires valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The caller does not have sufficient permissions."
+          }
+        }
+      }
+    },
+    "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}": {
+      "get": {
+        "operationId": "getEnvironment",
+        "summary": "Get environment",
+        "description": "Retrieves details for a specific Power Platform environment by its identifier, including properties, capacity, linked Dataverse metadata, and runtime endpoints.",
+        "tags": ["Environments"],
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the environment."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2020-10-01"
+            },
+            "description": "The API version to use for this request."
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated list of related properties to expand."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The environment resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Environment"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Environment not found."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteEnvironment",
+        "summary": "Delete environment",
+        "description": "Deletes a Power Platform environment. This action is irreversible and removes all apps, flows, and data within the environment.",
+        "tags": ["Environments"],
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the environment to delete."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2020-10-01"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted. The environment deletion has been initiated."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Environment not found."
+          }
+        }
+      }
+    },
+    "/appmanagement/environments/{environmentId}/applicationPackages": {
+      "get": {
+        "operationId": "getEnvironmentApplicationPackages",
+        "summary": "Get environment application packages",
+        "description": "Retrieves the list of application packages available for installation in a specific Power Platform environment. Returns packages with their current installation status, version information, and metadata.",
+        "tags": ["Applications"],
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the target environment."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of application packages available in the environment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPackageListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Environment not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appmanagement/environments/{environmentId}/applicationPackages/{applicationPackageId}/install": {
+      "post": {
+        "operationId": "installApplicationPackage",
+        "summary": "Install application package",
+        "description": "Initiates the installation of a specific application package in the target Power Platform environment. Returns an operation ID that can be used to poll for installation status.",
+        "tags": ["Applications"],
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the target environment."
+          },
+          {
+            "name": "applicationPackageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the application package to install."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted. The installation has been initiated. Use the returned operation ID to poll for status.",
+            "headers": {
+              "Location": {
+                "description": "URL to poll for the operation status.",
+                "schema": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "Retry-After": {
+                "description": "Suggested number of seconds to wait before polling for status.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Environment or application package not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appmanagement/environments/{environmentId}/operations/{operationId}": {
+      "get": {
+        "operationId": "getApplicationPackageInstallStatus",
+        "summary": "Get application package install status",
+        "description": "Retrieves the polling status for a previously triggered application package installation. Use this operation to check whether an install has completed, is still in progress, or has failed.",
+        "tags": ["Applications"],
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the target environment."
+          },
+          {
+            "name": "operationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the installation operation."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The operation status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Operation not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appmanagement/applicationPackages": {
+      "get": {
+        "operationId": "getTenantApplicationPackages",
+        "summary": "Get tenant application packages",
+        "description": "Lists the installable application packages available for the tenant. Returns Microsoft-provided application packages that can be deployed to environments.",
+        "tags": ["Applications"],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of application packages available for the tenant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationPackageListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        }
+      }
+    },
+    "/powerautomate/environments/{environmentId}/flowRuns": {
+      "get": {
+        "operationId": "listFlowRuns",
+        "summary": "List flow runs",
+        "description": "Retrieves flow runs by workflow ID for a specific Power Platform environment. Returns a list of flow run records including their status, start time, end time, and trigger information. The environment must have a Microsoft Dataverse database.",
+        "tags": ["Flow Runs"],
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the environment."
+          },
+          {
+            "name": "workflowId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The workflow ID to retrieve flow runs for."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of flow runs matching the workflow ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlowRunListResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content. No matching flow runs found."
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Not found. Environment does not have a Microsoft Dataverse database.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/licensing/billingPolicies": {
+      "get": {
+        "operationId": "listBillingPolicies",
+        "summary": "List billing policies",
+        "description": "Retrieves the list of billing policies configured for the tenant. Billing policies define the association between Azure subscriptions and Power Platform environments for pay-as-you-go billing.",
+        "tags": ["Licensing"],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The maximum number of billing policies to return."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of billing policies for the tenant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPolicyListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBillingPolicy",
+        "summary": "Create billing policy",
+        "description": "Creates a new billing policy that links a Power Platform environment to an Azure subscription for pay-as-you-go billing.",
+        "tags": ["Licensing"],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingPolicyCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The billing policy was created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        }
+      }
+    },
+    "/licensing/billingPolicies/{billingPolicyId}": {
+      "get": {
+        "operationId": "getBillingPolicy",
+        "summary": "Get billing policy",
+        "description": "Retrieves details for a specific billing policy by its identifier.",
+        "tags": ["Licensing"],
+        "parameters": [
+          {
+            "name": "billingPolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the billing policy."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The billing policy resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPolicy"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Billing policy not found."
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBillingPolicy",
+        "summary": "Update billing policy",
+        "description": "Updates an existing billing policy with new values.",
+        "tags": ["Licensing"],
+        "parameters": [
+          {
+            "name": "billingPolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the billing policy to update."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingPolicyUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The billing policy was updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Billing policy not found."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteBillingPolicy",
+        "summary": "Delete billing policy",
+        "description": "Deletes a billing policy by its identifier.",
+        "tags": ["Licensing"],
+        "parameters": [
+          {
+            "name": "billingPolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The unique identifier of the billing policy to delete."
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2022-03-01-preview"
+            },
+            "description": "The API version to use for this request."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The billing policy was deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Billing policy not found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "Microsoft Entra ID OAuth 2.0 authentication. Register your application and obtain tokens via the Microsoft identity platform.",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+            "scopes": {
+              "https://api.powerplatform.com/.default": "Access Power Platform API resources"
+            }
+          },
+          "clientCredentials": {
+            "tokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+            "scopes": {
+              "https://api.powerplatform.com/.default": "Access Power Platform API resources as a service principal"
+            }
+          }
+        }
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token obtained from Microsoft Entra ID OAuth 2.0 flow."
+      }
+    },
+    "schemas": {
+      "EnvironmentListResponse": {
+        "type": "object",
+        "description": "Response containing a list of Power Platform environments.",
+        "properties": {
+          "value": {
+            "type": "array",
+            "description": "Array of environment resources.",
+            "items": {
+              "$ref": "#/components/schemas/Environment"
+            }
+          }
+        }
+      },
+      "Environment": {
+        "type": "object",
+        "description": "A Power Platform environment resource. Environments are containers that store apps, flows, data, and other resources.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The fully qualified resource ID of the environment.",
+            "examples": ["/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee"]
+          },
+          "type": {
+            "type": "string",
+            "description": "The resource type.",
+            "examples": ["Microsoft.BusinessAppPlatform/scopes/environments"]
+          },
+          "location": {
+            "type": "string",
+            "description": "The geographic location of the environment.",
+            "examples": ["unitedstates", "europe", "asia"]
+          },
+          "name": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The environment identifier (GUID)."
+          },
+          "properties": {
+            "$ref": "#/components/schemas/EnvironmentProperties"
+          }
+        }
+      },
+      "EnvironmentProperties": {
+        "type": "object",
+        "description": "Properties of a Power Platform environment.",
+        "properties": {
+          "azureRegion": {
+            "type": "string",
+            "description": "The Azure region where the environment is hosted.",
+            "examples": ["westus", "northeurope", "eastasia"]
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The display name of the environment.",
+            "examples": ["My Power Platform Environment"]
+          },
+          "description": {
+            "type": ["string", "null"],
+            "description": "A text description of the environment purpose."
+          },
+          "createdTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the environment was created."
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/Principal"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp of the last modification to the environment."
+          },
+          "provisioningState": {
+            "type": "string",
+            "description": "The current provisioning state of the environment.",
+            "enum": ["Succeeded", "Failed", "InProgress", "Deleting"]
+          },
+          "creationType": {
+            "type": "string",
+            "description": "How the environment was created.",
+            "enum": ["User", "System", "Developer"]
+          },
+          "environmentSku": {
+            "type": "string",
+            "description": "The SKU type of the environment.",
+            "enum": ["Production", "Sandbox", "Trial", "Developer", "Default", "Teams"]
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "Whether this is the default environment for the tenant."
+          },
+          "capacity": {
+            "type": "array",
+            "description": "Capacity consumption details for the environment.",
+            "items": {
+              "$ref": "#/components/schemas/CapacityInfo"
+            }
+          },
+          "addons": {
+            "type": "array",
+            "description": "Add-on allocations for the environment.",
+            "items": {
+              "$ref": "#/components/schemas/AddonInfo"
+            }
+          },
+          "clientUris": {
+            "type": "object",
+            "description": "URLs for accessing the environment through different client interfaces.",
+            "properties": {
+              "admin": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the Power Platform admin center for this environment."
+              },
+              "maker": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the Power Apps maker portal for this environment."
+              }
+            }
+          },
+          "runtimeEndpoints": {
+            "type": "object",
+            "description": "Runtime service endpoints for the environment.",
+            "properties": {
+              "microsoft.BusinessAppPlatform": {
+                "type": "string",
+                "format": "uri"
+              },
+              "microsoft.CommonDataModel": {
+                "type": "string",
+                "format": "uri"
+              },
+              "microsoft.PowerApps": {
+                "type": "string",
+                "format": "uri"
+              },
+              "microsoft.Flow": {
+                "type": "string",
+                "format": "uri"
+              },
+              "microsoft.PowerAppsAdvisor": {
+                "type": "string",
+                "format": "uri"
+              },
+              "microsoft.ApiManagement": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "databaseType": {
+            "type": ["string", "null"],
+            "description": "The type of database provisioned for the environment.",
+            "enum": ["CommonDataService", "none", null]
+          },
+          "linkedEnvironmentMetadata": {
+            "$ref": "#/components/schemas/LinkedEnvironmentMetadata"
+          },
+          "retentionPeriod": {
+            "type": "string",
+            "description": "The data retention period in ISO 8601 duration format.",
+            "examples": ["P7D", "P28D"]
+          },
+          "states": {
+            "type": "object",
+            "description": "Current states of the environment.",
+            "properties": {
+              "management": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": ["Ready", "NotReady", "Disabled"]
+                  }
+                }
+              },
+              "runtime": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": ["Enabled", "Disabled"]
+                  }
+                }
+              }
+            }
+          },
+          "updateCadence": {
+            "type": "object",
+            "description": "The update cadence setting for the environment.",
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": ["Frequent", "Moderate"],
+                "description": "Frequent provides updates multiple times per month. Moderate provides updates at least once per month."
+              }
+            }
+          },
+          "protectionStatus": {
+            "type": "object",
+            "description": "Encryption key management information.",
+            "properties": {
+              "keyManagedBy": {
+                "type": "string",
+                "enum": ["Microsoft", "Customer"],
+                "description": "Whether the encryption key is managed by Microsoft or by the customer."
+              }
+            }
+          }
+        }
+      },
+      "LinkedEnvironmentMetadata": {
+        "type": ["object", "null"],
+        "description": "Metadata about the linked Dataverse instance.",
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The resource identifier of the Dataverse instance."
+          },
+          "friendlyName": {
+            "type": "string",
+            "description": "The friendly name of the Dataverse instance."
+          },
+          "uniqueName": {
+            "type": "string",
+            "description": "The unique name identifier for the Dataverse organization."
+          },
+          "domainName": {
+            "type": "string",
+            "description": "The domain name prefix for the Dataverse instance."
+          },
+          "version": {
+            "type": "string",
+            "description": "The Dataverse platform version.",
+            "examples": ["9.2.21013.00152"]
+          },
+          "instanceUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URL of the Dataverse instance."
+          },
+          "instanceApiUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "The API URL for the Dataverse instance."
+          },
+          "baseLanguage": {
+            "type": "integer",
+            "description": "The LCID of the base language for the Dataverse instance.",
+            "examples": [1033]
+          },
+          "instanceState": {
+            "type": "string",
+            "description": "The state of the Dataverse instance.",
+            "enum": ["Ready", "NotReady", "Disabled"]
+          },
+          "createdTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the Dataverse instance was created."
+          },
+          "backgroundOperationsState": {
+            "type": "string",
+            "description": "Whether background operations are enabled.",
+            "enum": ["Enabled", "Disabled"]
+          },
+          "scaleGroup": {
+            "type": "string",
+            "description": "The scale group identifier."
+          },
+          "platformSku": {
+            "type": "string",
+            "description": "The platform SKU of the Dataverse instance.",
+            "enum": ["Standard", "Premium"]
+          }
+        }
+      },
+      "Principal": {
+        "type": "object",
+        "description": "Represents a principal (user or service principal) that performed an action.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the principal."
+          },
+          "displayName": {
+            "type": ["string", "null"],
+            "description": "The display name of the principal."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of principal.",
+            "enum": ["None", "Application", "User", "DelegatedAdmin", "ServicePrincipal"]
+          },
+          "tenantId": {
+            "type": ["string", "null"],
+            "format": "uuid",
+            "description": "The tenant ID of the principal."
+          }
+        }
+      },
+      "CapacityInfo": {
+        "type": "object",
+        "description": "Capacity consumption information for an environment.",
+        "properties": {
+          "capacityType": {
+            "type": "string",
+            "description": "The type of capacity.",
+            "enum": ["Database", "File", "Log"]
+          },
+          "actualConsumption": {
+            "type": "number",
+            "description": "The actual capacity consumption."
+          },
+          "ratedConsumption": {
+            "type": "number",
+            "description": "The rated capacity consumption."
+          },
+          "capacityUnit": {
+            "type": "string",
+            "description": "The unit of measurement for capacity.",
+            "examples": ["MB", "GB"]
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the capacity data was last updated."
+          }
+        }
+      },
+      "AddonInfo": {
+        "type": "object",
+        "description": "Add-on allocation information for an environment.",
+        "properties": {
+          "addonType": {
+            "type": "string",
+            "description": "The type of add-on.",
+            "enum": ["AppPass", "PerFlowPlan", "PortalViews", "PortalLogins", "AI", "AppPassForTeams", "PAUnattendedRPA"]
+          },
+          "allocated": {
+            "type": "number",
+            "description": "The number of allocated add-on units."
+          },
+          "addonUnit": {
+            "type": "string",
+            "description": "The unit of measurement for the add-on.",
+            "examples": ["Unit"]
+          }
+        }
+      },
+      "ApplicationPackageListResponse": {
+        "type": "object",
+        "description": "Response containing a list of application packages.",
+        "properties": {
+          "value": {
+            "type": "array",
+            "description": "Array of application package resources.",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationPackage"
+            }
+          },
+          "@odata.nextLink": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "URL to retrieve the next page of results."
+          }
+        }
+      },
+      "ApplicationPackage": {
+        "type": "object",
+        "description": "An application package available for installation in a Power Platform environment.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the application package."
+          },
+          "uniqueName": {
+            "type": "string",
+            "description": "The unique name of the application package."
+          },
+          "version": {
+            "type": "string",
+            "description": "The version of the application package."
+          },
+          "localizedDescription": {
+            "type": ["string", "null"],
+            "description": "A localized description of the application package."
+          },
+          "localizedName": {
+            "type": ["string", "null"],
+            "description": "The localized display name of the application package."
+          },
+          "applicationVisibility": {
+            "type": "string",
+            "description": "The visibility of the application.",
+            "enum": ["All", "None"]
+          },
+          "state": {
+            "type": "string",
+            "description": "The current installation state of the package.",
+            "enum": ["Installed", "NotInstalled", "InstallFailed"]
+          },
+          "lastError": {
+            "type": ["object", "null"],
+            "description": "Details about the last error if installation failed.",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "OperationStatus": {
+        "type": "object",
+        "description": "Status of a long-running operation such as an application package installation.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the operation."
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status of the operation.",
+            "enum": ["NotStarted", "Running", "Succeeded", "Failed", "Cancelled"]
+          },
+          "createdDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the operation was created."
+          },
+          "lastActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp of the last status update."
+          },
+          "error": {
+            "type": ["object", "null"],
+            "description": "Error details if the operation failed.",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "FlowRunListResponse": {
+        "type": "object",
+        "description": "Response containing a list of flow runs.",
+        "properties": {
+          "value": {
+            "type": "array",
+            "description": "Array of flow run records.",
+            "items": {
+              "$ref": "#/components/schemas/FlowRun"
+            }
+          },
+          "@odata.nextLink": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "URL to retrieve the next page of results."
+          }
+        }
+      },
+      "FlowRun": {
+        "type": "object",
+        "description": "A record of a Power Automate flow run execution.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique identifier of the flow run."
+          },
+          "id": {
+            "type": "string",
+            "description": "The fully qualified resource ID of the flow run."
+          },
+          "type": {
+            "type": "string",
+            "description": "The resource type.",
+            "examples": ["Microsoft.ProcessSimple/environments/flows/runs"]
+          },
+          "properties": {
+            "$ref": "#/components/schemas/FlowRunProperties"
+          }
+        }
+      },
+      "FlowRunProperties": {
+        "type": "object",
+        "description": "Properties of a flow run.",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the flow run started."
+          },
+          "endTime": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "The timestamp when the flow run ended. Null if still running."
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status of the flow run.",
+            "enum": ["Running", "Succeeded", "Failed", "Cancelled", "Skipped", "Suspended", "TimedOut", "Aborted", "Waiting", "Ignored", "Faulted"]
+          },
+          "correlation": {
+            "type": "object",
+            "description": "Correlation information for the flow run.",
+            "properties": {
+              "clientTrackingId": {
+                "type": "string",
+                "description": "Client-side tracking identifier."
+              }
+            }
+          },
+          "trigger": {
+            "type": "object",
+            "description": "Information about the trigger that initiated the flow run.",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the trigger."
+              },
+              "startTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The timestamp when the trigger fired."
+              },
+              "endTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The timestamp when the trigger completed."
+              },
+              "status": {
+                "type": "string",
+                "description": "The status of the trigger execution.",
+                "enum": ["Succeeded", "Failed", "Skipped"]
+              }
+            }
+          }
+        }
+      },
+      "BillingPolicyListResponse": {
+        "type": "object",
+        "description": "Response containing a list of billing policies.",
+        "properties": {
+          "value": {
+            "type": "array",
+            "description": "Array of billing policy resources.",
+            "items": {
+              "$ref": "#/components/schemas/BillingPolicy"
+            }
+          },
+          "@odata.nextLink": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "URL to retrieve the next page of results."
+          }
+        }
+      },
+      "BillingPolicy": {
+        "type": "object",
+        "description": "A billing policy that defines the association between an Azure subscription and Power Platform environments for pay-as-you-go billing.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the billing policy."
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the billing policy."
+          },
+          "location": {
+            "type": "string",
+            "description": "The geographic location of the billing policy."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the billing policy.",
+            "enum": ["Enabled", "Disabled"]
+          },
+          "billingInstrument": {
+            "$ref": "#/components/schemas/BillingInstrument"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/Principal"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the billing policy was created."
+          },
+          "lastModifiedBy": {
+            "$ref": "#/components/schemas/Principal"
+          },
+          "lastModifiedOn": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp of the last modification."
+          }
+        }
+      },
+      "BillingInstrument": {
+        "type": "object",
+        "description": "The billing instrument information linking to an Azure subscription.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier of the billing instrument."
+          },
+          "resourceGroup": {
+            "type": "string",
+            "description": "The resource group within the Azure subscription."
+          },
+          "subscriptionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The Azure subscription ID."
+          }
+        }
+      },
+      "BillingPolicyCreateRequest": {
+        "type": "object",
+        "description": "Request body for creating a new billing policy.",
+        "required": ["name", "location", "billingInstrument"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The display name of the billing policy."
+          },
+          "location": {
+            "type": "string",
+            "description": "The geographic location of the billing policy."
+          },
+          "status": {
+            "type": "string",
+            "description": "The initial status of the billing policy.",
+            "enum": ["Enabled", "Disabled"],
+            "default": "Enabled"
+          },
+          "billingInstrument": {
+            "$ref": "#/components/schemas/BillingInstrument"
+          }
+        }
+      },
+      "BillingPolicyUpdateRequest": {
+        "type": "object",
+        "description": "Request body for updating an existing billing policy.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The updated display name."
+          },
+          "status": {
+            "type": "string",
+            "description": "The updated status.",
+            "enum": ["Enabled", "Disabled"]
+          },
+          "billingInstrument": {
+            "$ref": "#/components/schemas/BillingInstrument"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "The standard error response object.",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code for the failure type (e.g., BadRequest, NotFound)."
+              },
+              "message": {
+                "type": "string",
+                "description": "A human-readable description of the error."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
