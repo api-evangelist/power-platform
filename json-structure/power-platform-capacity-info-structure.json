@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CapacityInfo",
+  "type": "object",
+  "properties": {
+    "capacityType": {
+      "type": "string"
+    },
+    "actualConsumption": {
+      "type": "number"
+    },
+    "ratedConsumption": {
+      "type": "number"
+    },
+    "capacityUnit": {
+      "type": "string"
+    },
+    "updatedOn": {
+      "type": "string"
+    }
+  }
+}

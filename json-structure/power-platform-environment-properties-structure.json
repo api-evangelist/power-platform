@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EnvironmentProperties",
+  "type": "object",
+  "properties": {
+    "azureRegion": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "['string', 'null']"
+    },
+    "createdTime": {
+      "type": "string"
+    },
+    "lastModifiedTime": {
+      "type": "string"
+    },
+    "provisioningState": {
+      "type": "string"
+    },
+    "creationType": {
+      "type": "string"
+    },
+    "environmentSku": {
+      "type": "string"
+    },
+    "isDefault": {
+      "type": "boolean"
+    },
+    "capacity": {
+      "type": "array"
+    },
+    "addons": {
+      "type": "array"
+    },
+    "clientUris": {
+      "type": "object"
+    },
+    "runtimeEndpoints": {
+      "type": "object"
+    },
+    "databaseType": {
+      "type": "['string', 'null']"
+    },
+    "retentionPeriod": {
+      "type": "string"
+    },
+    "states": {
+      "type": "object"
+    },
+    "updateCadence": {
+      "type": "object"
+    },
+    "protectionStatus": {
+      "type": "object"
+    }
+  }
+}

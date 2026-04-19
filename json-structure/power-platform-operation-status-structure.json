@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "OperationStatus",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "createdDateTime": {
+      "type": "string"
+    },
+    "lastActionDateTime": {
+      "type": "string"
+    },
+    "error": {
+      "type": "['object', 'null']"
+    }
+  }
+}

@@ -1,0 +1,236 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Microsoft Power Platform Administration"
+  description: "Unified workflow for Power Platform administrators to manage environments, deploy applications, monitor flow runs, and govern licensing across the tenant."
+  tags:
+    - Microsoft
+    - Power Platform
+    - Administration
+    - Governance
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      POWER_PLATFORM_BEARER_TOKEN: POWER_PLATFORM_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: power-platform-api
+      location: ./shared/power-platform-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: power-platform-admin-api
+      description: "Unified REST API for Power Platform administration."
+      resources:
+        - path: /v1/environments
+          name: environments
+          description: "Environment management"
+          operations:
+            - method: GET
+              name: list-environments
+              description: "List all environments"
+              call: "power-platform-api.list-environments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/environments/{environmentId}
+          name: environment-detail
+          description: "Single environment operations"
+          operations:
+            - method: GET
+              name: get-environment
+              description: "Get environment details"
+              call: "power-platform-api.get-environment"
+              with:
+                environmentId: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-environment
+              description: "Delete an environment"
+              call: "power-platform-api.delete-environment"
+              with:
+                environmentId: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/environments/{environmentId}/packages
+          name: application-packages
+          description: "Application package management"
+          operations:
+            - method: GET
+              name: list-packages
+              description: "List application packages for an environment"
+              call: "power-platform-api.get-environment-application-packages"
+              with:
+                environmentId: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/environments/{environmentId}/flow-runs
+          name: flow-runs
+          description: "Flow run monitoring"
+          operations:
+            - method: GET
+              name: list-flow-runs
+              description: "List flow runs for an environment"
+              call: "power-platform-api.list-flow-runs"
+              with:
+                environmentId: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/billing-policies
+          name: billing-policies
+          description: "Billing policy management"
+          operations:
+            - method: GET
+              name: list-billing-policies
+              description: "List all billing policies"
+              call: "power-platform-api.list-billing-policies"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-billing-policy
+              description: "Create a billing policy"
+              call: "power-platform-api.create-billing-policy"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: power-platform-admin-mcp
+      transport: http
+      description: "MCP server for AI-assisted Power Platform administration."
+      tools:
+        - name: list-environments
+          description: "List all Power Platform environments in the tenant"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "power-platform-api.list-environments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-environment
+          description: "Get details for a specific Power Platform environment"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "power-platform-api.get-environment"
+          with:
+            environmentId: "tools.environmentId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-environment
+          description: "Delete a Power Platform environment"
+          hints:
+            destructive: true
+            idempotent: true
+          call: "power-platform-api.delete-environment"
+          with:
+            environmentId: "tools.environmentId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-application-packages
+          description: "List application packages available in an environment"
+          hints:
+            readOnly: true
+          call: "power-platform-api.get-environment-application-packages"
+          with:
+            environmentId: "tools.environmentId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: install-application-package
+          description: "Install an application package in an environment"
+          hints:
+            readOnly: false
+          call: "power-platform-api.install-application-package"
+          with:
+            environmentId: "tools.environmentId"
+            applicationPackageId: "tools.applicationPackageId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-install-status
+          description: "Check the installation status of an application package"
+          hints:
+            readOnly: true
+          call: "power-platform-api.get-install-status"
+          with:
+            environmentId: "tools.environmentId"
+            operationId: "tools.operationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-tenant-packages
+          description: "List installable application packages for the tenant"
+          hints:
+            readOnly: true
+          call: "power-platform-api.get-tenant-application-packages"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-flow-runs
+          description: "List Power Automate flow runs by workflow ID"
+          hints:
+            readOnly: true
+          call: "power-platform-api.list-flow-runs"
+          with:
+            environmentId: "tools.environmentId"
+            workflowId: "tools.workflowId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-billing-policies
+          description: "List billing policies for the tenant"
+          hints:
+            readOnly: true
+          call: "power-platform-api.list-billing-policies"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-billing-policy
+          description: "Create a new billing policy linking Azure subscription"
+          hints:
+            readOnly: false
+          call: "power-platform-api.create-billing-policy"
+          with:
+            name: "tools.name"
+            billingInstrument: "tools.billingInstrument"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-billing-policy
+          description: "Get details for a specific billing policy"
+          hints:
+            readOnly: true
+          call: "power-platform-api.get-billing-policy"
+          with:
+            billingPolicyId: "tools.billingPolicyId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-billing-policy
+          description: "Update an existing billing policy"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "power-platform-api.update-billing-policy"
+          with:
+            billingPolicyId: "tools.billingPolicyId"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."

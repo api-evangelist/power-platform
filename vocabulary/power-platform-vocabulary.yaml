@@ -1,0 +1,11 @@
+name: power-platform API Vocabulary
+provider: power-platform
+created: '2026-04-19'
+modified: '2026-04-19'
+operations: 13
+schemas: 19
+tags:
+- Applications
+- Environments
+- Flow Runs
+- Licensing

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FlowRunListResponse",
+  "type": "object",
+  "description": "Response containing a list of flow runs.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "Array of flow run records."
+    },
+    "@odata.nextLink": {
+      "type": "['string', 'null']",
+      "description": "URL to retrieve the next page of results."
+    }
+  }
+}

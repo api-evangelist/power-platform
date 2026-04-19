@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ApplicationPackageListResponse",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "array"
+    },
+    "@odata.nextLink": {
+      "type": "['string', 'null']"
+    }
+  }
+}

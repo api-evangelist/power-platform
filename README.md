@@ -1,156 +1,238 @@
 # Microsoft Power Platform APIs (power-platform)
-Collection of APIs for Microsoft Power Platform services including Power Apps, Power Automate, Power BI, and Power Virtual Agents
+Collection of APIs for Microsoft Power Platform services including Power Apps, Power Automate, Power BI, Copilot Studio, Power Pages, and Dataverse.
 
 **URL:** [Visit APIs.json URL](https://powerplatform.microsoft.com/apis.json)
 
+**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+
 ## Tags:
 
- - Power Platform, Low-Code, No-Code, Business Applications, Microsoft
+ - Business Applications, Copilot Studio, Dataverse, Low-Code, Microsoft, No-Code, Power Pages, Power Platform
 
 ## Timestamps
 
 - **Created:** 2024-01-15 
-- **Modified:** 2024-01-15 
+- **Modified:** 2026-04-19 
 
 ## APIs
 
 ### Power Apps API
-REST API for creating, managing, and deploying Power Apps applications
+REST API for creating, managing, and deploying Power Apps applications including canvas apps and model-driven apps.
 
-**Human URL:** [https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview](https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview)
-
+**Human URL:** [https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview)
 
 #### Tags:
 
- - Power Apps, Canvas Apps, Model-driven Apps, Applications
+ - Applications, Canvas Apps, Model-Driven Apps, Power Apps
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview)
+- [Documentation](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview)
 - [OpenAPI](https://api.powerapps.com/openapi/v1)
-- [Authentication](https://docs.microsoft.com/powerapps/developer/data-platform/authenticate)
-- [Rate Limits](https://docs.microsoft.com/powerapps/developer/data-platform/api-limits)
+- [Authentication](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth)
+- [RateLimits](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits)
 - [Pricing](https://powerapps.microsoft.com/pricing/)
+- [APIReference](https://learn.microsoft.com/en-us/rest/api/power-platform/powerapps/apps)
 
 ### Dataverse API (Common Data Service)
-Web API for Microsoft Dataverse, providing data storage and business logic capabilities
+OData v4.0 compliant Web API for Microsoft Dataverse, providing RESTful data storage, business logic, and entity management capabilities across the Power Platform.
 
-**Human URL:** [https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview](https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview)
-
+**Human URL:** [https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview)
 
 #### Tags:
 
- - Dataverse, CDS, Data Platform, Database
+ - CDS, Data Platform, Database, Dataverse, OData
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/powerapps/developer/data-platform/webapi/overview)
-- [OpenAPI](https://docs.microsoft.com/powerapps/developer/data-platform/webapi/openapi)
-- [OData](https://docs.microsoft.com/powerapps/developer/data-platform/webapi/web-api-properties)
-- [Authentication](https://docs.microsoft.com/powerapps/developer/data-platform/authenticate-oauth)
-- [SDKs](https://docs.microsoft.com/powerapps/developer/data-platform/developer-tools)
+- [Documentation](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview)
+- [APIReference](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/about)
+- [Authentication](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/authenticate-web-api)
+- [SDK](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/developer-tools)
 
 ### Power Automate API
-API for creating, managing, and running automated workflows
+API for creating, managing, and running automated cloud flows and desktop flows. Cloud flows are stored in Dataverse and can be managed via the Dataverse Web API.
 
-**Human URL:** [https://docs.microsoft.com/power-automate/web-api](https://docs.microsoft.com/power-automate/web-api)
-
+**Human URL:** [https://learn.microsoft.com/en-us/power-automate/web-api](https://learn.microsoft.com/en-us/power-automate/web-api)
 
 #### Tags:
 
- - Power Automate, Flow, Workflow, Automation, RPA
+ - Automation, Desktop Flows, Flow, Power Automate, RPA, Workflow
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/power-automate/web-api)
+- [Documentation](https://learn.microsoft.com/en-us/power-automate/web-api)
 - [OpenAPI](https://api.flow.microsoft.com/openapi/v1)
-- [Authentication](https://docs.microsoft.com/power-automate/web-api#authentication)
-- [Connectors](https://docs.microsoft.com/connectors/)
-- [Pricing](https://flow.microsoft.com/pricing/)
+- [Authentication](https://learn.microsoft.com/en-us/power-automate/web-api)
+- [Pricing](https://powerautomate.microsoft.com/pricing/)
+- [APIReference](https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs)
 
 ### Power BI REST API
-REST API for embedding, managing, and interacting with Power BI reports and datasets
+REST API for embedding, managing, and interacting with Power BI reports, datasets, dashboards, and workspaces for embedded analytics and automation.
 
-**Human URL:** [https://docs.microsoft.com/rest/api/power-bi/](https://docs.microsoft.com/rest/api/power-bi/)
-
+**Human URL:** [https://learn.microsoft.com/en-us/rest/api/power-bi/](https://learn.microsoft.com/en-us/rest/api/power-bi/)
 
 #### Tags:
 
- - Power BI, Analytics, Business Intelligence, Reporting, Dashboards
+ - Analytics, Business Intelligence, Dashboards, Embedded Analytics, Power BI, Reporting
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/rest/api/power-bi/)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/power-bi/)
 - [OpenAPI](https://api.powerbi.com/v1.0/myorg/swagger.json)
-- [Authentication](https://docs.microsoft.com/power-bi/developer/embedded/embed-tokens)
-- [SDKs](https://docs.microsoft.com/javascript/api/overview/powerbi/)
-- [Embedding](https://docs.microsoft.com/power-bi/developer/embedded/embedding)
+- [Authentication](https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-tokens)
+- [SDK](https://learn.microsoft.com/en-us/javascript/api/overview/powerbi/)
 - [Pricing](https://powerbi.microsoft.com/pricing/)
 
-### Power Virtual Agents API
-API for managing and deploying conversational AI chatbots
+### Microsoft Copilot Studio API (formerly Power Virtual Agents)
+API for building, managing, and deploying AI agents and conversational chatbots. Power Virtual Agents has been rebranded to Microsoft Copilot Studio with expanded AI agent capabilities.
 
-**Human URL:** [https://docs.microsoft.com/power-virtual-agents/](https://docs.microsoft.com/power-virtual-agents/)
-
+**Human URL:** [https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
 
 #### Tags:
 
- - Power Virtual Agents, Chatbots, Conversational AI, Virtual Agents
+ - AI Agents, Chatbots, Conversational AI, Copilot Studio, Power Virtual Agents, Virtual Agents
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/power-virtual-agents/)
-- [Authentication](https://docs.microsoft.com/power-virtual-agents/configuration-authentication)
-- [Bot Framework](https://docs.microsoft.com/power-virtual-agents/publication-connect-bot-to-azure-bot-service)
-- [Pricing](https://powervirtualagents.microsoft.com/pricing/)
+- [Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
+- [Authentication](https://learn.microsoft.com/en-us/microsoft-copilot-studio/configuration-end-user-authentication)
+- [Pricing](https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio#pricing)
+- [Console](https://copilotstudio.microsoft.com)
 
 ### Power Platform Admin API
-API for administrative operations across Power Platform environments
+API for administrative operations across Power Platform environments including environment management, governance, capacity, and licensing via the BAP (Business Application Platform) endpoint.
 
-**Human URL:** [https://docs.microsoft.com/power-platform/admin/admin-documentation](https://docs.microsoft.com/power-platform/admin/admin-documentation)
-
+**Human URL:** [https://learn.microsoft.com/en-us/power-platform/admin/admin-documentation](https://learn.microsoft.com/en-us/power-platform/admin/admin-documentation)
 
 #### Tags:
 
- - Administration, Governance, Management, Environments
+ - Administration, Environments, Governance, Licensing, Management
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/power-platform/admin/admin-documentation)
-- [PowerShell](https://docs.microsoft.com/power-platform/admin/powerapps-powershell)
-- [CLI](https://docs.microsoft.com/power-platform/developer/cli/introduction)
-- [Governance](https://docs.microsoft.com/power-platform/admin/governance-considerations)
+- [Documentation](https://learn.microsoft.com/en-us/power-platform/admin/admin-documentation)
+- [CLI](https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction)
+- [GettingStarted](https://learn.microsoft.com/en-us/power-platform/admin/powerplatform-api-getting-started)
 
 ### Power Platform Connectors API
-API for custom and certified connectors that extend Power Platform capabilities
+API for custom and certified connectors that extend Power Platform capabilities across Power Apps, Power Automate, Logic Apps, and Copilot Studio.
 
-**Human URL:** [https://docs.microsoft.com/connectors/](https://docs.microsoft.com/connectors/)
-
+**Human URL:** [https://learn.microsoft.com/en-us/connectors/](https://learn.microsoft.com/en-us/connectors/)
 
 #### Tags:
 
- - Connectors, Integration, Custom Connectors, APIs
+ - Connectors, Custom Connectors, Integration, OpenAPI
 
 #### Properties
 
-- [Documentation](https://docs.microsoft.com/connectors/)
-- [Custom Connectors](https://docs.microsoft.com/connectors/custom-connectors/)
-- [Connector Certification](https://docs.microsoft.com/connectors/custom-connectors/submit-certification)
-- [OpenAPI Support](https://docs.microsoft.com/connectors/custom-connectors/define-openapi-definition)
+- [Documentation](https://learn.microsoft.com/en-us/connectors/)
+- [CLI](https://learn.microsoft.com/en-us/connectors/custom-connectors/paconn-cli)
+- [GitHubRepository](https://github.com/microsoft/PowerPlatformConnectors)
+
+### Power Platform Unified API
+Unified RESTful API surface for all Power Platform administrative capabilities including licensing, app management, environment management, and governance. Provides a single endpoint at api.powerplatform.com.
+
+**Human URL:** [https://learn.microsoft.com/en-us/rest/api/power-platform/](https://learn.microsoft.com/en-us/rest/api/power-platform/)
+
+#### Tags:
+
+ - Administration, App Management, Governance, Licensing, Power Platform API, Unified API
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/power-platform/)
+- [GettingStarted](https://learn.microsoft.com/en-us/power-platform/admin/powerplatform-api-getting-started)
+- [Authentication](https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2)
+- [Versioning](https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support)
+- [OpenAPI](openapi/power-platform-api-openapi.json)
+- [SDK](https://www.nuget.org/packages/Microsoft.PowerPlatform.Management)
+
+### Power Pages Web API
+Web API for Power Pages (formerly Power Apps Portals) enabling CRUD operations on Microsoft Dataverse tables from portal webpages for richer user experiences.
+
+**Human URL:** [https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview](https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview)
+
+#### Tags:
+
+ - Dataverse, Portals, Power Pages, Web API, Websites
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview)
+- [GettingStarted](https://learn.microsoft.com/en-us/power-pages/configure/webapi-how-to)
 
 ## Common Properties
 
-- [Developer Portal](https://docs.microsoft.com/power-platform/)
-- [Community](https://powerusers.microsoft.com/)
-- [Blog](https://powerapps.microsoft.com/blog/)
-- [GitHub](https://github.com/microsoft/PowerPlatform)
-- [Learning Path](https://docs.microsoft.com/learn/powerplatform/)
-- [Status](https://status.powerplatform.microsoft.com/)
-- [Privacy Policy](https://privacy.microsoft.com/privacystatement)
-- [Terms of Service](https://www.microsoft.com/licensing/terms/)
+- [DeveloperPortal](https://learn.microsoft.com/en-us/power-platform/developer/)
+- [Documentation](https://learn.microsoft.com/en-us/power-platform/)
+- [Blog](https://www.microsoft.com/en-us/power-platform/blog/)
+- [GitHubOrganization](https://github.com/microsoft/powerplatform)
+- [Training](https://learn.microsoft.com/en-us/training/powerplatform/)
+- [StatusPage](https://status.cloud.microsoft/)
+- [PrivacyPolicy](https://privacy.microsoft.com/privacystatement)
+- [TermsOfService](https://www.microsoft.com/licensing/terms/)
+- [APIReference](https://learn.microsoft.com/en-us/rest/api/power-platform/)
+- [Support](https://admin.powerplatform.microsoft.com/)
+
+## Features
+
+| Name | Description |
+|------|-------------|
+| Low-Code App Development | Build custom business applications with drag-and-drop canvas and model-driven app builders without writing code. |
+| Workflow Automation | Automate repetitive business processes with cloud flows, desktop flows, and AI-powered process mining. |
+| Business Intelligence | Create interactive dashboards and reports with Power BI for data-driven decision making across the organization. |
+| AI-Powered Chatbots | Build conversational AI agents with Copilot Studio that integrate with Teams, websites, and other channels. |
+| Custom Connectors | Extend platform capabilities by creating custom connectors to any REST API or third-party service. |
+| Dataverse Data Platform | Store and manage business data in a secure, scalable cloud database with built-in business logic and security. |
+| Environment Management | Manage isolated environments for development, testing, and production with governance policies and access controls. |
+| Embedded Analytics | Embed Power BI reports and dashboards directly into custom applications and portals. |
+
+## Use Cases
+
+| Name | Description |
+|------|-------------|
+| Citizen Developer Apps | Enable business users to build departmental applications without IT involvement using low-code tools. |
+| Process Automation | Automate approval workflows, data collection, notifications, and integrations across Microsoft 365 and third-party services. |
+| Enterprise Reporting | Consolidate data from multiple sources into unified dashboards and self-service analytics for executive decision-making. |
+| Customer Service Bots | Deploy AI-powered virtual agents for customer support, HR inquiries, and IT helpdesk automation. |
+| Data Integration | Connect and synchronize data across SaaS applications, on-premises systems, and cloud databases using connectors and Dataverse. |
+
+## Integrations
+
+| Name | Description |
+|------|-------------|
+| Microsoft 365 | Deep integration with Outlook, Teams, SharePoint, OneDrive, and Excel for seamless productivity workflows. |
+| Microsoft Azure | Connect to Azure services including Azure Active Directory, Azure SQL, Azure Functions, and Cognitive Services. |
+| Dynamics 365 | Extend Dynamics 365 CRM and ERP applications with custom Power Apps and automated workflows. |
+| SAP | Connect to SAP ERP and S/4HANA through certified connectors for enterprise data integration. |
+| Salesforce | Integrate with Salesforce CRM data and workflows through the Salesforce connector. |
+| ServiceNow | Connect Power Platform workflows with ServiceNow ITSM and service management processes. |
+
+## Artifacts
+
+Machine-readable API specifications organized by format.
+
+### OpenAPI
+
+- [Power Platform Unified API](openapi/power-platform-api-openapi.json)
+
+## Capabilities
+
+Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
+
+### Shared Per-API Definitions
+
+- [Microsoft Power Platform Unified API](capabilities/shared/power-platform-api.yaml) -- 12 operations for environment, application, flow, and licensing management
+
+### Workflow Capabilities
+
+| Workflow | APIs Combined | Tools | Persona |
+|----------|--------------|-------|---------|
+| [Platform Administration](capabilities/platform-administration.yaml) | Power Platform Unified API | 12 | Platform Admin |
 
 ## Maintainers
 
-**FN:** Microsoft Corporation
+**FN:** Kin Lane
 
-**Email:** powerplatform-support@microsoft.com
+**Email:** kin@apievangelist.com

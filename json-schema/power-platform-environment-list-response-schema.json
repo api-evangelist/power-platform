@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EnvironmentListResponse",
+  "type": "object",
+  "description": "Response containing a list of Power Platform environments.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "Array of environment resources."
+    }
+  }
+}

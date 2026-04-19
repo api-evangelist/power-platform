@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "BillingPolicyListResponse",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "array"
+    },
+    "@odata.nextLink": {
+      "type": "['string', 'null']"
+    }
+  }
+}

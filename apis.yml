@@ -2,8 +2,8 @@ name: Microsoft Power Platform APIs
 description: Collection of APIs for Microsoft Power Platform services including Power Apps, Power Automate, Power BI, Copilot Studio, Power Pages, and Dataverse.
 image: https://powerplatform.microsoft.com/images/power-platform-logo.png
 created: '2024-01-15'
-modified: '2026-03-03'
-specificationVersion: '0.16'
+modified: '2026-04-19'
+specificationVersion: '0.18'
 url: https://powerplatform.microsoft.com/apis.json
 tags:
   - Business Applications
@@ -32,11 +32,11 @@ apis:
         url: https://api.powerapps.com/openapi/v1
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth
-      - type: Rate Limits
+      - type: RateLimits
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits
       - type: Pricing
         url: https://powerapps.microsoft.com/pricing/
-      - type: Power Platform API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/power-platform/powerapps/apps
     contact:
       - type: Support
@@ -55,18 +55,15 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/about
-      - type: OData
+      - type: Documentation
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/web-api-types-operations
+        title: OData Types and Operations
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/authenticate-web-api
-      - type: SDKs
+      - type: SDK
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/developer-tools
-      - type: Web API Service Documents
-        url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/web-api-service-documents
-      - type: Operations
-        url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/perform-operations-web-api
     contact:
       - type: Support
         url: https://powerapps.microsoft.com/support/
@@ -89,15 +86,12 @@ apis:
         url: https://api.flow.microsoft.com/openapi/v1
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-automate/web-api
-      - type: Connectors
+      - type: Integrations
         url: https://learn.microsoft.com/en-us/connectors/
+        title: Connectors
       - type: Pricing
         url: https://powerautomate.microsoft.com/pricing/
-      - type: Cloud Flows Code Management
-        url: https://learn.microsoft.com/en-us/power-automate/manage-flows-with-code
-      - type: Desktop Flow APIs
-        url: https://learn.microsoft.com/en-us/power-automate/developer/desktop-flow-public-apis
-      - type: Power Platform API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
     contact:
       - type: Support
@@ -121,18 +115,10 @@ apis:
         url: https://api.powerbi.com/v1.0/myorg/swagger.json
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-tokens
-      - type: SDKs
+      - type: SDK
         url: https://learn.microsoft.com/en-us/javascript/api/overview/powerbi/
-      - type: Embedding
-        url: https://learn.microsoft.com/en-us/power-bi/developer/embedded/embedding
       - type: Pricing
         url: https://powerbi.microsoft.com/pricing/
-      - type: Developer Documentation
-        url: https://learn.microsoft.com/en-us/power-bi/developer/
-      - type: Admin API
-        url: https://learn.microsoft.com/en-us/rest/api/power-bi/admin
-      - type: Report Server API
-        url: https://learn.microsoft.com/en-us/rest/api/power-bi-report/
     contact:
       - type: Support
         url: https://powerbi.microsoft.com/support/
@@ -153,13 +139,9 @@ apis:
         url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio
       - type: Authentication
         url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/configuration-end-user-authentication
-      - type: Agent Quarantine API
-        url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-api-quarantine
-      - type: Agent Delete API
-        url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-api-delete
       - type: Pricing
         url: https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio#pricing
-      - type: Web App
+      - type: Console
         url: https://copilotstudio.microsoft.com
     contact:
       - type: Support
@@ -178,18 +160,10 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/power-platform/admin/admin-documentation
-      - type: PowerShell
-        url: https://learn.microsoft.com/en-us/power-platform/admin/powerapps-powershell
       - type: CLI
         url: https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction
-      - type: Governance
-        url: https://learn.microsoft.com/en-us/power-platform/admin/governance-considerations
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/power-platform/admin/powerplatform-api-getting-started
-      - type: Environment Management
-        url: https://learn.microsoft.com/en-us/power-platform/admin/list-environments
-      - type: Service Principal
-        url: https://learn.microsoft.com/en-us/power-platform/admin/powerplatform-api-create-service-principal
     contact:
       - type: Support
         url: https://admin.powerplatform.microsoft.com/support
@@ -206,15 +180,12 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/connectors/
-      - type: Custom Connectors
+      - type: Documentation
         url: https://learn.microsoft.com/en-us/connectors/custom-connectors/
-      - type: Connector Certification
-        url: https://learn.microsoft.com/en-us/connectors/custom-connectors/submit-certification
-      - type: OpenAPI Support
-        url: https://learn.microsoft.com/en-us/connectors/custom-connectors/define-openapi-definition
+        title: Custom Connectors
       - type: CLI
         url: https://learn.microsoft.com/en-us/connectors/custom-connectors/paconn-cli
-      - type: GitHub
+      - type: GitHubRepository
         url: https://github.com/microsoft/PowerPlatformConnectors
     contact:
       - type: Support
@@ -234,20 +205,17 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/rest/api/power-platform/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/power-platform/admin/powerplatform-api-getting-started
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2
       - type: Versioning
         url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
-      - type: Permissions Reference
-        url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-permission-reference
-      - type: App Management
-        url: https://learn.microsoft.com/en-us/rest/api/power-platform/appmanagement/applications
       - type: OpenAPI
         url: openapi/power-platform-api-openapi.json
-      - type: .NET SDK
+      - type: SDK
         url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
+        title: .NET SDK
     contact:
       - type: Support
         url: https://admin.powerplatform.microsoft.com/support
@@ -265,52 +233,78 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview
-      - type: Read Operations
-        url: https://learn.microsoft.com/en-us/power-pages/configure/read-operations
-      - type: Write Operations
-        url: https://learn.microsoft.com/en-us/power-pages/configure/write-update-delete-operations
-      - type: How-To Guide
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/power-pages/configure/webapi-how-to
-      - type: Developer Overview
-        url: https://learn.microsoft.com/en-us/power-pages/configure/developer-overview
-      - type: Portal Documentation
-        url: https://learn.microsoft.com/en-us/power-pages/
     contact:
       - type: Support
         url: https://powerapps.microsoft.com/support/
 common:
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://learn.microsoft.com/en-us/power-platform/developer/
-  - type: Developer Documentation
+  - type: Documentation
     url: https://learn.microsoft.com/en-us/power-platform/
-  - type: Community
-    url: https://powerusers.microsoft.com/
   - type: Blog
     url: https://www.microsoft.com/en-us/power-platform/blog/
-  - type: GitHub
+  - type: GitHubOrganization
     url: https://github.com/microsoft/powerplatform
-  - type: GitHub Connectors
-    url: https://github.com/microsoft/PowerPlatformConnectors
-  - type: Learning Path
+  - type: Training
     url: https://learn.microsoft.com/en-us/training/powerplatform/
-  - type: Status
+  - type: StatusPage
     url: https://status.cloud.microsoft/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://privacy.microsoft.com/privacystatement
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.microsoft.com/licensing/terms/
-  - type: Power Platform API Reference
+  - type: APIReference
     url: https://learn.microsoft.com/en-us/rest/api/power-platform/
-  - type: Admin Center
+  - type: Support
     url: https://admin.powerplatform.microsoft.com/
-  - type: Terraform Provider
-    url: https://github.com/microsoft/terraform-provider-power-platform
-  - type: VS Code Extension
-    url: https://github.com/microsoft/powerplatform-vscode
-  - type: JSONSchema
-    url: json-schema/power-platform-environment-schema.json
-  - type: JSONLD
-    url: json-ld/power-platform-context.jsonld
+  - type: Features
+    data:
+      - name: Low-Code App Development
+        description: Build custom business applications with drag-and-drop canvas and model-driven app builders without writing code.
+      - name: Workflow Automation
+        description: Automate repetitive business processes with cloud flows, desktop flows, and AI-powered process mining.
+      - name: Business Intelligence
+        description: Create interactive dashboards and reports with Power BI for data-driven decision making across the organization.
+      - name: AI-Powered Chatbots
+        description: Build conversational AI agents with Copilot Studio that integrate with Teams, websites, and other channels.
+      - name: Custom Connectors
+        description: Extend platform capabilities by creating custom connectors to any REST API or third-party service.
+      - name: Dataverse Data Platform
+        description: Store and manage business data in a secure, scalable cloud database with built-in business logic and security.
+      - name: Environment Management
+        description: Manage isolated environments for development, testing, and production with governance policies and access controls.
+      - name: Embedded Analytics
+        description: Embed Power BI reports and dashboards directly into custom applications and portals.
+  - type: UseCases
+    data:
+      - name: Citizen Developer Apps
+        description: Enable business users to build departmental applications without IT involvement using low-code tools.
+      - name: Process Automation
+        description: Automate approval workflows, data collection, notifications, and integrations across Microsoft 365 and third-party services.
+      - name: Enterprise Reporting
+        description: Consolidate data from multiple sources into unified dashboards and self-service analytics for executive decision-making.
+      - name: Customer Service Bots
+        description: Deploy AI-powered virtual agents for customer support, HR inquiries, and IT helpdesk automation.
+      - name: Data Integration
+        description: Connect and synchronize data across SaaS applications, on-premises systems, and cloud databases using connectors and Dataverse.
+  - type: Integrations
+    data:
+      - name: Microsoft 365
+        description: Deep integration with Outlook, Teams, SharePoint, OneDrive, and Excel for seamless productivity workflows.
+      - name: Microsoft Azure
+        description: Connect to Azure services including Azure Active Directory, Azure SQL, Azure Functions, and Cognitive Services.
+      - name: Dynamics 365
+        description: Extend Dynamics 365 CRM and ERP applications with custom Power Apps and automated workflows.
+      - name: SAP
+        description: Connect to SAP ERP and S/4HANA through certified connectors for enterprise data integration.
+      - name: Salesforce
+        description: Integrate with Salesforce CRM data and workflows through the Salesforce connector.
+      - name: ServiceNow
+        description: Connect Power Platform workflows with ServiceNow ITSM and service management processes.
+  - type: NaftikoCapability
+    url: capabilities/platform-administration.yaml
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com

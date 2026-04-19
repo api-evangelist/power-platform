@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OperationStatus",
+  "type": "object",
+  "description": "Status of a long-running operation such as an application package installation.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the operation."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the operation."
+    },
+    "createdDateTime": {
+      "type": "string",
+      "description": "The timestamp when the operation was created."
+    },
+    "lastActionDateTime": {
+      "type": "string",
+      "description": "The timestamp of the last status update."
+    },
+    "error": {
+      "type": "['object', 'null']",
+      "description": "Error details if the operation failed."
+    }
+  }
+}

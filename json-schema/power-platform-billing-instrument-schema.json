@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingInstrument",
+  "type": "object",
+  "description": "The billing instrument information linking to an Azure subscription.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the billing instrument."
+    },
+    "resourceGroup": {
+      "type": "string",
+      "description": "The resource group within the Azure subscription."
+    },
+    "subscriptionId": {
+      "type": "string",
+      "description": "The Azure subscription ID."
+    }
+  }
+}

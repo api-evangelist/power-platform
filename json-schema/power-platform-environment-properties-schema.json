@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EnvironmentProperties",
+  "type": "object",
+  "description": "Properties of a Power Platform environment.",
+  "properties": {
+    "azureRegion": {
+      "type": "string",
+      "description": "The Azure region where the environment is hosted."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display name of the environment."
+    },
+    "description": {
+      "type": "['string', 'null']",
+      "description": "A text description of the environment purpose."
+    },
+    "createdTime": {
+      "type": "string",
+      "description": "The timestamp when the environment was created."
+    },
+    "lastModifiedTime": {
+      "type": "string",
+      "description": "The timestamp of the last modification to the environment."
+    },
+    "provisioningState": {
+      "type": "string",
+      "description": "The current provisioning state of the environment."
+    },
+    "creationType": {
+      "type": "string",
+      "description": "How the environment was created."
+    },
+    "environmentSku": {
+      "type": "string",
+      "description": "The SKU type of the environment."
+    },
+    "isDefault": {
+      "type": "boolean",
+      "description": "Whether this is the default environment for the tenant."
+    },
+    "capacity": {
+      "type": "array",
+      "description": "Capacity consumption details for the environment."
+    },
+    "addons": {
+      "type": "array",
+      "description": "Add-on allocations for the environment."
+    },
+    "clientUris": {
+      "type": "object",
+      "description": "URLs for accessing the environment through different client interfaces."
+    },
+    "runtimeEndpoints": {
+      "type": "object",
+      "description": "Runtime service endpoints for the environment."
+    },
+    "databaseType": {
+      "type": "['string', 'null']",
+      "description": "The type of database provisioned for the environment."
+    },
+    "retentionPeriod": {
+      "type": "string",
+      "description": "The data retention period in ISO 8601 duration format."
+    },
+    "states": {
+      "type": "object",
+      "description": "Current states of the environment."
+    },
+    "updateCadence": {
+      "type": "object",
+      "description": "The update cadence setting for the environment."
+    },
+    "protectionStatus": {
+      "type": "object",
+      "description": "Encryption key management information."
+    }
+  }
+}

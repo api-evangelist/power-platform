@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingPolicy",
+  "type": "object",
+  "description": "A billing policy that defines the association between an Azure subscription and Power Platform environments for pay-as-you-go billing.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the billing policy."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the billing policy."
+    },
+    "location": {
+      "type": "string",
+      "description": "The geographic location of the billing policy."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the billing policy."
+    },
+    "createdOn": {
+      "type": "string",
+      "description": "The timestamp when the billing policy was created."
+    },
+    "lastModifiedOn": {
+      "type": "string",
+      "description": "The timestamp of the last modification."
+    }
+  }
+}

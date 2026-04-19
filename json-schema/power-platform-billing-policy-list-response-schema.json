@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingPolicyListResponse",
+  "type": "object",
+  "description": "Response containing a list of billing policies.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "Array of billing policy resources."
+    },
+    "@odata.nextLink": {
+      "type": "['string', 'null']",
+      "description": "URL to retrieve the next page of results."
+    }
+  }
+}

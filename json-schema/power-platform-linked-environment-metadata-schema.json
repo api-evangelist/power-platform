@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LinkedEnvironmentMetadata",
+  "type": "['object', 'null']",
+  "description": "Metadata about the linked Dataverse instance.",
+  "properties": {
+    "resourceId": {
+      "type": "string",
+      "description": "The resource identifier of the Dataverse instance."
+    },
+    "friendlyName": {
+      "type": "string",
+      "description": "The friendly name of the Dataverse instance."
+    },
+    "uniqueName": {
+      "type": "string",
+      "description": "The unique name identifier for the Dataverse organization."
+    },
+    "domainName": {
+      "type": "string",
+      "description": "The domain name prefix for the Dataverse instance."
+    },
+    "version": {
+      "type": "string",
+      "description": "The Dataverse platform version."
+    },
+    "instanceUrl": {
+      "type": "string",
+      "description": "The URL of the Dataverse instance."
+    },
+    "instanceApiUrl": {
+      "type": "string",
+      "description": "The API URL for the Dataverse instance."
+    },
+    "baseLanguage": {
+      "type": "integer",
+      "description": "The LCID of the base language for the Dataverse instance."
+    },
+    "instanceState": {
+      "type": "string",
+      "description": "The state of the Dataverse instance."
+    },
+    "createdTime": {
+      "type": "string",
+      "description": "The timestamp when the Dataverse instance was created."
+    },
+    "backgroundOperationsState": {
+      "type": "string",
+      "description": "Whether background operations are enabled."
+    },
+    "scaleGroup": {
+      "type": "string",
+      "description": "The scale group identifier."
+    },
+    "platformSku": {
+      "type": "string",
+      "description": "The platform SKU of the Dataverse instance."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "azureRegion": "example_value",
+  "displayName": "example_value",
+  "description": "A sample description.",
+  "createdTime": "example_value",
+  "lastModifiedTime": "example_value",
+  "provisioningState": "example_value",
+  "creationType": "example_value",
+  "environmentSku": "example_value",
+  "isDefault": true,
+  "capacity": [],
+  "addons": [],
+  "clientUris": "example_value",
+  "runtimeEndpoints": "example_value",
+  "databaseType": "example_value",
+  "retentionPeriod": "example_value",
+  "states": "example_value",
+  "updateCadence": "example_value",
+  "protectionStatus": "example_value"
+}

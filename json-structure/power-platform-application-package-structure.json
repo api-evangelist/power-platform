@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ApplicationPackage",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "uniqueName": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "localizedDescription": {
+      "type": "['string', 'null']"
+    },
+    "localizedName": {
+      "type": "['string', 'null']"
+    },
+    "applicationVisibility": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "lastError": {
+      "type": "['object', 'null']"
+    }
+  }
+}

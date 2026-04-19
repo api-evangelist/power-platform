@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Principal",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "['string', 'null']"
+    },
+    "type": {
+      "type": "string"
+    },
+    "tenantId": {
+      "type": "['string', 'null']"
+    }
+  }
+}

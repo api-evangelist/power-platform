@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CapacityInfo",
+  "type": "object",
+  "description": "Capacity consumption information for an environment.",
+  "properties": {
+    "capacityType": {
+      "type": "string",
+      "description": "The type of capacity."
+    },
+    "actualConsumption": {
+      "type": "number",
+      "description": "The actual capacity consumption."
+    },
+    "ratedConsumption": {
+      "type": "number",
+      "description": "The rated capacity consumption."
+    },
+    "capacityUnit": {
+      "type": "string",
+      "description": "The unit of measurement for capacity."
+    },
+    "updatedOn": {
+      "type": "string",
+      "description": "The timestamp when the capacity data was last updated."
+    }
+  }
+}

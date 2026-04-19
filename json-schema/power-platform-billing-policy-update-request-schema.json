@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingPolicyUpdateRequest",
+  "type": "object",
+  "description": "Request body for updating an existing billing policy.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The updated display name."
+    },
+    "status": {
+      "type": "string",
+      "description": "The updated status."
+    }
+  }
+}

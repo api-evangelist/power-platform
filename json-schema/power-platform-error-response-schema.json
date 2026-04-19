@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "The standard error response object.",
+  "properties": {
+    "error": {
+      "type": "object"
+    }
+  }
+}

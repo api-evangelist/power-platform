@@ -1,0 +1,15 @@
+{
+  "resourceId": "500123",
+  "friendlyName": "example_value",
+  "uniqueName": "example_value",
+  "domainName": "example_value",
+  "version": "example_value",
+  "instanceUrl": "https://www.example.com",
+  "instanceApiUrl": "https://www.example.com",
+  "baseLanguage": 10,
+  "instanceState": "example_value",
+  "createdTime": "example_value",
+  "backgroundOperationsState": "example_value",
+  "scaleGroup": "example_value",
+  "platformSku": "example_value"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "BillingPolicy",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "lastModifiedOn": {
+      "type": "string"
+    }
+  }
+}

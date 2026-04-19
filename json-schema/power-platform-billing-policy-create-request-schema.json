@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingPolicyCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new billing policy.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name of the billing policy."
+    },
+    "location": {
+      "type": "string",
+      "description": "The geographic location of the billing policy."
+    },
+    "status": {
+      "type": "string",
+      "description": "The initial status of the billing policy."
+    }
+  }
+}

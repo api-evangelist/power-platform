@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationPackage",
+  "type": "object",
+  "description": "An application package available for installation in a Power Platform environment.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the application package."
+    },
+    "uniqueName": {
+      "type": "string",
+      "description": "The unique name of the application package."
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the application package."
+    },
+    "localizedDescription": {
+      "type": "['string', 'null']",
+      "description": "A localized description of the application package."
+    },
+    "localizedName": {
+      "type": "['string', 'null']",
+      "description": "The localized display name of the application package."
+    },
+    "applicationVisibility": {
+      "type": "string",
+      "description": "The visibility of the application."
+    },
+    "state": {
+      "type": "string",
+      "description": "The current installation state of the package."
+    },
+    "lastError": {
+      "type": "['object', 'null']",
+      "description": "Details about the last error if installation failed."
+    }
+  }
+}

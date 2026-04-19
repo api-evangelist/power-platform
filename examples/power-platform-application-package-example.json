@@ -1,0 +1,10 @@
+{
+  "id": "abc123",
+  "uniqueName": "example_value",
+  "version": "example_value",
+  "localizedDescription": "example_value",
+  "localizedName": "example_value",
+  "applicationVisibility": "example_value",
+  "state": "example_value",
+  "lastError": "example_value"
+}

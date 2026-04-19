@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LinkedEnvironmentMetadata",
+  "type": "['object', 'null']",
+  "properties": {
+    "resourceId": {
+      "type": "string"
+    },
+    "friendlyName": {
+      "type": "string"
+    },
+    "uniqueName": {
+      "type": "string"
+    },
+    "domainName": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "instanceUrl": {
+      "type": "string"
+    },
+    "instanceApiUrl": {
+      "type": "string"
+    },
+    "baseLanguage": {
+      "type": "integer"
+    },
+    "instanceState": {
+      "type": "string"
+    },
+    "createdTime": {
+      "type": "string"
+    },
+    "backgroundOperationsState": {
+      "type": "string"
+    },
+    "scaleGroup": {
+      "type": "string"
+    },
+    "platformSku": {
+      "type": "string"
+    }
+  }
+}

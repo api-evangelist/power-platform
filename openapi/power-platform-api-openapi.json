@@ -53,9 +53,11 @@
     "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments": {
       "get": {
         "operationId": "listEnvironments",
-        "summary": "List environments",
+        "summary": "List Environments",
         "description": "Retrieves a list of all Power Platform environments for the tenant. The response includes environment properties such as display name, location, SKU type, provisioning state, capacity, linked Dataverse metadata, and runtime endpoints. Requires tenant admin or Power Platform admin permissions.",
-        "tags": ["Environments"],
+        "tags": [
+          "Environments"
+        ],
         "parameters": [
           {
             "name": "api-version",
@@ -73,7 +75,9 @@
             "required": false,
             "schema": {
               "type": "string",
-              "examples": ["properties.capacity,properties.addons"]
+              "examples": [
+                "properties.capacity,properties.addons"
+              ]
             },
             "description": "Comma-separated list of related properties to expand. Supported values include properties.capacity and properties.addons."
           }
@@ -95,15 +99,21 @@
           "403": {
             "description": "Forbidden. The caller does not have sufficient permissions."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}": {
       "get": {
         "operationId": "getEnvironment",
-        "summary": "Get environment",
+        "summary": "Get Environment",
         "description": "Retrieves details for a specific Power Platform environment by its identifier, including properties, capacity, linked Dataverse metadata, and runtime endpoints.",
-        "tags": ["Environments"],
+        "tags": [
+          "Environments"
+        ],
         "parameters": [
           {
             "name": "environmentId",
@@ -155,13 +165,19 @@
           "404": {
             "description": "Environment not found."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       },
       "delete": {
         "operationId": "deleteEnvironment",
-        "summary": "Delete environment",
+        "summary": "Delete Environment",
         "description": "Deletes a Power Platform environment. This action is irreversible and removes all apps, flows, and data within the environment.",
-        "tags": ["Environments"],
+        "tags": [
+          "Environments"
+        ],
         "parameters": [
           {
             "name": "environmentId",
@@ -197,15 +213,21 @@
           "404": {
             "description": "Environment not found."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/appmanagement/environments/{environmentId}/applicationPackages": {
       "get": {
         "operationId": "getEnvironmentApplicationPackages",
-        "summary": "Get environment application packages",
+        "summary": "Get Environment Application Packages",
         "description": "Retrieves the list of application packages available for installation in a specific Power Platform environment. Returns packages with their current installation status, version information, and metadata.",
-        "tags": ["Applications"],
+        "tags": [
+          "Applications"
+        ],
         "parameters": [
           {
             "name": "environmentId",
@@ -265,15 +287,21 @@
               }
             }
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/appmanagement/environments/{environmentId}/applicationPackages/{applicationPackageId}/install": {
       "post": {
         "operationId": "installApplicationPackage",
-        "summary": "Install application package",
+        "summary": "Install Application Package",
         "description": "Initiates the installation of a specific application package in the target Power Platform environment. Returns an operation ID that can be used to poll for installation status.",
-        "tags": ["Applications"],
+        "tags": [
+          "Applications"
+        ],
         "parameters": [
           {
             "name": "environmentId",
@@ -351,15 +379,21 @@
               }
             }
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/appmanagement/environments/{environmentId}/operations/{operationId}": {
       "get": {
         "operationId": "getApplicationPackageInstallStatus",
-        "summary": "Get application package install status",
+        "summary": "Get Application Package Install Status",
         "description": "Retrieves the polling status for a previously triggered application package installation. Use this operation to check whether an install has completed, is still in progress, or has failed.",
-        "tags": ["Applications"],
+        "tags": [
+          "Applications"
+        ],
         "parameters": [
           {
             "name": "environmentId",
@@ -419,15 +453,21 @@
               }
             }
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/appmanagement/applicationPackages": {
       "get": {
         "operationId": "getTenantApplicationPackages",
-        "summary": "Get tenant application packages",
+        "summary": "Get Tenant Application Packages",
         "description": "Lists the installable application packages available for the tenant. Returns Microsoft-provided application packages that can be deployed to environments.",
-        "tags": ["Applications"],
+        "tags": [
+          "Applications"
+        ],
         "parameters": [
           {
             "name": "api-version",
@@ -457,15 +497,21 @@
           "403": {
             "description": "Forbidden."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/powerautomate/environments/{environmentId}/flowRuns": {
       "get": {
         "operationId": "listFlowRuns",
-        "summary": "List flow runs",
+        "summary": "List Flow Runs",
         "description": "Retrieves flow runs by workflow ID for a specific Power Platform environment. Returns a list of flow run records including their status, start time, end time, and trigger information. The environment must have a Microsoft Dataverse database.",
-        "tags": ["Flow Runs"],
+        "tags": [
+          "Flow Runs"
+        ],
         "parameters": [
           {
             "name": "environmentId",
@@ -541,15 +587,21 @@
           "500": {
             "description": "Internal server error."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/licensing/billingPolicies": {
       "get": {
         "operationId": "listBillingPolicies",
-        "summary": "List billing policies",
+        "summary": "List Billing Policies",
         "description": "Retrieves the list of billing policies configured for the tenant. Billing policies define the association between Azure subscriptions and Power Platform environments for pay-as-you-go billing.",
-        "tags": ["Licensing"],
+        "tags": [
+          "Licensing"
+        ],
         "parameters": [
           {
             "name": "api-version",
@@ -591,13 +643,19 @@
           "403": {
             "description": "Forbidden."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       },
       "post": {
         "operationId": "createBillingPolicy",
-        "summary": "Create billing policy",
+        "summary": "Create Billing Policy",
         "description": "Creates a new billing policy that links a Power Platform environment to an Azure subscription for pay-as-you-go billing.",
-        "tags": ["Licensing"],
+        "tags": [
+          "Licensing"
+        ],
         "parameters": [
           {
             "name": "api-version",
@@ -640,15 +698,21 @@
           "403": {
             "description": "Forbidden."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     },
     "/licensing/billingPolicies/{billingPolicyId}": {
       "get": {
         "operationId": "getBillingPolicy",
-        "summary": "Get billing policy",
+        "summary": "Get Billing Policy",
         "description": "Retrieves details for a specific billing policy by its identifier.",
-        "tags": ["Licensing"],
+        "tags": [
+          "Licensing"
+        ],
         "parameters": [
           {
             "name": "billingPolicyId",
@@ -691,13 +755,19 @@
           "404": {
             "description": "Billing policy not found."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       },
       "patch": {
         "operationId": "updateBillingPolicy",
-        "summary": "Update billing policy",
+        "summary": "Update Billing Policy",
         "description": "Updates an existing billing policy with new values.",
-        "tags": ["Licensing"],
+        "tags": [
+          "Licensing"
+        ],
         "parameters": [
           {
             "name": "billingPolicyId",
@@ -753,13 +823,19 @@
           "404": {
             "description": "Billing policy not found."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       },
       "delete": {
         "operationId": "deleteBillingPolicy",
-        "summary": "Delete billing policy",
+        "summary": "Delete Billing Policy",
         "description": "Deletes a billing policy by its identifier.",
-        "tags": ["Licensing"],
+        "tags": [
+          "Licensing"
+        ],
         "parameters": [
           {
             "name": "billingPolicyId",
@@ -795,6 +871,10 @@
           "404": {
             "description": "Billing policy not found."
           }
+        },
+        "x-microcks-operation": {
+          "delay": 0,
+          "dispatcher": "FALLBACK"
         }
       }
     }
@@ -837,7 +917,8 @@
             "description": "Array of environment resources.",
             "items": {
               "$ref": "#/components/schemas/Environment"
-            }
+            },
+            "example": []
           }
         }
       },
@@ -848,22 +929,31 @@
           "id": {
             "type": "string",
             "description": "The fully qualified resource ID of the environment.",
-            "examples": ["/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee"]
+            "examples": [
+              "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            ]
           },
           "type": {
             "type": "string",
             "description": "The resource type.",
-            "examples": ["Microsoft.BusinessAppPlatform/scopes/environments"]
+            "examples": [
+              "Microsoft.BusinessAppPlatform/scopes/environments"
+            ]
           },
           "location": {
             "type": "string",
             "description": "The geographic location of the environment.",
-            "examples": ["unitedstates", "europe", "asia"]
+            "examples": [
+              "unitedstates",
+              "europe",
+              "asia"
+            ]
           },
           "name": {
             "type": "string",
             "format": "uuid",
-            "description": "The environment identifier (GUID)."
+            "description": "The environment identifier (GUID).",
+            "example": "Example Title"
           },
           "properties": {
             "$ref": "#/components/schemas/EnvironmentProperties"
@@ -877,21 +967,32 @@
           "azureRegion": {
             "type": "string",
             "description": "The Azure region where the environment is hosted.",
-            "examples": ["westus", "northeurope", "eastasia"]
+            "examples": [
+              "westus",
+              "northeurope",
+              "eastasia"
+            ]
           },
           "displayName": {
             "type": "string",
             "description": "The display name of the environment.",
-            "examples": ["My Power Platform Environment"]
+            "examples": [
+              "My Power Platform Environment"
+            ]
           },
           "description": {
-            "type": ["string", "null"],
-            "description": "A text description of the environment purpose."
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A text description of the environment purpose.",
+            "example": "A sample description."
           },
           "createdTime": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the environment was created."
+            "description": "The timestamp when the environment was created.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "createdBy": {
             "$ref": "#/components/schemas/Principal"
@@ -899,40 +1000,63 @@
           "lastModifiedTime": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp of the last modification to the environment."
+            "description": "The timestamp of the last modification to the environment.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "provisioningState": {
             "type": "string",
             "description": "The current provisioning state of the environment.",
-            "enum": ["Succeeded", "Failed", "InProgress", "Deleting"]
+            "enum": [
+              "Succeeded",
+              "Failed",
+              "InProgress",
+              "Deleting"
+            ],
+            "example": "Succeeded"
           },
           "creationType": {
             "type": "string",
             "description": "How the environment was created.",
-            "enum": ["User", "System", "Developer"]
+            "enum": [
+              "User",
+              "System",
+              "Developer"
+            ],
+            "example": "User"
           },
           "environmentSku": {
             "type": "string",
             "description": "The SKU type of the environment.",
-            "enum": ["Production", "Sandbox", "Trial", "Developer", "Default", "Teams"]
+            "enum": [
+              "Production",
+              "Sandbox",
+              "Trial",
+              "Developer",
+              "Default",
+              "Teams"
+            ],
+            "example": "Production"
           },
           "isDefault": {
             "type": "boolean",
-            "description": "Whether this is the default environment for the tenant."
+            "description": "Whether this is the default environment for the tenant.",
+            "example": true
           },
           "capacity": {
             "type": "array",
             "description": "Capacity consumption details for the environment.",
             "items": {
               "$ref": "#/components/schemas/CapacityInfo"
-            }
+            },
+            "example": []
           },
           "addons": {
             "type": "array",
             "description": "Add-on allocations for the environment.",
             "items": {
               "$ref": "#/components/schemas/AddonInfo"
-            }
+            },
+            "example": []
           },
           "clientUris": {
             "type": "object",
@@ -948,7 +1072,8 @@
                 "format": "uri",
                 "description": "URL to the Power Apps maker portal for this environment."
               }
-            }
+            },
+            "example": "example_value"
           },
           "runtimeEndpoints": {
             "type": "object",
@@ -978,12 +1103,21 @@
                 "type": "string",
                 "format": "uri"
               }
-            }
+            },
+            "example": "example_value"
           },
           "databaseType": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "description": "The type of database provisioned for the environment.",
-            "enum": ["CommonDataService", "none", null]
+            "enum": [
+              "CommonDataService",
+              "none",
+              null
+            ],
+            "example": "CommonDataService"
           },
           "linkedEnvironmentMetadata": {
             "$ref": "#/components/schemas/LinkedEnvironmentMetadata"
@@ -991,7 +1125,10 @@
           "retentionPeriod": {
             "type": "string",
             "description": "The data retention period in ISO 8601 duration format.",
-            "examples": ["P7D", "P28D"]
+            "examples": [
+              "P7D",
+              "P28D"
+            ]
           },
           "states": {
             "type": "object",
@@ -1002,7 +1139,11 @@
                 "properties": {
                   "id": {
                     "type": "string",
-                    "enum": ["Ready", "NotReady", "Disabled"]
+                    "enum": [
+                      "Ready",
+                      "NotReady",
+                      "Disabled"
+                    ]
                   }
                 }
               },
@@ -1011,11 +1152,15 @@
                 "properties": {
                   "id": {
                     "type": "string",
-                    "enum": ["Enabled", "Disabled"]
+                    "enum": [
+                      "Enabled",
+                      "Disabled"
+                    ]
                   }
                 }
               }
-            }
+            },
+            "example": "example_value"
           },
           "updateCadence": {
             "type": "object",
@@ -1023,10 +1168,14 @@
             "properties": {
               "id": {
                 "type": "string",
-                "enum": ["Frequent", "Moderate"],
+                "enum": [
+                  "Frequent",
+                  "Moderate"
+                ],
                 "description": "Frequent provides updates multiple times per month. Moderate provides updates at least once per month."
               }
-            }
+            },
+            "example": "example_value"
           },
           "protectionStatus": {
             "type": "object",
@@ -1034,77 +1183,109 @@
             "properties": {
               "keyManagedBy": {
                 "type": "string",
-                "enum": ["Microsoft", "Customer"],
+                "enum": [
+                  "Microsoft",
+                  "Customer"
+                ],
                 "description": "Whether the encryption key is managed by Microsoft or by the customer."
               }
-            }
+            },
+            "example": "example_value"
           }
         }
       },
       "LinkedEnvironmentMetadata": {
-        "type": ["object", "null"],
+        "type": [
+          "object",
+          "null"
+        ],
         "description": "Metadata about the linked Dataverse instance.",
         "properties": {
           "resourceId": {
             "type": "string",
             "format": "uuid",
-            "description": "The resource identifier of the Dataverse instance."
+            "description": "The resource identifier of the Dataverse instance.",
+            "example": "500123"
           },
           "friendlyName": {
             "type": "string",
-            "description": "The friendly name of the Dataverse instance."
+            "description": "The friendly name of the Dataverse instance.",
+            "example": "example_value"
           },
           "uniqueName": {
             "type": "string",
-            "description": "The unique name identifier for the Dataverse organization."
+            "description": "The unique name identifier for the Dataverse organization.",
+            "example": "example_value"
           },
           "domainName": {
             "type": "string",
-            "description": "The domain name prefix for the Dataverse instance."
+            "description": "The domain name prefix for the Dataverse instance.",
+            "example": "example_value"
           },
           "version": {
             "type": "string",
             "description": "The Dataverse platform version.",
-            "examples": ["9.2.21013.00152"]
+            "examples": [
+              "9.2.21013.00152"
+            ]
           },
           "instanceUrl": {
             "type": "string",
             "format": "uri",
-            "description": "The URL of the Dataverse instance."
+            "description": "The URL of the Dataverse instance.",
+            "example": "https://www.example.com"
           },
           "instanceApiUrl": {
             "type": "string",
             "format": "uri",
-            "description": "The API URL for the Dataverse instance."
+            "description": "The API URL for the Dataverse instance.",
+            "example": "https://www.example.com"
           },
           "baseLanguage": {
             "type": "integer",
             "description": "The LCID of the base language for the Dataverse instance.",
-            "examples": [1033]
+            "examples": [
+              1033
+            ]
           },
           "instanceState": {
             "type": "string",
             "description": "The state of the Dataverse instance.",
-            "enum": ["Ready", "NotReady", "Disabled"]
+            "enum": [
+              "Ready",
+              "NotReady",
+              "Disabled"
+            ],
+            "example": "Ready"
           },
           "createdTime": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the Dataverse instance was created."
+            "description": "The timestamp when the Dataverse instance was created.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "backgroundOperationsState": {
             "type": "string",
             "description": "Whether background operations are enabled.",
-            "enum": ["Enabled", "Disabled"]
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "example": "Enabled"
           },
           "scaleGroup": {
             "type": "string",
-            "description": "The scale group identifier."
+            "description": "The scale group identifier.",
+            "example": "example_value"
           },
           "platformSku": {
             "type": "string",
             "description": "The platform SKU of the Dataverse instance.",
-            "enum": ["Standard", "Premium"]
+            "enum": [
+              "Standard",
+              "Premium"
+            ],
+            "example": "Standard"
           }
         }
       },
@@ -1115,21 +1296,37 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "The unique identifier of the principal."
+            "description": "The unique identifier of the principal.",
+            "example": "abc123"
           },
           "displayName": {
-            "type": ["string", "null"],
-            "description": "The display name of the principal."
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The display name of the principal.",
+            "example": "example_value"
           },
           "type": {
             "type": "string",
             "description": "The type of principal.",
-            "enum": ["None", "Application", "User", "DelegatedAdmin", "ServicePrincipal"]
+            "enum": [
+              "None",
+              "Application",
+              "User",
+              "DelegatedAdmin",
+              "ServicePrincipal"
+            ],
+            "example": "None"
           },
           "tenantId": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "format": "uuid",
-            "description": "The tenant ID of the principal."
+            "description": "The tenant ID of the principal.",
+            "example": "500123"
           }
         }
       },
@@ -1140,25 +1337,36 @@
           "capacityType": {
             "type": "string",
             "description": "The type of capacity.",
-            "enum": ["Database", "File", "Log"]
+            "enum": [
+              "Database",
+              "File",
+              "Log"
+            ],
+            "example": "Database"
           },
           "actualConsumption": {
             "type": "number",
-            "description": "The actual capacity consumption."
+            "description": "The actual capacity consumption.",
+            "example": 42.5
           },
           "ratedConsumption": {
             "type": "number",
-            "description": "The rated capacity consumption."
+            "description": "The rated capacity consumption.",
+            "example": 42.5
           },
           "capacityUnit": {
             "type": "string",
             "description": "The unit of measurement for capacity.",
-            "examples": ["MB", "GB"]
+            "examples": [
+              "MB",
+              "GB"
+            ]
           },
           "updatedOn": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the capacity data was last updated."
+            "description": "The timestamp when the capacity data was last updated.",
+            "example": "2026-01-15T10:30:00Z"
           }
         }
       },
@@ -1169,16 +1377,28 @@
           "addonType": {
             "type": "string",
             "description": "The type of add-on.",
-            "enum": ["AppPass", "PerFlowPlan", "PortalViews", "PortalLogins", "AI", "AppPassForTeams", "PAUnattendedRPA"]
+            "enum": [
+              "AppPass",
+              "PerFlowPlan",
+              "PortalViews",
+              "PortalLogins",
+              "AI",
+              "AppPassForTeams",
+              "PAUnattendedRPA"
+            ],
+            "example": "AppPass"
           },
           "allocated": {
             "type": "number",
-            "description": "The number of allocated add-on units."
+            "description": "The number of allocated add-on units.",
+            "example": 42.5
           },
           "addonUnit": {
             "type": "string",
             "description": "The unit of measurement for the add-on.",
-            "examples": ["Unit"]
+            "examples": [
+              "Unit"
+            ]
           }
         }
       },
@@ -1191,12 +1411,17 @@
             "description": "Array of application package resources.",
             "items": {
               "$ref": "#/components/schemas/ApplicationPackage"
-            }
+            },
+            "example": []
           },
           "@odata.nextLink": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "format": "uri",
-            "description": "URL to retrieve the next page of results."
+            "description": "URL to retrieve the next page of results.",
+            "example": "https://www.example.com"
           }
         }
       },
@@ -1207,36 +1432,59 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "The unique identifier of the application package."
+            "description": "The unique identifier of the application package.",
+            "example": "abc123"
           },
           "uniqueName": {
             "type": "string",
-            "description": "The unique name of the application package."
+            "description": "The unique name of the application package.",
+            "example": "example_value"
           },
           "version": {
             "type": "string",
-            "description": "The version of the application package."
+            "description": "The version of the application package.",
+            "example": "example_value"
           },
           "localizedDescription": {
-            "type": ["string", "null"],
-            "description": "A localized description of the application package."
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A localized description of the application package.",
+            "example": "example_value"
           },
           "localizedName": {
-            "type": ["string", "null"],
-            "description": "The localized display name of the application package."
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The localized display name of the application package.",
+            "example": "example_value"
           },
           "applicationVisibility": {
             "type": "string",
             "description": "The visibility of the application.",
-            "enum": ["All", "None"]
+            "enum": [
+              "All",
+              "None"
+            ],
+            "example": "All"
           },
           "state": {
             "type": "string",
             "description": "The current installation state of the package.",
-            "enum": ["Installed", "NotInstalled", "InstallFailed"]
+            "enum": [
+              "Installed",
+              "NotInstalled",
+              "InstallFailed"
+            ],
+            "example": "Installed"
           },
           "lastError": {
-            "type": ["object", "null"],
+            "type": [
+              "object",
+              "null"
+            ],
             "description": "Details about the last error if installation failed.",
             "properties": {
               "code": {
@@ -1245,7 +1493,8 @@
               "message": {
                 "type": "string"
               }
-            }
+            },
+            "example": "example_value"
           }
         }
       },
@@ -1256,25 +1505,38 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "The unique identifier of the operation."
+            "description": "The unique identifier of the operation.",
+            "example": "abc123"
           },
           "status": {
             "type": "string",
             "description": "The current status of the operation.",
-            "enum": ["NotStarted", "Running", "Succeeded", "Failed", "Cancelled"]
+            "enum": [
+              "NotStarted",
+              "Running",
+              "Succeeded",
+              "Failed",
+              "Cancelled"
+            ],
+            "example": "NotStarted"
           },
           "createdDateTime": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the operation was created."
+            "description": "The timestamp when the operation was created.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "lastActionDateTime": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp of the last status update."
+            "description": "The timestamp of the last status update.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "error": {
-            "type": ["object", "null"],
+            "type": [
+              "object",
+              "null"
+            ],
             "description": "Error details if the operation failed.",
             "properties": {
               "code": {
@@ -1283,7 +1545,8 @@
               "message": {
                 "type": "string"
               }
-            }
+            },
+            "example": "example_value"
           }
         }
       },
@@ -1296,12 +1559,17 @@
             "description": "Array of flow run records.",
             "items": {
               "$ref": "#/components/schemas/FlowRun"
-            }
+            },
+            "example": []
           },
           "@odata.nextLink": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "format": "uri",
-            "description": "URL to retrieve the next page of results."
+            "description": "URL to retrieve the next page of results.",
+            "example": "https://www.example.com"
           }
         }
       },
@@ -1311,16 +1579,20 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The unique identifier of the flow run."
+            "description": "The unique identifier of the flow run.",
+            "example": "Example Title"
           },
           "id": {
             "type": "string",
-            "description": "The fully qualified resource ID of the flow run."
+            "description": "The fully qualified resource ID of the flow run.",
+            "example": "abc123"
           },
           "type": {
             "type": "string",
             "description": "The resource type.",
-            "examples": ["Microsoft.ProcessSimple/environments/flows/runs"]
+            "examples": [
+              "Microsoft.ProcessSimple/environments/flows/runs"
+            ]
           },
           "properties": {
             "$ref": "#/components/schemas/FlowRunProperties"
@@ -1334,17 +1606,35 @@
           "startTime": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the flow run started."
+            "description": "The timestamp when the flow run started.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "endTime": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "format": "date-time",
-            "description": "The timestamp when the flow run ended. Null if still running."
+            "description": "The timestamp when the flow run ended. Null if still running.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "status": {
             "type": "string",
             "description": "The current status of the flow run.",
-            "enum": ["Running", "Succeeded", "Failed", "Cancelled", "Skipped", "Suspended", "TimedOut", "Aborted", "Waiting", "Ignored", "Faulted"]
+            "enum": [
+              "Running",
+              "Succeeded",
+              "Failed",
+              "Cancelled",
+              "Skipped",
+              "Suspended",
+              "TimedOut",
+              "Aborted",
+              "Waiting",
+              "Ignored",
+              "Faulted"
+            ],
+            "example": "Running"
           },
           "correlation": {
             "type": "object",
@@ -1354,7 +1644,8 @@
                 "type": "string",
                 "description": "Client-side tracking identifier."
               }
-            }
+            },
+            "example": "example_value"
           },
           "trigger": {
             "type": "object",
@@ -1377,9 +1668,14 @@
               "status": {
                 "type": "string",
                 "description": "The status of the trigger execution.",
-                "enum": ["Succeeded", "Failed", "Skipped"]
+                "enum": [
+                  "Succeeded",
+                  "Failed",
+                  "Skipped"
+                ]
               }
-            }
+            },
+            "example": "example_value"
           }
         }
       },
@@ -1392,12 +1688,17 @@
             "description": "Array of billing policy resources.",
             "items": {
               "$ref": "#/components/schemas/BillingPolicy"
-            }
+            },
+            "example": []
           },
           "@odata.nextLink": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "format": "uri",
-            "description": "URL to retrieve the next page of results."
+            "description": "URL to retrieve the next page of results.",
+            "example": "https://www.example.com"
           }
         }
       },
@@ -1407,20 +1708,27 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the billing policy."
+            "description": "The unique identifier of the billing policy.",
+            "example": "abc123"
           },
           "name": {
             "type": "string",
-            "description": "The display name of the billing policy."
+            "description": "The display name of the billing policy.",
+            "example": "Example Title"
           },
           "location": {
             "type": "string",
-            "description": "The geographic location of the billing policy."
+            "description": "The geographic location of the billing policy.",
+            "example": "example_value"
           },
           "status": {
             "type": "string",
             "description": "The status of the billing policy.",
-            "enum": ["Enabled", "Disabled"]
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "example": "Enabled"
           },
           "billingInstrument": {
             "$ref": "#/components/schemas/BillingInstrument"
@@ -1431,7 +1739,8 @@
           "createdOn": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the billing policy was created."
+            "description": "The timestamp when the billing policy was created.",
+            "example": "2026-01-15T10:30:00Z"
           },
           "lastModifiedBy": {
             "$ref": "#/components/schemas/Principal"
@@ -1439,7 +1748,8 @@
           "lastModifiedOn": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp of the last modification."
+            "description": "The timestamp of the last modification.",
+            "example": "2026-01-15T10:30:00Z"
           }
         }
       },
@@ -1449,37 +1759,50 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The identifier of the billing instrument."
+            "description": "The identifier of the billing instrument.",
+            "example": "abc123"
           },
           "resourceGroup": {
             "type": "string",
-            "description": "The resource group within the Azure subscription."
+            "description": "The resource group within the Azure subscription.",
+            "example": "example_value"
           },
           "subscriptionId": {
             "type": "string",
             "format": "uuid",
-            "description": "The Azure subscription ID."
+            "description": "The Azure subscription ID.",
+            "example": "500123"
           }
         }
       },
       "BillingPolicyCreateRequest": {
         "type": "object",
         "description": "Request body for creating a new billing policy.",
-        "required": ["name", "location", "billingInstrument"],
+        "required": [
+          "name",
+          "location",
+          "billingInstrument"
+        ],
         "properties": {
           "name": {
             "type": "string",
-            "description": "The display name of the billing policy."
+            "description": "The display name of the billing policy.",
+            "example": "Example Title"
           },
           "location": {
             "type": "string",
-            "description": "The geographic location of the billing policy."
+            "description": "The geographic location of the billing policy.",
+            "example": "example_value"
           },
           "status": {
             "type": "string",
             "description": "The initial status of the billing policy.",
-            "enum": ["Enabled", "Disabled"],
-            "default": "Enabled"
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "default": "Enabled",
+            "example": "Enabled"
           },
           "billingInstrument": {
             "$ref": "#/components/schemas/BillingInstrument"
@@ -1492,12 +1815,17 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The updated display name."
+            "description": "The updated display name.",
+            "example": "Example Title"
           },
           "status": {
             "type": "string",
             "description": "The updated status.",
-            "enum": ["Enabled", "Disabled"]
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "example": "Enabled"
           },
           "billingInstrument": {
             "$ref": "#/components/schemas/BillingInstrument"
@@ -1519,7 +1847,8 @@
                 "type": "string",
                 "description": "A human-readable description of the error."
               }
-            }
+            },
+            "example": "example_value"
           }
         }
       }

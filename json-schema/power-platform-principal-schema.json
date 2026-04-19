@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Principal",
+  "type": "object",
+  "description": "Represents a principal (user or service principal) that performed an action.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the principal."
+    },
+    "displayName": {
+      "type": "['string', 'null']",
+      "description": "The display name of the principal."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of principal."
+    },
+    "tenantId": {
+      "type": "['string', 'null']",
+      "description": "The tenant ID of the principal."
+    }
+  }
+}

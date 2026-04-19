@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AddonInfo",
+  "type": "object",
+  "properties": {
+    "addonType": {
+      "type": "string"
+    },
+    "allocated": {
+      "type": "number"
+    },
+    "addonUnit": {
+      "type": "string"
+    }
+  }
+}
