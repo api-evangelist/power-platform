@@ -1,0 +1,13 @@
+{
+  "repo": "power-platform",
+  "feeds": [
+    {
+      "source": "https://www.microsoft.com/en-us/power-platform/blog/",
+      "feed_url": "https://www.microsoft.com/en-us/power-platform/blog/feed/",
+      "saved": 10,
+      "title": "Microsoft Power Platform Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:34:10Z"
+}
