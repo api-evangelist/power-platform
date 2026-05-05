@@ -1,0 +1,221 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Microsoft Power Platform APIs
+providerId: power-platform
+publisherName: Microsoft Power Platform APIs
+serviceCategory: API
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Business Applications
+  - Copilot Studio
+  - Dataverse
+  - Low-Code
+  - Microsoft
+  - No-Code
+  - Power Pages
+  - Power Platform
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: FinOps framework definition for the Microsoft Power Platform APIs API surface. Provides a
+  FOCUS-aligned mapping for cost allocation, usage measurement, and unit-economics reporting across the
+  provider's APIs.
+principles:
+  - name: Visibility
+    description: Make API consumption costs visible to engineering, product, and finance teams in near
+      real-time.
+  - name: Allocation
+    description: Tag every chargeable API call with the consuming team, environment, application, and
+      feature so cost can be allocated.
+  - name: Optimization
+    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
+      cost per useful unit of work.
+  - name: Accountability
+    description: Establish budget owners and chargeback or showback flows for each consuming team.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Cloud Sustainability
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: Microsoft Power Platform APIs
+  ServiceCategory: Developer Tools / API
+  ProviderName: Microsoft Power Platform APIs
+  PublisherName: Microsoft Power Platform APIs
+  InvoiceIssuerName: Microsoft Power Platform APIs
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+      - region
+      - consumer
+  - name: data_egress
+    description: Bytes returned over the network in API responses
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - api
+      - region
+      - consumer
+  - name: compute_seconds
+    description: Server-side compute consumed by the request, where applicable
+    unit: second
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+apis:
+  - name: Power Apps API
+    baseURL: https://api.powerapps.com
+    tags:
+      - Applications
+      - Canvas Apps
+      - Model-Driven Apps
+      - Power Apps
+    serviceName: Power Apps API
+    serviceCategory: API
+  - name: Dataverse API (Common Data Service)
+    baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+    tags:
+      - CDS
+      - Data Platform
+      - Database
+      - Dataverse
+      - OData
+    serviceName: Dataverse API (Common Data Service)
+    serviceCategory: API
+  - name: Power Automate API
+    baseURL: https://api.flow.microsoft.com
+    tags:
+      - Automation
+      - Desktop Flows
+      - Flow
+      - Power Automate
+      - RPA
+      - Workflow
+    serviceName: Power Automate API
+    serviceCategory: API
+  - name: Power BI REST API
+    baseURL: https://api.powerbi.com
+    tags:
+      - Analytics
+      - Business Intelligence
+      - Dashboards
+      - Embedded Analytics
+      - Power BI
+      - Reporting
+    serviceName: Power BI REST API
+    serviceCategory: API
+  - name: Microsoft Copilot Studio API (formerly Power Virtual Agents)
+    baseURL: https://api.powerva.microsoft.com
+    tags:
+      - AI Agents
+      - Chatbots
+      - Conversational AI
+      - Copilot Studio
+      - Power Virtual Agents
+      - Virtual Agents
+    serviceName: Microsoft Copilot Studio API (formerly Power Virtual Agents)
+    serviceCategory: API
+  - name: Power Platform Admin API
+    baseURL: https://api.bap.microsoft.com
+    tags:
+      - Administration
+      - Environments
+      - Governance
+      - Licensing
+      - Management
+    serviceName: Power Platform Admin API
+    serviceCategory: API
+  - name: Power Platform Connectors API
+    baseURL: https://api.connectors.microsoft.com
+    tags:
+      - Connectors
+      - Custom Connectors
+      - Integration
+      - OpenAPI
+    serviceName: Power Platform Connectors API
+    serviceCategory: API
+  - name: Power Platform Unified API
+    baseURL: https://api.powerplatform.com
+    tags:
+      - Administration
+      - App Management
+      - Governance
+      - Licensing
+      - Power Platform API
+      - Unified API
+    serviceName: Power Platform Unified API
+    serviceCategory: API
+  - name: Power Pages Web API
+    baseURL: https://[site].powerappsportals.com/_api
+    tags:
+      - Dataverse
+      - Portals
+      - Power Pages
+      - Web API
+      - Websites
+    serviceName: Power Pages Web API
+    serviceCategory: API
+unitEconomics:
+  - name: Cost per 1K Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: TBD
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+maintainers:
+  - name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
