@@ -4,130 +4,101 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Microsoft Power Platform APIs
 providerId: power-platform
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Business Applications
   - Copilot Studio
   - Dataverse
-  - Low-Code
   - Microsoft
-  - No-Code
-  - Power Pages
-  - Power Platform
+  - Power Automate
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Microsoft Power Platform APIs API surface.
-  Captures per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold
-  values to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: >-
+  Power Platform enforces a per-license daily request entitlement (Power
+  Platform Requests, "PPR") evaluated on a 24-hour sliding window per user
+  (Premium licenses) or per flow (Process / Per-flow / Hosted Process
+  licenses). A separate non-licensed-user pool covers application,
+  non-interactive, administrative, and SYSTEM identities. A 5-minute ceiling
+  of 100,000 requests applies regardless of license. Service-protection
+  limits in Dataverse, Power Automate, and connectors apply on top of these
+  daily limits and are documented per service.
+sources:
+  - https://learn.microsoft.com/en-us/power-platform/admin/api-request-limits-allocations
+  - https://www.microsoft.com/en-us/power-platform/products/power-automate/pricing
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  serviceProtection: 429
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Power Apps API
-      - Dataverse API (Common Data Service)
-      - Power Automate API
-      - Power BI REST API
-      - Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - Power Platform Admin API
-      - Power Platform Connectors API
-      - Power Platform Unified API
-      - Power Pages Web API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Power Apps API
-      - Dataverse API (Common Data Service)
-      - Power Automate API
-      - Power BI REST API
-      - Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - Power Platform Admin API
-      - Power Platform Connectors API
-      - Power Platform Unified API
-      - Power Pages Web API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Power Apps API
-      - Dataverse API (Common Data Service)
-      - Power Automate API
-      - Power BI REST API
-      - Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - Power Platform Admin API
-      - Power Platform Connectors API
-      - Power Platform Unified API
-      - Power Pages Web API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
+  - name: Premium licenses (per user)
+    scope: user
+    metric: requests_per_24_hours
+    limit: 40000
+    timeFrame: day
+    notes: Power Apps Premium, Power Automate Premium, Dynamics 365 Enterprise/Professional, legacy per-user plans.
+  - name: Power Apps per app / Microsoft 365 / Dynamics 365 Team Member (per user)
+    scope: user
+    metric: requests_per_24_hours
+    limit: 6000
+    timeFrame: day
+  - name: Power Automate Process / Per-flow / Hosted Process (per license)
+    scope: flow
+    metric: requests_per_24_hours
+    limit: 250000
+    timeFrame: day
+    notes: Multiple Process licenses can be stacked on one cloud flow; each adds 250k.
+  - name: Power Apps Portals login (paid)
+    scope: user
+    metric: requests_per_24_hours
+    limit: 200
+    timeFrame: day
+  - name: Non-licensed user pool - Dynamics 365 Enterprise/Pro
+    scope: tenant
+    metric: requests_per_24_hours
+    limit: 500000
+    timeFrame: day
+    notes: 500k base + 5k accrued per qualifying USL up to 10M maximum.
+  - name: Non-licensed user pool - Power Apps
+    scope: tenant
+    metric: requests_per_24_hours
+    limit: 25000
+    timeFrame: day
+    notes: 25k base, no per-license accrual.
+  - name: Non-licensed user pool - Power Automate
+    scope: tenant
+    metric: requests_per_24_hours
+    limit: 25000
+    timeFrame: day
+    notes: 25k base, no per-license accrual.
+  - name: Five-minute ceiling
+    scope: user-or-flow
+    metric: requests_per_5_minutes
     limit: 100000
-    timeFrame: month
-    applies:
-      - Power Apps API
-      - Dataverse API (Common Data Service)
-      - Power Automate API
-      - Power BI REST API
-      - Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - Power Platform Admin API
-      - Power Platform Connectors API
-      - Power Platform Unified API
-      - Power Pages Web API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
     timeFrame: minute
-    applies:
-      - Power Apps API
-      - Dataverse API (Common Data Service)
-      - Power Automate API
-      - Power BI REST API
-      - Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - Power Platform Admin API
-      - Power Platform Connectors API
-      - Power Platform Unified API
-      - Power Pages Web API
+    notes: Independent of license; applies even to 250k/day Process flows.
+  - name: Capacity Add-On
+    scope: user-or-flow
+    metric: requests_per_24_hours
+    limit: 50000
+    timeFrame: day
+    notes: Each Power Platform Request capacity add-on raises a target identity's daily limit by 50k. Stackable.
+  - name: Service-protection limits (Dataverse, Power Automate, connectors)
+    scope: service
+    metric: varies
+    limit: see service-specific limit pages
+    notes: Dataverse, Power Automate flow, and connector-level service-protection thresholds apply on top of PPR limits.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Sliding window
+    description: The 24-hour PPR window is a continuous sliding window evaluated on each request, not a fixed daily reset.
+  - name: No rollover
+    description: Unused PPR entitlement does not roll over from day to day or month to month.
+  - name: Stacking and add-ons
+    description: Process licenses stack at the flow level; capacity add-ons stack to raise individual user/flow limits during enforcement (not assignable during transition period).
+  - name: Transition period
+    description: Until Power Platform Request reporting goes GA + 6 months, transition limits (more generous than official limits) apply and high-usage enforcement is paused.
+  - name: License attribution for flows
+    description: Instant flows use the invoking user's limits; automated and scheduled flows use the flow owner's limits regardless of connection identity.
+  - name: Pay-as-you-go fallback
+    description: Switch to Power Apps pay-as-you-go to charge per request above daily limits and avoid throttling.
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com

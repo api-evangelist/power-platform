@@ -4,229 +4,356 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Microsoft Power Platform APIs
 providerId: power-platform
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Business Applications
   - Copilot Studio
   - Dataverse
   - Low-Code
   - Microsoft
-  - No-Code
-  - Power Pages
-  - Power Platform
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Power Apps
+  - Power Automate
+description: >-
+  Microsoft Power Platform is sold as a portfolio of per-user, per-flow,
+  per-bot, and per-tenant plans across Power Apps, Power Automate, Copilot
+  Studio, and Dataverse. Per-user prices ($20 Power Apps Premium, $15 Power
+  Automate Premium) come from the Microsoft pricing pages. Process-style
+  licenses meter at the bot or flow level ($150 Process, $215 Hosted Process,
+  $5,000 Process Mining tenant add-on). AI assistance is billed in Copilot
+  Credits ($200 per 25,000 credits/month). Dataverse storage is billed per
+  GB/month ($40). Each license also carries a Power Platform Requests entitlement.
+sources:
+  - https://www.microsoft.com/en-us/power-platform/products/power-apps/pricing
+  - https://www.microsoft.com/en-us/power-platform/products/power-automate/pricing
+  - https://learn.microsoft.com/en-us/power-platform/admin/api-request-limits-allocations
 plans:
-  - id: power-platform-free
-    name: Free
+  - id: power-platform-power-apps-developer
+    name: Power Apps Developer Plan
     type: freemium
-    description: Free entry tier for the Microsoft Power Platform APIs API surface. Intended for evaluation,
-      prototyping, and low-volume integrations. Real limits and pricing must be reconciled with the provider's
-      published plan documentation.
+    description: Free developer environment for building and testing Power Apps and flows.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: seat
+        limit: 1
         timeFrame: month
         geo: global
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+      - label: Developer Environments
+        name: developer_environments
+        type: quota
+        metric: environment
+        limit: 3
+        timeFrame: usage
         geo: global
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
         unit: 1
-        price: '0.00'
+        price: included
+        userMultiplied: false
+      - label: Cloud Flows
+        name: cloud_flows
+        type: quota
+        metric: flow
+        limit: 750
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Dataverse Database
+        name: dataverse_database
+        type: quota
+        metric: GB
+        limit: 2
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Power Apps API
-      - name: Dataverse API (Common Data Service)
-      - name: Power Automate API
-      - name: Power BI REST API
-      - name: Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - name: Power Platform Admin API
-      - name: Power Platform Connectors API
-      - name: Power Platform Unified API
-  - id: power-platform-pro
-    name: Professional
-    type: paid
-    description: Production tier for Microsoft Power Platform APIs. Provides higher quotas, priority support,
-      and access to the broader API portfolio. Pricing placeholder; align with the provider's pricing
-      page.
+      - name: Build and Test Unlimited Apps
+      - name: Personal Use Only (no production sharing)
+  - id: power-platform-power-apps-premium
+    name: Power Apps Premium
+    type: subscription
+    description: Per-user license for unlimited Power Apps and Power Pages with agentic features.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: seat
+        limit: 1
         timeFrame: month
         geo: global
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
         unit: 1
-        price: TBD
+        price: '$20.00 user/month, paid yearly'
+        userMultiplied: true
+      - label: Subscription (Enterprise commitment)
+        name: subscription_enterprise
+        type: subscription
+        metric: seat
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$12.00 user/month, paid yearly (minimum 2,000 seats)'
+        userMultiplied: true
+      - label: Power Platform Requests
+        name: power_platform_requests
+        type: quota
+        metric: request
+        limit: 40000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+      - label: Dataverse Database
+        name: dataverse_database
+        type: quota
+        metric: MB
+        limit: 250
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+      - label: Dataverse File Storage
+        name: dataverse_file
+        type: quota
+        metric: GB
+        limit: 2
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+    elements:
+      - name: Unlimited Apps and Power Pages
+      - name: Agentic Features
+      - name: Microsoft 365 Copilot Chat Access
+  - id: power-platform-power-automate-premium
+    name: Power Automate Premium
+    type: subscription
+    description: Per-user cloud flow plan with attended desktop flows and process mining.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: seat
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$15.00 user/month, paid yearly'
+        userMultiplied: true
+      - label: Power Platform Requests
+        name: power_platform_requests
+        type: quota
+        metric: request
+        limit: 40000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+      - label: Process Mining Data
+        name: process_mining_data
+        type: quota
+        metric: MB
+        limit: 50
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+      - label: Dataverse Database
+        name: dataverse_database
+        type: quota
+        metric: MB
+        limit: 250
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+      - label: Dataverse File
+        name: dataverse_file
+        type: quota
+        metric: GB
+        limit: 2
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: true
+    elements:
+      - name: Cloud Flows
+      - name: Attended Desktop Flows
+      - name: Process Mining
+  - id: power-platform-power-automate-process
+    name: Power Automate Process
+    type: subscription
+    description: Per-bot license for unattended desktop flows and high-volume cloud flows.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: bot
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$150.00 per bot/month, paid yearly'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
+      - label: Power Platform Requests
+        name: power_platform_requests
+        type: quota
+        metric: request
+        limit: 250000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Dataverse Database
+        name: dataverse_database
+        type: quota
+        metric: MB
+        limit: 50
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Dataverse File
+        name: dataverse_file
+        type: quota
+        metric: MB
+        limit: 200
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Unattended Desktop Flows
+      - name: Cloud Flows
+      - name: Stackable Process Licenses
+  - id: power-platform-power-automate-hosted-process
+    name: Power Automate Hosted Process
+    type: subscription
+    description: Per-bot license including a Microsoft-hosted virtual machine for unattended desktop flows.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: bot
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$215.00 per bot/month, paid yearly'
+        userMultiplied: false
+      - label: Power Platform Requests
+        name: power_platform_requests
+        type: quota
+        metric: request
+        limit: 250000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Unattended Desktop Flows
+      - name: Cloud Flows
+      - name: Microsoft-Hosted Virtual Machine
+  - id: power-platform-process-mining-addon
+    name: Power Automate Process Mining Add-On
+    type: subscription
+    description: Tenant-level add-on for process-mining at scale; requires Premium plan.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: tenant
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$5,000.00 per tenant/month, paid yearly'
+        userMultiplied: false
+      - label: Process Mining Storage
+        name: process_mining_storage
+        type: quota
+        metric: GB
         limit: 100
-        timeFrame: minute
+        timeFrame: usage
         geo: global
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
         unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
-        unit: 1000
-        price: TBD
+        price: included
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Power Apps API
-      - name: Dataverse API (Common Data Service)
-      - name: Power Automate API
-      - name: Power BI REST API
-      - name: Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - name: Power Platform Admin API
-      - name: Power Platform Connectors API
-      - name: Power Platform Unified API
-      - name: Power Pages Web API
-  - id: power-platform-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Microsoft Power Platform APIs. Includes dedicated capacity,
-      contractual SLAs, security review, data residency options, and named technical account management.
+      - name: Enhanced Dataverse Capacity
+      - name: 100 GB Process Mining Storage
+  - id: power-platform-copilot-studio
+    name: Microsoft Copilot Studio
+    type: usage-based
+    description: Pre-paid Copilot credit pack for building and deploying custom copilots.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
+      - label: Copilot Credits
+        name: copilot_credits
+        type: tiered
+        metric: credit
+        limit: 25000
         timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.powerapps.com
-          - https://[org].api.crm.dynamics.com/api/data/v9.2
-          - https://api.flow.microsoft.com
-          - https://api.powerbi.com
-          - https://api.powerva.microsoft.com
-          - https://api.bap.microsoft.com
-          - https://api.connectors.microsoft.com
-          - https://api.powerplatform.com
-          - https://[site].powerappsportals.com/_api
-        unit: 1
-        price: custom
+        geo: global
+        unit: 25000
+        price: '$200.00 per 25,000 Copilot Credits/month, paid yearly'
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Power Apps API
-      - name: Dataverse API (Common Data Service)
-      - name: Power Automate API
-      - name: Power BI REST API
-      - name: Microsoft Copilot Studio API (formerly Power Virtual Agents)
-      - name: Power Platform Admin API
-      - name: Power Platform Connectors API
-      - name: Power Platform Unified API
-      - name: Power Pages Web API
+      - name: AI Tools
+      - name: Dialog Creation
+      - name: Process Automation
+      - name: Analytics
+  - id: power-platform-dataverse-storage
+    name: Dataverse Database Capacity Add-On
+    type: usage-based
+    description: Tenant-level Dataverse storage add-on, charged per GB per month.
+    entries:
+      - label: Dataverse Storage
+        name: dataverse_storage
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$40.00 GB/month, paid yearly'
+        userMultiplied: false
+    elements:
+      - name: Tenant-Level Storage
+  - id: power-platform-requests-addon
+    name: Power Platform Requests Capacity Add-On
+    type: subscription
+    description: Add-on pack to raise per-user or per-flow request entitlements.
+    entries:
+      - label: Additional Requests per 24 hours
+        name: additional_requests
+        type: quota
+        metric: request
+        limit: 50000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Stackable Add-On Packs
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
