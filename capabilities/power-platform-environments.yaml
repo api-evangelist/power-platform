@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Microsoft Power Platform REST API — Environments
+  description: 'Microsoft Power Platform REST API — Environments. 3 operations. Lead operation: List Environments. Self-contained
+    Naftiko capability covering one Power Platform business surface.'
+  tags:
+  - Power Platform
+  - Environments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    POWER_PLATFORM_API_KEY: POWER_PLATFORM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: power-platform-environments
+    baseUri: https://api.powerplatform.com
+    description: Microsoft Power Platform REST API — Environments business capability. Self-contained, no shared references.
+    resources:
+    - name: providers-Microsoft.BusinessAppPlatform-scopes-admin-environments
+      path: /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments
+      operations:
+      - name: listenvironments
+        method: GET
+        description: List Environments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: api-version
+          in: query
+          type: string
+          description: The API version to use for this request.
+          required: true
+        - name: $expand
+          in: query
+          type: string
+          description: Comma-separated list of related properties to expand. Supported values include properties.capacity
+            and properties.addons.
+    - name: providers-Microsoft.BusinessAppPlatform-scopes-admin-environments-environmentId
+      path: /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}
+      operations:
+      - name: getenvironment
+        method: GET
+        description: Get Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: environmentId
+          in: path
+          type: string
+          description: The unique identifier of the environment.
+          required: true
+        - name: api-version
+          in: query
+          type: string
+          description: The API version to use for this request.
+          required: true
+        - name: $expand
+          in: query
+          type: string
+          description: Comma-separated list of related properties to expand.
+      - name: deleteenvironment
+        method: DELETE
+        description: Delete Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: environmentId
+          in: path
+          type: string
+          description: The unique identifier of the environment to delete.
+          required: true
+        - name: api-version
+          in: query
+          type: string
+          description: The API version to use for this request.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.POWER_PLATFORM_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: power-platform-environments-rest
+    port: 8080
+    description: REST adapter for Microsoft Power Platform REST API — Environments. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/providers/microsoft-businessappplatform/scopes/admin/environments
+      name: providers-microsoft-businessappplatform-scopes-admin-environments
+      description: REST surface for providers-Microsoft.BusinessAppPlatform-scopes-admin-environments.
+      operations:
+      - method: GET
+        name: listenvironments
+        description: List Environments
+        call: power-platform-environments.listenvironments
+        with:
+          api-version: rest.api-version
+          $expand: rest.$expand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/providers/microsoft-businessappplatform/scopes/admin/environments/{environmentid}
+      name: providers-microsoft-businessappplatform-scopes-admin-environments-environmentid
+      description: REST surface for providers-Microsoft.BusinessAppPlatform-scopes-admin-environments-environmentId.
+      operations:
+      - method: GET
+        name: getenvironment
+        description: Get Environment
+        call: power-platform-environments.getenvironment
+        with:
+          environmentId: rest.environmentId
+          api-version: rest.api-version
+          $expand: rest.$expand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteenvironment
+        description: Delete Environment
+        call: power-platform-environments.deleteenvironment
+        with:
+          environmentId: rest.environmentId
+          api-version: rest.api-version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: power-platform-environments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Microsoft Power Platform REST API — Environments. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-environments
+      description: List Environments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: power-platform-environments.listenvironments
+      with:
+        api-version: tools.api-version
+        $expand: tools.$expand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-environment
+      description: Get Environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: power-platform-environments.getenvironment
+      with:
+        environmentId: tools.environmentId
+        api-version: tools.api-version
+        $expand: tools.$expand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-environment
+      description: Delete Environment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: power-platform-environments.deleteenvironment
+      with:
+        environmentId: tools.environmentId
+        api-version: tools.api-version
+      outputParameters:
+      - type: object
+        mapping: $.
