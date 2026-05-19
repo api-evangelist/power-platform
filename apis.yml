@@ -2,7 +2,7 @@ name: Microsoft Power Platform APIs
 description: Collection of APIs for Microsoft Power Platform services including Power Apps, Power Automate, Power BI, Copilot Studio, Power Pages, and Dataverse.
 image: https://powerplatform.microsoft.com/images/power-platform-logo.png
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-05-19'
 specificationVersion: '0.18'
 url: https://powerplatform.microsoft.com/apis.json
 tags:
@@ -305,6 +305,12 @@ common:
         description: Connect Power Platform workflows with ServiceNow ITSM and service management processes.
   - type: NaftikoCapability
     url: capabilities/platform-administration.yaml
+  - name: MCP Server
+    url: https://github.com/microsoft/powerbi-modeling-mcp
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/microsoft/power-platform-skills
+    type: AgentSkill
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
