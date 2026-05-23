@@ -1,0 +1,250 @@
+{
+  "provider": "Microsoft Power Platform APIs",
+  "providerId": "power-platform",
+  "kind": "json-structure",
+  "description": "Structural overview of the Microsoft Power Platform APIs API surface; extracted from openapi/.",
+  "schemaCount": 19,
+  "operationCount": 13,
+  "schemas": [
+    {
+      "name": "EnvironmentListResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Environment",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "EnvironmentProperties",
+      "type": "object",
+      "propertyCount": 20,
+      "required": []
+    },
+    {
+      "name": "LinkedEnvironmentMetadata",
+      "type": [
+        "object",
+        "null"
+      ],
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "Principal",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CapacityInfo",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "AddonInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ApplicationPackageListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ApplicationPackage",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "OperationStatus",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "FlowRunListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "FlowRun",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "FlowRunProperties",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BillingPolicyListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BillingPolicy",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "BillingInstrument",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "BillingPolicyCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "location",
+        "billingInstrument"
+      ]
+    },
+    {
+      "name": "BillingPolicyUpdateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments",
+      "operationId": "listEnvironments",
+      "summary": "List Environments",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}",
+      "operationId": "getEnvironment",
+      "summary": "Get Environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}",
+      "operationId": "deleteEnvironment",
+      "summary": "Delete Environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/appmanagement/environments/{environmentId}/applicationPackages",
+      "operationId": "getEnvironmentApplicationPackages",
+      "summary": "Get Environment Application Packages",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/appmanagement/environments/{environmentId}/applicationPackages/{applicationPackageId}/install",
+      "operationId": "installApplicationPackage",
+      "summary": "Install Application Package",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/appmanagement/environments/{environmentId}/operations/{operationId}",
+      "operationId": "getApplicationPackageInstallStatus",
+      "summary": "Get Application Package Install Status",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/appmanagement/applicationPackages",
+      "operationId": "getTenantApplicationPackages",
+      "summary": "Get Tenant Application Packages",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/powerautomate/environments/{environmentId}/flowRuns",
+      "operationId": "listFlowRuns",
+      "summary": "List Flow Runs",
+      "tags": [
+        "Flow Runs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/licensing/billingPolicies",
+      "operationId": "listBillingPolicies",
+      "summary": "List Billing Policies",
+      "tags": [
+        "Licensing"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/licensing/billingPolicies",
+      "operationId": "createBillingPolicy",
+      "summary": "Create Billing Policy",
+      "tags": [
+        "Licensing"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/licensing/billingPolicies/{billingPolicyId}",
+      "operationId": "getBillingPolicy",
+      "summary": "Get Billing Policy",
+      "tags": [
+        "Licensing"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/licensing/billingPolicies/{billingPolicyId}",
+      "operationId": "deleteBillingPolicy",
+      "summary": "Delete Billing Policy",
+      "tags": [
+        "Licensing"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/licensing/billingPolicies/{billingPolicyId}",
+      "operationId": "updateBillingPolicy",
+      "summary": "Update Billing Policy",
+      "tags": [
+        "Licensing"
+      ]
+    }
+  ]
+}

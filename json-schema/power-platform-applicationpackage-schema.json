@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationPackage",
+  "title": "ApplicationPackage",
+  "type": "object",
+  "description": "An application package available for installation in a Power Platform environment.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the application package.",
+      "example": "abc123"
+    },
+    "uniqueName": {
+      "type": "string",
+      "description": "The unique name of the application package.",
+      "example": "example_value"
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the application package.",
+      "example": "example_value"
+    },
+    "localizedDescription": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A localized description of the application package.",
+      "example": "example_value"
+    },
+    "localizedName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The localized display name of the application package.",
+      "example": "example_value"
+    },
+    "applicationVisibility": {
+      "type": "string",
+      "description": "The visibility of the application.",
+      "enum": [
+        "All",
+        "None"
+      ],
+      "example": "All"
+    },
+    "state": {
+      "type": "string",
+      "description": "The current installation state of the package.",
+      "enum": [
+        "Installed",
+        "NotInstalled",
+        "InstallFailed"
+      ],
+      "example": "Installed"
+    },
+    "lastError": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Details about the last error if installation failed.",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

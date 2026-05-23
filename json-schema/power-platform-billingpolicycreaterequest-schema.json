@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BillingPolicyCreateRequest",
+  "title": "BillingPolicyCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new billing policy.",
+  "required": [
+    "name",
+    "location",
+    "billingInstrument"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name of the billing policy.",
+      "example": "Example Title"
+    },
+    "location": {
+      "type": "string",
+      "description": "The geographic location of the billing policy.",
+      "example": "example_value"
+    },
+    "status": {
+      "type": "string",
+      "description": "The initial status of the billing policy.",
+      "enum": [
+        "Enabled",
+        "Disabled"
+      ],
+      "default": "Enabled",
+      "example": "Enabled"
+    },
+    "billingInstrument": {
+      "$ref": "#/components/schemas/BillingInstrument"
+    }
+  }
+}

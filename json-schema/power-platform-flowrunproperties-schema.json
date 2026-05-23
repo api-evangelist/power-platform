@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowRunProperties",
+  "title": "FlowRunProperties",
+  "type": "object",
+  "description": "Properties of a flow run.",
+  "properties": {
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the flow run started.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "endTime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The timestamp when the flow run ended. Null if still running.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the flow run.",
+      "enum": [
+        "Running",
+        "Succeeded",
+        "Failed",
+        "Cancelled",
+        "Skipped",
+        "Suspended",
+        "TimedOut",
+        "Aborted",
+        "Waiting",
+        "Ignored",
+        "Faulted"
+      ],
+      "example": "Running"
+    },
+    "correlation": {
+      "type": "object",
+      "description": "Correlation information for the flow run.",
+      "properties": {
+        "clientTrackingId": {
+          "type": "string",
+          "description": "Client-side tracking identifier."
+        }
+      },
+      "example": "example_value"
+    },
+    "trigger": {
+      "type": "object",
+      "description": "Information about the trigger that initiated the flow run.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the trigger."
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the trigger fired."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the trigger completed."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the trigger execution.",
+          "enum": [
+            "Succeeded",
+            "Failed",
+            "Skipped"
+          ]
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

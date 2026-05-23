@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OperationStatus",
+  "title": "OperationStatus",
+  "type": "object",
+  "description": "Status of a long-running operation such as an application package installation.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the operation.",
+      "example": "abc123"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the operation.",
+      "enum": [
+        "NotStarted",
+        "Running",
+        "Succeeded",
+        "Failed",
+        "Cancelled"
+      ],
+      "example": "NotStarted"
+    },
+    "createdDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the operation was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "lastActionDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp of the last status update.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "error": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Error details if the operation failed.",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

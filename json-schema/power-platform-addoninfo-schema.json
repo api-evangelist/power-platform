@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddonInfo",
+  "title": "AddonInfo",
+  "type": "object",
+  "description": "Add-on allocation information for an environment.",
+  "properties": {
+    "addonType": {
+      "type": "string",
+      "description": "The type of add-on.",
+      "enum": [
+        "AppPass",
+        "PerFlowPlan",
+        "PortalViews",
+        "PortalLogins",
+        "AI",
+        "AppPassForTeams",
+        "PAUnattendedRPA"
+      ],
+      "example": "AppPass"
+    },
+    "allocated": {
+      "type": "number",
+      "description": "The number of allocated add-on units.",
+      "example": 42.5
+    },
+    "addonUnit": {
+      "type": "string",
+      "description": "The unit of measurement for the add-on.",
+      "examples": [
+        "Unit"
+      ]
+    }
+  }
+}

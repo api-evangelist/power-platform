@@ -1,0 +1,15 @@
+name: Microsoft Power Platform APIs Domain Vocabulary
+provider: Microsoft Power Platform APIs
+providerId: power-platform
+description: Tag-derived vocabulary for the Microsoft Power Platform APIs API surface; sourced from openapi/ tags.
+terms:
+- term: Environments
+  description: Operations for listing, creating, and managing Power Platform environments. Environments are containers that
+    store apps, flows, data, and other resources.
+- term: Applications
+  description: Operations for managing application packages within Power Platform environments, including listing available
+    packages, installing applications, and checking installation status.
+- term: Flow Runs
+  description: Operations for monitoring and retrieving Power Automate flow run history within environments.
+- term: Licensing
+  description: Operations for managing billing policies and licensing across the Power Platform tenant.

@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EnvironmentProperties",
+  "title": "EnvironmentProperties",
+  "type": "object",
+  "description": "Properties of a Power Platform environment.",
+  "properties": {
+    "azureRegion": {
+      "type": "string",
+      "description": "The Azure region where the environment is hosted.",
+      "examples": [
+        "westus",
+        "northeurope",
+        "eastasia"
+      ]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display name of the environment.",
+      "examples": [
+        "My Power Platform Environment"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A text description of the environment purpose.",
+      "example": "A sample description."
+    },
+    "createdTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the environment was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "createdBy": {
+      "$ref": "#/components/schemas/Principal"
+    },
+    "lastModifiedTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp of the last modification to the environment.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "provisioningState": {
+      "type": "string",
+      "description": "The current provisioning state of the environment.",
+      "enum": [
+        "Succeeded",
+        "Failed",
+        "InProgress",
+        "Deleting"
+      ],
+      "example": "Succeeded"
+    },
+    "creationType": {
+      "type": "string",
+      "description": "How the environment was created.",
+      "enum": [
+        "User",
+        "System",
+        "Developer"
+      ],
+      "example": "User"
+    },
+    "environmentSku": {
+      "type": "string",
+      "description": "The SKU type of the environment.",
+      "enum": [
+        "Production",
+        "Sandbox",
+        "Trial",
+        "Developer",
+        "Default",
+        "Teams"
+      ],
+      "example": "Production"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "description": "Whether this is the default environment for the tenant.",
+      "example": true
+    },
+    "capacity": {
+      "type": "array",
+      "description": "Capacity consumption details for the environment.",
+      "items": {
+        "$ref": "#/components/schemas/CapacityInfo"
+      },
+      "example": []
+    },
+    "addons": {
+      "type": "array",
+      "description": "Add-on allocations for the environment.",
+      "items": {
+        "$ref": "#/components/schemas/AddonInfo"
+      },
+      "example": []
+    },
+    "clientUris": {
+      "type": "object",
+      "description": "URLs for accessing the environment through different client interfaces.",
+      "properties": {
+        "admin": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the Power Platform admin center for this environment."
+        },
+        "maker": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the Power Apps maker portal for this environment."
+        }
+      },
+      "example": "example_value"
+    },
+    "runtimeEndpoints": {
+      "type": "object",
+      "description": "Runtime service endpoints for the environment.",
+      "properties": {
+        "microsoft.BusinessAppPlatform": {
+          "type": "string",
+          "format": "uri"
+        },
+        "microsoft.CommonDataModel": {
+          "type": "string",
+          "format": "uri"
+        },
+        "microsoft.PowerApps": {
+          "type": "string",
+          "format": "uri"
+        },
+        "microsoft.Flow": {
+          "type": "string",
+          "format": "uri"
+        },
+        "microsoft.PowerAppsAdvisor": {
+          "type": "string",
+          "format": "uri"
+        },
+        "microsoft.ApiManagement": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "example": "example_value"
+    },
+    "databaseType": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The type of database provisioned for the environment.",
+      "enum": [
+        "CommonDataService",
+        "none",
+        null
+      ],
+      "example": "CommonDataService"
+    },
+    "linkedEnvironmentMetadata": {
+      "$ref": "#/components/schemas/LinkedEnvironmentMetadata"
+    },
+    "retentionPeriod": {
+      "type": "string",
+      "description": "The data retention period in ISO 8601 duration format.",
+      "examples": [
+        "P7D",
+        "P28D"
+      ]
+    },
+    "states": {
+      "type": "object",
+      "description": "Current states of the environment.",
+      "properties": {
+        "management": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "Ready",
+                "NotReady",
+                "Disabled"
+              ]
+            }
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "Enabled",
+                "Disabled"
+              ]
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    },
+    "updateCadence": {
+      "type": "object",
+      "description": "The update cadence setting for the environment.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "Frequent",
+            "Moderate"
+          ],
+          "description": "Frequent provides updates multiple times per month. Moderate provides updates at least once per month."
+        }
+      },
+      "example": "example_value"
+    },
+    "protectionStatus": {
+      "type": "object",
+      "description": "Encryption key management information.",
+      "properties": {
+        "keyManagedBy": {
+          "type": "string",
+          "enum": [
+            "Microsoft",
+            "Customer"
+          ],
+          "description": "Whether the encryption key is managed by Microsoft or by the customer."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

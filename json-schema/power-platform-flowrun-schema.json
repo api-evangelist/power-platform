@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowRun",
+  "title": "FlowRun",
+  "type": "object",
+  "description": "A record of a Power Automate flow run execution.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The unique identifier of the flow run.",
+      "example": "Example Title"
+    },
+    "id": {
+      "type": "string",
+      "description": "The fully qualified resource ID of the flow run.",
+      "example": "abc123"
+    },
+    "type": {
+      "type": "string",
+      "description": "The resource type.",
+      "examples": [
+        "Microsoft.ProcessSimple/environments/flows/runs"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/FlowRunProperties"
+    }
+  }
+}

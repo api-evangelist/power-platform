@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BillingPolicyListResponse",
+  "title": "BillingPolicyListResponse",
+  "type": "object",
+  "description": "Response containing a list of billing policies.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "Array of billing policy resources.",
+      "items": {
+        "$ref": "#/components/schemas/BillingPolicy"
+      },
+      "example": []
+    },
+    "@odata.nextLink": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri",
+      "description": "URL to retrieve the next page of results.",
+      "example": "https://www.example.com"
+    }
+  }
+}

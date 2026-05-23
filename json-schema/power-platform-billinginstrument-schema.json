@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BillingInstrument",
+  "title": "BillingInstrument",
+  "type": "object",
+  "description": "The billing instrument information linking to an Azure subscription.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the billing instrument.",
+      "example": "abc123"
+    },
+    "resourceGroup": {
+      "type": "string",
+      "description": "The resource group within the Azure subscription.",
+      "example": "example_value"
+    },
+    "subscriptionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The Azure subscription ID.",
+      "example": "500123"
+    }
+  }
+}

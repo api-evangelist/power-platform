@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CapacityInfo",
+  "title": "CapacityInfo",
+  "type": "object",
+  "description": "Capacity consumption information for an environment.",
+  "properties": {
+    "capacityType": {
+      "type": "string",
+      "description": "The type of capacity.",
+      "enum": [
+        "Database",
+        "File",
+        "Log"
+      ],
+      "example": "Database"
+    },
+    "actualConsumption": {
+      "type": "number",
+      "description": "The actual capacity consumption.",
+      "example": 42.5
+    },
+    "ratedConsumption": {
+      "type": "number",
+      "description": "The rated capacity consumption.",
+      "example": 42.5
+    },
+    "capacityUnit": {
+      "type": "string",
+      "description": "The unit of measurement for capacity.",
+      "examples": [
+        "MB",
+        "GB"
+      ]
+    },
+    "updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the capacity data was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}
