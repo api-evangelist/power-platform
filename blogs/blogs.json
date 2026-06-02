@@ -2,12 +2,17 @@
   "repo": "power-platform",
   "feeds": [
     {
-      "source": "https://www.microsoft.com/en-us/power-platform/blog/",
+      "source": "https://www.microsoft.com/en-us/power-platform/blog/feed/",
       "feed_url": "https://www.microsoft.com/en-us/power-platform/blog/feed/",
-      "title": "Microsoft Power Platform Blog",
-      "saved": 8
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://learn.microsoft.com/en-us/power-platform/",
+      "error": "HTTPError"
     }
   ],
-  "post_count": 19,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 20,
+  "fetched": "2026-06-01T23:35:02Z"
 }
