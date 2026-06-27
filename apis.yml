@@ -68,7 +68,7 @@ apis:
         title: OData Types and Operations
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/authenticate-web-api
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/developer-tools
     contact:
       - type: Support
@@ -125,7 +125,7 @@ apis:
         url: https://api.powerbi.com/v1.0/myorg/swagger.json
       - type: Authentication
         url: https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-tokens
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/javascript/api/overview/powerbi/
       - type: Pricing
         url: https://powerbi.microsoft.com/pricing/
@@ -231,7 +231,7 @@ apis:
         url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
       - type: OpenAPI
         url: openapi/power-platform-api-openapi.json
-      - type: SDK
+      - type: SDKs
         url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
         title: .NET SDK
     contact:
@@ -344,7 +344,7 @@ common:
     type: MCPServer
   - name: Agent Skills
     url: https://github.com/microsoft/power-platform-skills
-    type: AgentSkill
+    type: AgentSkills
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
