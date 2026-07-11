@@ -259,6 +259,10 @@ apis:
       - type: Support
         url: https://powerapps.microsoft.com/support/
 common:
+  - type: Authentication
+    url: authentication/power-platform-authentication.yml
+  - type: OAuthScopes
+    url: scopes/power-platform-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/microsoft-power-platform
   - type: DeveloperPortal
