@@ -259,6 +259,10 @@ apis:
       - type: Support
         url: https://powerapps.microsoft.com/support/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/power-platform-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/power-platform-domain-security.yml
   - type: Authentication
     url: authentication/power-platform-authentication.yml
   - type: OAuthScopes
