@@ -10,12 +10,9 @@
     },
     {
       "source": "https://learn.microsoft.com/en-us/power-platform/",
-      "feed_url": "https://learn.microsoft.com/en-us/power-platform/",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     }
   ],
-  "post_count": 24,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 30,
+  "fetched": "2026-07-11T11:50:51Z"
 }
