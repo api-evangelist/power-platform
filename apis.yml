@@ -259,6 +259,8 @@ apis:
       - type: Support
         url: https://powerapps.microsoft.com/support/
 common:
+  - type: AgenticAccess
+    url: agentic-access/power-platform-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/power-platform-vulnerability-disclosure.yml
   - type: DomainSecurity
