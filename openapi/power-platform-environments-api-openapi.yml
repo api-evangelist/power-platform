@@ -1,0 +1,534 @@
+openapi: 3.1.0
+info:
+  title: Microsoft Power Platform REST Applications Environments API
+  description: Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.
+  version: 2022-03-01-preview
+  contact:
+    name: Microsoft Power Platform Support
+    url: https://admin.powerplatform.microsoft.com/support
+  license:
+    name: Microsoft API Terms of Use
+    url: https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use
+servers:
+- url: https://api.powerplatform.com
+  description: Power Platform Unified API endpoint
+- url: https://api.bap.microsoft.com
+  description: Business Application Platform (BAP) legacy endpoint for environment management
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Environments
+  description: Operations for listing, creating, and managing Power Platform environments. Environments are containers that store apps, flows, data, and other resources.
+paths:
+  /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments:
+    get:
+      operationId: listEnvironments
+      summary: List Environments
+      description: Retrieves a list of all Power Platform environments for the tenant. The response includes environment properties such as display name, location, SKU type, provisioning state, capacity, linked Dataverse metadata, and runtime endpoints. Requires tenant admin or Power Platform admin permissions.
+      tags:
+      - Environments
+      parameters:
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2020-10-01'
+        description: The API version to use for this request.
+      - name: $expand
+        in: query
+        required: false
+        schema:
+          type: string
+          examples:
+          - properties.capacity,properties.addons
+        description: Comma-separated list of related properties to expand. Supported values include properties.capacity and properties.addons.
+      responses:
+        '200':
+          description: A list of environments for the tenant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentListResponse'
+        '401':
+          description: Unauthorized. The request requires valid authentication credentials.
+        '403':
+          description: Forbidden. The caller does not have sufficient permissions.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}:
+    get:
+      operationId: getEnvironment
+      summary: Get Environment
+      description: Retrieves details for a specific Power Platform environment by its identifier, including properties, capacity, linked Dataverse metadata, and runtime endpoints.
+      tags:
+      - Environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the environment.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2020-10-01'
+        description: The API version to use for this request.
+      - name: $expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of related properties to expand.
+      responses:
+        '200':
+          description: The environment resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Environment not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteEnvironment
+      summary: Delete Environment
+      description: Deletes a Power Platform environment. This action is irreversible and removes all apps, flows, and data within the environment.
+      tags:
+      - Environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the environment to delete.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2020-10-01'
+        description: The API version to use for this request.
+      responses:
+        '202':
+          description: Accepted. The environment deletion has been initiated.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Environment not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Environment:
+      type: object
+      description: A Power Platform environment resource. Environments are containers that store apps, flows, data, and other resources.
+      properties:
+        id:
+          type: string
+          description: The fully qualified resource ID of the environment.
+          examples:
+          - /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee
+        type:
+          type: string
+          description: The resource type.
+          examples:
+          - Microsoft.BusinessAppPlatform/scopes/environments
+        location:
+          type: string
+          description: The geographic location of the environment.
+          examples:
+          - unitedstates
+          - europe
+          - asia
+        name:
+          type: string
+          format: uuid
+          description: The environment identifier (GUID).
+          example: Example Title
+        properties:
+          $ref: '#/components/schemas/EnvironmentProperties'
+    CapacityInfo:
+      type: object
+      description: Capacity consumption information for an environment.
+      properties:
+        capacityType:
+          type: string
+          description: The type of capacity.
+          enum:
+          - Database
+          - File
+          - Log
+          example: Database
+        actualConsumption:
+          type: number
+          description: The actual capacity consumption.
+          example: 42.5
+        ratedConsumption:
+          type: number
+          description: The rated capacity consumption.
+          example: 42.5
+        capacityUnit:
+          type: string
+          description: The unit of measurement for capacity.
+          examples:
+          - MB
+          - GB
+        updatedOn:
+          type: string
+          format: date-time
+          description: The timestamp when the capacity data was last updated.
+          example: '2026-01-15T10:30:00Z'
+    LinkedEnvironmentMetadata:
+      type:
+      - object
+      - 'null'
+      description: Metadata about the linked Dataverse instance.
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+          description: The resource identifier of the Dataverse instance.
+          example: '500123'
+        friendlyName:
+          type: string
+          description: The friendly name of the Dataverse instance.
+          example: example_value
+        uniqueName:
+          type: string
+          description: The unique name identifier for the Dataverse organization.
+          example: example_value
+        domainName:
+          type: string
+          description: The domain name prefix for the Dataverse instance.
+          example: example_value
+        version:
+          type: string
+          description: The Dataverse platform version.
+          examples:
+          - 9.2.21013.00152
+        instanceUrl:
+          type: string
+          format: uri
+          description: The URL of the Dataverse instance.
+          example: https://www.example.com
+        instanceApiUrl:
+          type: string
+          format: uri
+          description: The API URL for the Dataverse instance.
+          example: https://www.example.com
+        baseLanguage:
+          type: integer
+          description: The LCID of the base language for the Dataverse instance.
+          examples:
+          - 1033
+        instanceState:
+          type: string
+          description: The state of the Dataverse instance.
+          enum:
+          - Ready
+          - NotReady
+          - Disabled
+          example: Ready
+        createdTime:
+          type: string
+          format: date-time
+          description: The timestamp when the Dataverse instance was created.
+          example: '2026-01-15T10:30:00Z'
+        backgroundOperationsState:
+          type: string
+          description: Whether background operations are enabled.
+          enum:
+          - Enabled
+          - Disabled
+          example: Enabled
+        scaleGroup:
+          type: string
+          description: The scale group identifier.
+          example: example_value
+        platformSku:
+          type: string
+          description: The platform SKU of the Dataverse instance.
+          enum:
+          - Standard
+          - Premium
+          example: Standard
+    AddonInfo:
+      type: object
+      description: Add-on allocation information for an environment.
+      properties:
+        addonType:
+          type: string
+          description: The type of add-on.
+          enum:
+          - AppPass
+          - PerFlowPlan
+          - PortalViews
+          - PortalLogins
+          - AI
+          - AppPassForTeams
+          - PAUnattendedRPA
+          example: AppPass
+        allocated:
+          type: number
+          description: The number of allocated add-on units.
+          example: 42.5
+        addonUnit:
+          type: string
+          description: The unit of measurement for the add-on.
+          examples:
+          - Unit
+    EnvironmentListResponse:
+      type: object
+      description: Response containing a list of Power Platform environments.
+      properties:
+        value:
+          type: array
+          description: Array of environment resources.
+          items:
+            $ref: '#/components/schemas/Environment'
+          example: []
+    EnvironmentProperties:
+      type: object
+      description: Properties of a Power Platform environment.
+      properties:
+        azureRegion:
+          type: string
+          description: The Azure region where the environment is hosted.
+          examples:
+          - westus
+          - northeurope
+          - eastasia
+        displayName:
+          type: string
+          description: The display name of the environment.
+          examples:
+          - My Power Platform Environment
+        description:
+          type:
+          - string
+          - 'null'
+          description: A text description of the environment purpose.
+          example: A sample description.
+        createdTime:
+          type: string
+          format: date-time
+          description: The timestamp when the environment was created.
+          example: '2026-01-15T10:30:00Z'
+        createdBy:
+          $ref: '#/components/schemas/Principal'
+        lastModifiedTime:
+          type: string
+          format: date-time
+          description: The timestamp of the last modification to the environment.
+          example: '2026-01-15T10:30:00Z'
+        provisioningState:
+          type: string
+          description: The current provisioning state of the environment.
+          enum:
+          - Succeeded
+          - Failed
+          - InProgress
+          - Deleting
+          example: Succeeded
+        creationType:
+          type: string
+          description: How the environment was created.
+          enum:
+          - User
+          - System
+          - Developer
+          example: User
+        environmentSku:
+          type: string
+          description: The SKU type of the environment.
+          enum:
+          - Production
+          - Sandbox
+          - Trial
+          - Developer
+          - Default
+          - Teams
+          example: Production
+        isDefault:
+          type: boolean
+          description: Whether this is the default environment for the tenant.
+          example: true
+        capacity:
+          type: array
+          description: Capacity consumption details for the environment.
+          items:
+            $ref: '#/components/schemas/CapacityInfo'
+          example: []
+        addons:
+          type: array
+          description: Add-on allocations for the environment.
+          items:
+            $ref: '#/components/schemas/AddonInfo'
+          example: []
+        clientUris:
+          type: object
+          description: URLs for accessing the environment through different client interfaces.
+          properties:
+            admin:
+              type: string
+              format: uri
+              description: URL to the Power Platform admin center for this environment.
+            maker:
+              type: string
+              format: uri
+              description: URL to the Power Apps maker portal for this environment.
+          example: example_value
+        runtimeEndpoints:
+          type: object
+          description: Runtime service endpoints for the environment.
+          properties:
+            microsoft.BusinessAppPlatform:
+              type: string
+              format: uri
+            microsoft.CommonDataModel:
+              type: string
+              format: uri
+            microsoft.PowerApps:
+              type: string
+              format: uri
+            microsoft.Flow:
+              type: string
+              format: uri
+            microsoft.PowerAppsAdvisor:
+              type: string
+              format: uri
+            microsoft.ApiManagement:
+              type: string
+              format: uri
+          example: example_value
+        databaseType:
+          type:
+          - string
+          - 'null'
+          description: The type of database provisioned for the environment.
+          enum:
+          - CommonDataService
+          - none
+          - null
+          example: CommonDataService
+        linkedEnvironmentMetadata:
+          $ref: '#/components/schemas/LinkedEnvironmentMetadata'
+        retentionPeriod:
+          type: string
+          description: The data retention period in ISO 8601 duration format.
+          examples:
+          - P7D
+          - P28D
+        states:
+          type: object
+          description: Current states of the environment.
+          properties:
+            management:
+              type: object
+              properties:
+                id:
+                  type: string
+                  enum:
+                  - Ready
+                  - NotReady
+                  - Disabled
+            runtime:
+              type: object
+              properties:
+                id:
+                  type: string
+                  enum:
+                  - Enabled
+                  - Disabled
+          example: example_value
+        updateCadence:
+          type: object
+          description: The update cadence setting for the environment.
+          properties:
+            id:
+              type: string
+              enum:
+              - Frequent
+              - Moderate
+              description: Frequent provides updates multiple times per month. Moderate provides updates at least once per month.
+          example: example_value
+        protectionStatus:
+          type: object
+          description: Encryption key management information.
+          properties:
+            keyManagedBy:
+              type: string
+              enum:
+              - Microsoft
+              - Customer
+              description: Whether the encryption key is managed by Microsoft or by the customer.
+          example: example_value
+    Principal:
+      type: object
+      description: Represents a principal (user or service principal) that performed an action.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the principal.
+          example: abc123
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The display name of the principal.
+          example: example_value
+        type:
+          type: string
+          description: The type of principal.
+          enum:
+          - None
+          - Application
+          - User
+          - DelegatedAdmin
+          - ServicePrincipal
+          example: None
+        tenantId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The tenant ID of the principal.
+          example: '500123'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0 authentication. Register your application and obtain tokens via the Microsoft identity platform.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://api.powerplatform.com/.default: Access Power Platform API resources
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            https://api.powerplatform.com/.default: Access Power Platform API resources as a service principal
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained from Microsoft Entra ID OAuth 2.0 flow.

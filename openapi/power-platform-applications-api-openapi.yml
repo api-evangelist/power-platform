@@ -1,0 +1,357 @@
+openapi: 3.1.0
+info:
+  title: Microsoft Power Platform REST Applications API
+  description: Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.
+  version: 2022-03-01-preview
+  contact:
+    name: Microsoft Power Platform Support
+    url: https://admin.powerplatform.microsoft.com/support
+  license:
+    name: Microsoft API Terms of Use
+    url: https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use
+servers:
+- url: https://api.powerplatform.com
+  description: Power Platform Unified API endpoint
+- url: https://api.bap.microsoft.com
+  description: Business Application Platform (BAP) legacy endpoint for environment management
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Applications
+  description: Operations for managing application packages within Power Platform environments, including listing available packages, installing applications, and checking installation status.
+paths:
+  /appmanagement/environments/{environmentId}/applicationPackages:
+    get:
+      operationId: getEnvironmentApplicationPackages
+      summary: Get Environment Application Packages
+      description: Retrieves the list of application packages available for installation in a specific Power Platform environment. Returns packages with their current installation status, version information, and metadata.
+      tags:
+      - Applications
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the target environment.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      responses:
+        '200':
+          description: A list of application packages available in the environment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationPackageListResponse'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Environment not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /appmanagement/environments/{environmentId}/applicationPackages/{applicationPackageId}/install:
+    post:
+      operationId: installApplicationPackage
+      summary: Install Application Package
+      description: Initiates the installation of a specific application package in the target Power Platform environment. Returns an operation ID that can be used to poll for installation status.
+      tags:
+      - Applications
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the target environment.
+      - name: applicationPackageId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the application package to install.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      responses:
+        '202':
+          description: Accepted. The installation has been initiated. Use the returned operation ID to poll for status.
+          headers:
+            Location:
+              description: URL to poll for the operation status.
+              schema:
+                type: string
+                format: uri
+            Retry-After:
+              description: Suggested number of seconds to wait before polling for status.
+              schema:
+                type: integer
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Environment or application package not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /appmanagement/environments/{environmentId}/operations/{operationId}:
+    get:
+      operationId: getApplicationPackageInstallStatus
+      summary: Get Application Package Install Status
+      description: Retrieves the polling status for a previously triggered application package installation. Use this operation to check whether an install has completed, is still in progress, or has failed.
+      tags:
+      - Applications
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the target environment.
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the installation operation.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      responses:
+        '200':
+          description: The operation status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Operation not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /appmanagement/applicationPackages:
+    get:
+      operationId: getTenantApplicationPackages
+      summary: Get Tenant Application Packages
+      description: Lists the installable application packages available for the tenant. Returns Microsoft-provided application packages that can be deployed to environments.
+      tags:
+      - Applications
+      parameters:
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      responses:
+        '200':
+          description: A list of application packages available for the tenant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationPackageListResponse'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ApplicationPackageListResponse:
+      type: object
+      description: Response containing a list of application packages.
+      properties:
+        value:
+          type: array
+          description: Array of application package resources.
+          items:
+            $ref: '#/components/schemas/ApplicationPackage'
+          example: []
+        '@odata.nextLink':
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to retrieve the next page of results.
+          example: https://www.example.com
+    OperationStatus:
+      type: object
+      description: Status of a long-running operation such as an application package installation.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the operation.
+          example: abc123
+        status:
+          type: string
+          description: The current status of the operation.
+          enum:
+          - NotStarted
+          - Running
+          - Succeeded
+          - Failed
+          - Cancelled
+          example: NotStarted
+        createdDateTime:
+          type: string
+          format: date-time
+          description: The timestamp when the operation was created.
+          example: '2026-01-15T10:30:00Z'
+        lastActionDateTime:
+          type: string
+          format: date-time
+          description: The timestamp of the last status update.
+          example: '2026-01-15T10:30:00Z'
+        error:
+          type:
+          - object
+          - 'null'
+          description: Error details if the operation failed.
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+          example: example_value
+    ApplicationPackage:
+      type: object
+      description: An application package available for installation in a Power Platform environment.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the application package.
+          example: abc123
+        uniqueName:
+          type: string
+          description: The unique name of the application package.
+          example: example_value
+        version:
+          type: string
+          description: The version of the application package.
+          example: example_value
+        localizedDescription:
+          type:
+          - string
+          - 'null'
+          description: A localized description of the application package.
+          example: example_value
+        localizedName:
+          type:
+          - string
+          - 'null'
+          description: The localized display name of the application package.
+          example: example_value
+        applicationVisibility:
+          type: string
+          description: The visibility of the application.
+          enum:
+          - All
+          - None
+          example: All
+        state:
+          type: string
+          description: The current installation state of the package.
+          enum:
+          - Installed
+          - NotInstalled
+          - InstallFailed
+          example: Installed
+        lastError:
+          type:
+          - object
+          - 'null'
+          description: Details about the last error if installation failed.
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+          example: example_value
+    ErrorResponse:
+      type: object
+      description: The standard error response object.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code for the failure type (e.g., BadRequest, NotFound).
+            message:
+              type: string
+              description: A human-readable description of the error.
+          example: example_value
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0 authentication. Register your application and obtain tokens via the Microsoft identity platform.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://api.powerplatform.com/.default: Access Power Platform API resources
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            https://api.powerplatform.com/.default: Access Power Platform API resources as a service principal
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained from Microsoft Entra ID OAuth 2.0 flow.

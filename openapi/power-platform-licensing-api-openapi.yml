@@ -1,0 +1,381 @@
+openapi: 3.1.0
+info:
+  title: Microsoft Power Platform REST Applications Licensing API
+  description: Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.
+  version: 2022-03-01-preview
+  contact:
+    name: Microsoft Power Platform Support
+    url: https://admin.powerplatform.microsoft.com/support
+  license:
+    name: Microsoft API Terms of Use
+    url: https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use
+servers:
+- url: https://api.powerplatform.com
+  description: Power Platform Unified API endpoint
+- url: https://api.bap.microsoft.com
+  description: Business Application Platform (BAP) legacy endpoint for environment management
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Licensing
+  description: Operations for managing billing policies and licensing across the Power Platform tenant.
+paths:
+  /licensing/billingPolicies:
+    get:
+      operationId: listBillingPolicies
+      summary: List Billing Policies
+      description: Retrieves the list of billing policies configured for the tenant. Billing policies define the association between Azure subscriptions and Power Platform environments for pay-as-you-go billing.
+      tags:
+      - Licensing
+      parameters:
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      - name: $top
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: The maximum number of billing policies to return.
+      responses:
+        '200':
+          description: A list of billing policies for the tenant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingPolicyListResponse'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createBillingPolicy
+      summary: Create Billing Policy
+      description: Creates a new billing policy that links a Power Platform environment to an Azure subscription for pay-as-you-go billing.
+      tags:
+      - Licensing
+      parameters:
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillingPolicyCreateRequest'
+      responses:
+        '201':
+          description: The billing policy was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingPolicy'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /licensing/billingPolicies/{billingPolicyId}:
+    get:
+      operationId: getBillingPolicy
+      summary: Get Billing Policy
+      description: Retrieves details for a specific billing policy by its identifier.
+      tags:
+      - Licensing
+      parameters:
+      - name: billingPolicyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the billing policy.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      responses:
+        '200':
+          description: The billing policy resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingPolicy'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Billing policy not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateBillingPolicy
+      summary: Update Billing Policy
+      description: Updates an existing billing policy with new values.
+      tags:
+      - Licensing
+      parameters:
+      - name: billingPolicyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the billing policy to update.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillingPolicyUpdateRequest'
+      responses:
+        '200':
+          description: The billing policy was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingPolicy'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Billing policy not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteBillingPolicy
+      summary: Delete Billing Policy
+      description: Deletes a billing policy by its identifier.
+      tags:
+      - Licensing
+      parameters:
+      - name: billingPolicyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the billing policy to delete.
+      - name: api-version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 2022-03-01-preview
+        description: The API version to use for this request.
+      responses:
+        '204':
+          description: The billing policy was deleted successfully.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Billing policy not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    BillingPolicyCreateRequest:
+      type: object
+      description: Request body for creating a new billing policy.
+      required:
+      - name
+      - location
+      - billingInstrument
+      properties:
+        name:
+          type: string
+          description: The display name of the billing policy.
+          example: Example Title
+        location:
+          type: string
+          description: The geographic location of the billing policy.
+          example: example_value
+        status:
+          type: string
+          description: The initial status of the billing policy.
+          enum:
+          - Enabled
+          - Disabled
+          default: Enabled
+          example: Enabled
+        billingInstrument:
+          $ref: '#/components/schemas/BillingInstrument'
+    BillingPolicyUpdateRequest:
+      type: object
+      description: Request body for updating an existing billing policy.
+      properties:
+        name:
+          type: string
+          description: The updated display name.
+          example: Example Title
+        status:
+          type: string
+          description: The updated status.
+          enum:
+          - Enabled
+          - Disabled
+          example: Enabled
+        billingInstrument:
+          $ref: '#/components/schemas/BillingInstrument'
+    BillingPolicyListResponse:
+      type: object
+      description: Response containing a list of billing policies.
+      properties:
+        value:
+          type: array
+          description: Array of billing policy resources.
+          items:
+            $ref: '#/components/schemas/BillingPolicy'
+          example: []
+        '@odata.nextLink':
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to retrieve the next page of results.
+          example: https://www.example.com
+    BillingInstrument:
+      type: object
+      description: The billing instrument information linking to an Azure subscription.
+      properties:
+        id:
+          type: string
+          description: The identifier of the billing instrument.
+          example: abc123
+        resourceGroup:
+          type: string
+          description: The resource group within the Azure subscription.
+          example: example_value
+        subscriptionId:
+          type: string
+          format: uuid
+          description: The Azure subscription ID.
+          example: '500123'
+    BillingPolicy:
+      type: object
+      description: A billing policy that defines the association between an Azure subscription and Power Platform environments for pay-as-you-go billing.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the billing policy.
+          example: abc123
+        name:
+          type: string
+          description: The display name of the billing policy.
+          example: Example Title
+        location:
+          type: string
+          description: The geographic location of the billing policy.
+          example: example_value
+        status:
+          type: string
+          description: The status of the billing policy.
+          enum:
+          - Enabled
+          - Disabled
+          example: Enabled
+        billingInstrument:
+          $ref: '#/components/schemas/BillingInstrument'
+        createdBy:
+          $ref: '#/components/schemas/Principal'
+        createdOn:
+          type: string
+          format: date-time
+          description: The timestamp when the billing policy was created.
+          example: '2026-01-15T10:30:00Z'
+        lastModifiedBy:
+          $ref: '#/components/schemas/Principal'
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: The timestamp of the last modification.
+          example: '2026-01-15T10:30:00Z'
+    Principal:
+      type: object
+      description: Represents a principal (user or service principal) that performed an action.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the principal.
+          example: abc123
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The display name of the principal.
+          example: example_value
+        type:
+          type: string
+          description: The type of principal.
+          enum:
+          - None
+          - Application
+          - User
+          - DelegatedAdmin
+          - ServicePrincipal
+          example: None
+        tenantId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The tenant ID of the principal.
+          example: '500123'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0 authentication. Register your application and obtain tokens via the Microsoft identity platform.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://api.powerplatform.com/.default: Access Power Platform API resources
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            https://api.powerplatform.com/.default: Access Power Platform API resources as a service principal
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained from Microsoft Entra ID OAuth 2.0 flow.
