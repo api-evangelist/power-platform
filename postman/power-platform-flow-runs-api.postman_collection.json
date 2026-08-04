@@ -1,0 +1,533 @@
+{
+  "info": {
+    "_postman_id": "5022f7f7-a43f-486e-8494-d8535113fe5e",
+    "name": "Microsoft Power Platform REST Applications Flow Runs API",
+    "description": "Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.\n\nContact Support:\n Name: Microsoft Power Platform Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:40:07.000Z",
+    "updatedAt": "2026-07-28T02:40:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5022f7f7-a43f-486e-8494-d8535113fe5e"
+  },
+  "item": [
+    {
+      "name": "powerautomate",
+      "item": [
+        {
+          "name": "environments",
+          "item": [
+            {
+              "name": "{environmentId}",
+              "item": [
+                {
+                  "name": "flowRuns",
+                  "item": [
+                    {
+                      "name": "List Flow Runs",
+                      "id": "2b4c8863-91e1-434a-86a6-508ff8800a04",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "powerautomate",
+                            "environments",
+                            ":environmentId",
+                            "flowRuns"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The workflow ID to retrieve flow runs for.",
+                              "key": "workflowId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "(Required) The API version to use for this request.",
+                              "key": "api-version",
+                              "value": "2022-03-01-preview"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "6fd81cdd-e3ce-460e-ba45-1e87df4717db",
+                              "key": "environmentId",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the environment."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves flow runs by workflow ID for a specific Power Platform environment. Returns a list of flow run records including their status, start time, end time, and trigger information. The environment must have a Microsoft Dataverse database."
+                      },
+                      "response": [
+                        {
+                          "id": "a159f856-01a9-4e48-95bb-0557655c30ff",
+                          "name": "A list of flow runs matching the workflow ID.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"value\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"properties\": {\n        \"startTime\": \"<dateTime>\",\n        \"endTime\": \"<string,null-date-time>\",\n        \"status\": \"Cancelled\",\n        \"correlation\": {\n          \"clientTrackingId\": \"<string>\"\n        },\n        \"trigger\": {\n          \"name\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"status\": \"Skipped\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"properties\": {\n        \"startTime\": \"<dateTime>\",\n        \"endTime\": \"<string,null-date-time>\",\n        \"status\": \"Waiting\",\n        \"correlation\": {\n          \"clientTrackingId\": \"<string>\"\n        },\n        \"trigger\": {\n          \"name\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"status\": \"Skipped\"\n        }\n      }\n    }\n  ],\n  \"@odata.nextLink\": \"<string,null-uri>\"\n}",
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-a159f856-01a9-4e48-95bb-0557655c30ff"
+                        },
+                        {
+                          "id": "12e76a37-bd27-42ad-baca-81bf60eead78",
+                          "name": "No content. No matching flow runs found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-12e76a37-bd27-42ad-baca-81bf60eead78"
+                        },
+                        {
+                          "id": "51e69174-0ca6-41df-bb6d-bb2c3f5f9eb9",
+                          "name": "Bad request.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-51e69174-0ca6-41df-bb6d-bb2c3f5f9eb9"
+                        },
+                        {
+                          "id": "c4bce72d-7bef-4736-9a2f-5e75fadc9958",
+                          "name": "Unauthorized.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-c4bce72d-7bef-4736-9a2f-5e75fadc9958"
+                        },
+                        {
+                          "id": "1b61e7d4-a1ca-447e-a02c-1c9400c07ae1",
+                          "name": "Forbidden.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-1b61e7d4-a1ca-447e-a02c-1c9400c07ae1"
+                        },
+                        {
+                          "id": "fe793232-9874-498e-b59b-b02ad59576da",
+                          "name": "Not found. Environment does not have a Microsoft Dataverse database.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-fe793232-9874-498e-b59b-b02ad59576da"
+                        },
+                        {
+                          "id": "cd0d97cc-af42-415e-84d1-a1291a46afd7",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/powerautomate/environments/:environmentId/flowRuns?workflowId=<uuid>&api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "powerautomate",
+                                "environments",
+                                ":environmentId",
+                                "flowRuns"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The workflow ID to retrieve flow runs for.",
+                                  "key": "workflowId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:40:08.000Z",
+                          "updatedAt": "2026-07-28T02:40:08.000Z",
+                          "uid": "35240-cd0d97cc-af42-415e-84d1-a1291a46afd7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:40:08.000Z",
+                      "updatedAt": "2026-07-28T02:40:08.000Z",
+                      "uid": "35240-2b4c8863-91e1-434a-86a6-508ff8800a04"
+                    }
+                  ],
+                  "id": "1ca0f8e1-9e2b-4994-8bbe-393fef7e4cb9",
+                  "createdAt": "2026-07-28T02:40:08.000Z",
+                  "updatedAt": "2026-07-28T02:40:08.000Z",
+                  "uid": "35240-1ca0f8e1-9e2b-4994-8bbe-393fef7e4cb9"
+                }
+              ],
+              "id": "63e98094-ad72-4f73-bf01-4fe13de2e863",
+              "createdAt": "2026-07-28T02:40:08.000Z",
+              "updatedAt": "2026-07-28T02:40:08.000Z",
+              "uid": "35240-63e98094-ad72-4f73-bf01-4fe13de2e863"
+            }
+          ],
+          "id": "d589de42-4514-4daa-8cbc-0ce20ea790d3",
+          "createdAt": "2026-07-28T02:40:08.000Z",
+          "updatedAt": "2026-07-28T02:40:08.000Z",
+          "uid": "35240-d589de42-4514-4daa-8cbc-0ce20ea790d3"
+        }
+      ],
+      "id": "9e0b6463-314c-43b2-b5b6-f635d1a713f8",
+      "createdAt": "2026-07-28T02:40:08.000Z",
+      "updatedAt": "2026-07-28T02:40:08.000Z",
+      "uid": "35240-9e0b6463-314c-43b2-b5b6-f635d1a713f8"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://api.powerplatform.com/.default",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.powerplatform.com"
+    }
+  ]
+}

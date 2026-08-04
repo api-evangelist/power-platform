@@ -1,0 +1,1254 @@
+{
+  "info": {
+    "_postman_id": "c4ad4520-8438-423a-885a-26cebb3b12a3",
+    "name": "Microsoft Power Platform REST Applications API",
+    "description": "Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.\n\nContact Support:\n Name: Microsoft Power Platform Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:40:05.000Z",
+    "updatedAt": "2026-07-28T02:40:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4ad4520-8438-423a-885a-26cebb3b12a3"
+  },
+  "item": [
+    {
+      "name": "appmanagement",
+      "item": [
+        {
+          "name": "environments",
+          "item": [
+            {
+              "name": "{environmentId}",
+              "item": [
+                {
+                  "name": "applicationPackages",
+                  "item": [
+                    {
+                      "name": "{applicationPackageId}",
+                      "item": [
+                        {
+                          "name": "install",
+                          "item": [
+                            {
+                              "name": "Install Application Package",
+                              "id": "c172d1e5-5d3a-491b-91c7-154e6d688ba1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install?api-version=2022-03-01-preview",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "appmanagement",
+                                    "environments",
+                                    ":environmentId",
+                                    "applicationPackages",
+                                    ":applicationPackageId",
+                                    "install"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The API version to use for this request.",
+                                      "key": "api-version",
+                                      "value": "2022-03-01-preview"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d7959c24-22b2-4b50-8364-0d78aea6497c",
+                                      "key": "environmentId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the target environment."
+                                    },
+                                    {
+                                      "id": "c55f27ac-0d19-48d7-b19d-47fed833f30d",
+                                      "key": "applicationPackageId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the application package to install."
+                                    }
+                                  ]
+                                },
+                                "description": "Initiates the installation of a specific application package in the target Power Platform environment. Returns an operation ID that can be used to poll for installation status."
+                              },
+                              "response": [
+                                {
+                                  "id": "1f3e8517-ef76-4195-a125-ac86ed666ed6",
+                                  "name": "Accepted. The installation has been initiated. Use the returned operation ID to poll for status.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install?api-version=2022-03-01-preview",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "appmanagement",
+                                        "environments",
+                                        ":environmentId",
+                                        "applicationPackages",
+                                        ":applicationPackageId",
+                                        "install"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The API version to use for this request.",
+                                          "key": "api-version",
+                                          "value": "2022-03-01-preview"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "environmentId"
+                                        },
+                                        {
+                                          "key": "applicationPackageId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Accepted",
+                                  "code": 202,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "URL to poll for the operation status.",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Location",
+                                      "value": "<uri>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Suggested number of seconds to wait before polling for status.",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:40:06.000Z",
+                                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                                  "uid": "35240-1f3e8517-ef76-4195-a125-ac86ed666ed6"
+                                },
+                                {
+                                  "id": "c0454472-58ce-45c3-a983-68c7cd730226",
+                                  "name": "Bad request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install?api-version=2022-03-01-preview",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "appmanagement",
+                                        "environments",
+                                        ":environmentId",
+                                        "applicationPackages",
+                                        ":applicationPackageId",
+                                        "install"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The API version to use for this request.",
+                                          "key": "api-version",
+                                          "value": "2022-03-01-preview"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "environmentId"
+                                        },
+                                        {
+                                          "key": "applicationPackageId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:40:06.000Z",
+                                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                                  "uid": "35240-c0454472-58ce-45c3-a983-68c7cd730226"
+                                },
+                                {
+                                  "id": "7a562a46-959d-4571-a5a6-40ee3b1cdcb8",
+                                  "name": "Unauthorized.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install?api-version=2022-03-01-preview",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "appmanagement",
+                                        "environments",
+                                        ":environmentId",
+                                        "applicationPackages",
+                                        ":applicationPackageId",
+                                        "install"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The API version to use for this request.",
+                                          "key": "api-version",
+                                          "value": "2022-03-01-preview"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "environmentId"
+                                        },
+                                        {
+                                          "key": "applicationPackageId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:40:06.000Z",
+                                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                                  "uid": "35240-7a562a46-959d-4571-a5a6-40ee3b1cdcb8"
+                                },
+                                {
+                                  "id": "d438a2af-2451-4fb1-83cf-53c07e6acb04",
+                                  "name": "Forbidden.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install?api-version=2022-03-01-preview",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "appmanagement",
+                                        "environments",
+                                        ":environmentId",
+                                        "applicationPackages",
+                                        ":applicationPackageId",
+                                        "install"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The API version to use for this request.",
+                                          "key": "api-version",
+                                          "value": "2022-03-01-preview"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "environmentId"
+                                        },
+                                        {
+                                          "key": "applicationPackageId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:40:06.000Z",
+                                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                                  "uid": "35240-d438a2af-2451-4fb1-83cf-53c07e6acb04"
+                                },
+                                {
+                                  "id": "466405eb-1b55-4f07-b1f7-659037c30d43",
+                                  "name": "Environment or application package not found.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install?api-version=2022-03-01-preview",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "appmanagement",
+                                        "environments",
+                                        ":environmentId",
+                                        "applicationPackages",
+                                        ":applicationPackageId",
+                                        "install"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The API version to use for this request.",
+                                          "key": "api-version",
+                                          "value": "2022-03-01-preview"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "environmentId"
+                                        },
+                                        {
+                                          "key": "applicationPackageId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:40:06.000Z",
+                                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                                  "uid": "35240-466405eb-1b55-4f07-b1f7-659037c30d43"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:40:06.000Z",
+                              "updatedAt": "2026-07-28T02:40:06.000Z",
+                              "uid": "35240-c172d1e5-5d3a-491b-91c7-154e6d688ba1"
+                            }
+                          ],
+                          "id": "6ddba5d6-3c79-424a-84cc-9bba3ade0bf3",
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-6ddba5d6-3c79-424a-84cc-9bba3ade0bf3"
+                        }
+                      ],
+                      "id": "34f31f5f-d402-4508-9b6b-d4ff39914cf0",
+                      "createdAt": "2026-07-28T02:40:06.000Z",
+                      "updatedAt": "2026-07-28T02:40:06.000Z",
+                      "uid": "35240-34f31f5f-d402-4508-9b6b-d4ff39914cf0"
+                    },
+                    {
+                      "name": "Get Environment Application Packages",
+                      "id": "80b5972d-c94e-42df-ba9d-4548bc560df1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages?api-version=2022-03-01-preview",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "appmanagement",
+                            "environments",
+                            ":environmentId",
+                            "applicationPackages"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The API version to use for this request.",
+                              "key": "api-version",
+                              "value": "2022-03-01-preview"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "d6d67737-c6f7-40ba-ae23-a3f58eeac0f8",
+                              "key": "environmentId",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the target environment."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of application packages available for installation in a specific Power Platform environment. Returns packages with their current installation status, version information, and metadata."
+                      },
+                      "response": [
+                        {
+                          "id": "98239954-d533-493d-89c6-7ca2f6f9a8fa",
+                          "name": "A list of application packages available in the environment.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages?api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "appmanagement",
+                                "environments",
+                                ":environmentId",
+                                "applicationPackages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"value\": [\n    {\n      \"id\": \"<uuid>\",\n      \"uniqueName\": \"<string>\",\n      \"version\": \"<string>\",\n      \"localizedDescription\": \"<string,null>\",\n      \"localizedName\": \"<string,null>\",\n      \"applicationVisibility\": \"None\",\n      \"state\": \"InstallFailed\",\n      \"lastError\": {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"uniqueName\": \"<string>\",\n      \"version\": \"<string>\",\n      \"localizedDescription\": \"<string,null>\",\n      \"localizedName\": \"<string,null>\",\n      \"applicationVisibility\": \"All\",\n      \"state\": \"InstallFailed\",\n      \"lastError\": null\n    }\n  ],\n  \"@odata.nextLink\": \"<string,null-uri>\"\n}",
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-98239954-d533-493d-89c6-7ca2f6f9a8fa"
+                        },
+                        {
+                          "id": "d9f9a329-eb15-413d-8827-2ac1f526dd34",
+                          "name": "Bad request.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages?api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "appmanagement",
+                                "environments",
+                                ":environmentId",
+                                "applicationPackages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-d9f9a329-eb15-413d-8827-2ac1f526dd34"
+                        },
+                        {
+                          "id": "e0e1d04d-aef5-4961-90f8-4e6c18883e2c",
+                          "name": "Unauthorized.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages?api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "appmanagement",
+                                "environments",
+                                ":environmentId",
+                                "applicationPackages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-e0e1d04d-aef5-4961-90f8-4e6c18883e2c"
+                        },
+                        {
+                          "id": "14aa96d2-8980-4881-a537-f55aab202ad4",
+                          "name": "Forbidden.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages?api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "appmanagement",
+                                "environments",
+                                ":environmentId",
+                                "applicationPackages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-14aa96d2-8980-4881-a537-f55aab202ad4"
+                        },
+                        {
+                          "id": "ccb4fd96-8dc3-45a1-9bda-d5df6e79cd3c",
+                          "name": "Environment not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/applicationPackages?api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "appmanagement",
+                                "environments",
+                                ":environmentId",
+                                "applicationPackages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "environmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-ccb4fd96-8dc3-45a1-9bda-d5df6e79cd3c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:40:06.000Z",
+                      "updatedAt": "2026-07-28T02:40:06.000Z",
+                      "uid": "35240-80b5972d-c94e-42df-ba9d-4548bc560df1"
+                    }
+                  ],
+                  "id": "4f9183a1-557a-4906-8fdc-16a540a933e6",
+                  "createdAt": "2026-07-28T02:40:06.000Z",
+                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                  "uid": "35240-4f9183a1-557a-4906-8fdc-16a540a933e6"
+                },
+                {
+                  "name": "operations",
+                  "item": [
+                    {
+                      "name": "{operationId}",
+                      "item": [
+                        {
+                          "name": "Get Application Package Install Status",
+                          "id": "23ead82a-4127-4f41-8f9a-f348a23ebeeb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/operations/:operationId?api-version=2022-03-01-preview",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "appmanagement",
+                                "environments",
+                                ":environmentId",
+                                "operations",
+                                ":operationId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for this request.",
+                                  "key": "api-version",
+                                  "value": "2022-03-01-preview"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "26093140-7904-4128-b375-810104216e9e",
+                                  "key": "environmentId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the target environment."
+                                },
+                                {
+                                  "id": "d53bcd78-56bb-4094-b4c8-430a84eb75ff",
+                                  "key": "operationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the installation operation."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the polling status for a previously triggered application package installation. Use this operation to check whether an install has completed, is still in progress, or has failed."
+                          },
+                          "response": [
+                            {
+                              "id": "7bbf75c2-933f-48c4-a9a1-37651e4b4106",
+                              "name": "The operation status.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/operations/:operationId?api-version=2022-03-01-preview",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "appmanagement",
+                                    "environments",
+                                    ":environmentId",
+                                    "operations",
+                                    ":operationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The API version to use for this request.",
+                                      "key": "api-version",
+                                      "value": "2022-03-01-preview"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "environmentId"
+                                    },
+                                    {
+                                      "key": "operationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"Running\",\n  \"createdDateTime\": \"<dateTime>\",\n  \"lastActionDateTime\": \"<dateTime>\",\n  \"error\": null\n}",
+                              "createdAt": "2026-07-28T02:40:06.000Z",
+                              "updatedAt": "2026-07-28T02:40:06.000Z",
+                              "uid": "35240-7bbf75c2-933f-48c4-a9a1-37651e4b4106"
+                            },
+                            {
+                              "id": "86782eba-2fdb-441f-bacf-27818c5190fd",
+                              "name": "Unauthorized.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/operations/:operationId?api-version=2022-03-01-preview",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "appmanagement",
+                                    "environments",
+                                    ":environmentId",
+                                    "operations",
+                                    ":operationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The API version to use for this request.",
+                                      "key": "api-version",
+                                      "value": "2022-03-01-preview"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "environmentId"
+                                    },
+                                    {
+                                      "key": "operationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:40:06.000Z",
+                              "updatedAt": "2026-07-28T02:40:06.000Z",
+                              "uid": "35240-86782eba-2fdb-441f-bacf-27818c5190fd"
+                            },
+                            {
+                              "id": "56dd8fc2-8cdb-481c-8403-6264811037ba",
+                              "name": "Forbidden.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/operations/:operationId?api-version=2022-03-01-preview",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "appmanagement",
+                                    "environments",
+                                    ":environmentId",
+                                    "operations",
+                                    ":operationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The API version to use for this request.",
+                                      "key": "api-version",
+                                      "value": "2022-03-01-preview"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "environmentId"
+                                    },
+                                    {
+                                      "key": "operationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:40:06.000Z",
+                              "updatedAt": "2026-07-28T02:40:06.000Z",
+                              "uid": "35240-56dd8fc2-8cdb-481c-8403-6264811037ba"
+                            },
+                            {
+                              "id": "841a733b-5445-4879-87a9-8f5371d9933d",
+                              "name": "Operation not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/appmanagement/environments/:environmentId/operations/:operationId?api-version=2022-03-01-preview",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "appmanagement",
+                                    "environments",
+                                    ":environmentId",
+                                    "operations",
+                                    ":operationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The API version to use for this request.",
+                                      "key": "api-version",
+                                      "value": "2022-03-01-preview"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "environmentId"
+                                    },
+                                    {
+                                      "key": "operationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:40:06.000Z",
+                              "updatedAt": "2026-07-28T02:40:06.000Z",
+                              "uid": "35240-841a733b-5445-4879-87a9-8f5371d9933d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:40:06.000Z",
+                          "updatedAt": "2026-07-28T02:40:06.000Z",
+                          "uid": "35240-23ead82a-4127-4f41-8f9a-f348a23ebeeb"
+                        }
+                      ],
+                      "id": "fe57906f-74b2-4532-a750-015d59d48a0a",
+                      "createdAt": "2026-07-28T02:40:06.000Z",
+                      "updatedAt": "2026-07-28T02:40:06.000Z",
+                      "uid": "35240-fe57906f-74b2-4532-a750-015d59d48a0a"
+                    }
+                  ],
+                  "id": "86ddf3fc-da10-4e2a-b1d7-62ed12b6dfc0",
+                  "createdAt": "2026-07-28T02:40:06.000Z",
+                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                  "uid": "35240-86ddf3fc-da10-4e2a-b1d7-62ed12b6dfc0"
+                }
+              ],
+              "id": "67889629-0f3e-46ef-9ee7-7402677f39d7",
+              "createdAt": "2026-07-28T02:40:06.000Z",
+              "updatedAt": "2026-07-28T02:40:06.000Z",
+              "uid": "35240-67889629-0f3e-46ef-9ee7-7402677f39d7"
+            }
+          ],
+          "id": "c48c2fe5-52e8-4f69-ac9e-d3ddf93142c3",
+          "createdAt": "2026-07-28T02:40:06.000Z",
+          "updatedAt": "2026-07-28T02:40:06.000Z",
+          "uid": "35240-c48c2fe5-52e8-4f69-ac9e-d3ddf93142c3"
+        },
+        {
+          "name": "applicationPackages",
+          "item": [
+            {
+              "name": "Get Tenant Application Packages",
+              "id": "c83f7295-dcfe-4cf5-a196-13bd07de29a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/appmanagement/applicationPackages?api-version=2022-03-01-preview",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "appmanagement",
+                    "applicationPackages"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The API version to use for this request.",
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ]
+                },
+                "description": "Lists the installable application packages available for the tenant. Returns Microsoft-provided application packages that can be deployed to environments."
+              },
+              "response": [
+                {
+                  "id": "b6318399-46f5-4eca-8c5c-e16b4674e46c",
+                  "name": "A list of application packages available for the tenant.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/appmanagement/applicationPackages?api-version=2022-03-01-preview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "appmanagement",
+                        "applicationPackages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for this request.",
+                          "key": "api-version",
+                          "value": "2022-03-01-preview"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": [\n    {\n      \"id\": \"<uuid>\",\n      \"uniqueName\": \"<string>\",\n      \"version\": \"<string>\",\n      \"localizedDescription\": \"<string,null>\",\n      \"localizedName\": \"<string,null>\",\n      \"applicationVisibility\": \"None\",\n      \"state\": \"InstallFailed\",\n      \"lastError\": {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"uniqueName\": \"<string>\",\n      \"version\": \"<string>\",\n      \"localizedDescription\": \"<string,null>\",\n      \"localizedName\": \"<string,null>\",\n      \"applicationVisibility\": \"All\",\n      \"state\": \"InstallFailed\",\n      \"lastError\": null\n    }\n  ],\n  \"@odata.nextLink\": \"<string,null-uri>\"\n}",
+                  "createdAt": "2026-07-28T02:40:06.000Z",
+                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                  "uid": "35240-b6318399-46f5-4eca-8c5c-e16b4674e46c"
+                },
+                {
+                  "id": "a8e4c88a-b75f-4d95-9efd-9b08ac371f91",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/appmanagement/applicationPackages?api-version=2022-03-01-preview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "appmanagement",
+                        "applicationPackages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for this request.",
+                          "key": "api-version",
+                          "value": "2022-03-01-preview"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:40:06.000Z",
+                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                  "uid": "35240-a8e4c88a-b75f-4d95-9efd-9b08ac371f91"
+                },
+                {
+                  "id": "e4ebb983-ca2e-4e73-bbae-da8aa59ff24e",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/appmanagement/applicationPackages?api-version=2022-03-01-preview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "appmanagement",
+                        "applicationPackages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for this request.",
+                          "key": "api-version",
+                          "value": "2022-03-01-preview"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:40:06.000Z",
+                  "updatedAt": "2026-07-28T02:40:06.000Z",
+                  "uid": "35240-e4ebb983-ca2e-4e73-bbae-da8aa59ff24e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:40:06.000Z",
+              "updatedAt": "2026-07-28T02:40:06.000Z",
+              "uid": "35240-c83f7295-dcfe-4cf5-a196-13bd07de29a0"
+            }
+          ],
+          "id": "4bd3d5af-802f-49b0-95c3-9ab1e7361451",
+          "createdAt": "2026-07-28T02:40:06.000Z",
+          "updatedAt": "2026-07-28T02:40:06.000Z",
+          "uid": "35240-4bd3d5af-802f-49b0-95c3-9ab1e7361451"
+        }
+      ],
+      "id": "adc2f1e5-65b1-4773-ac0b-18ce4c4fb4d4",
+      "createdAt": "2026-07-28T02:40:06.000Z",
+      "updatedAt": "2026-07-28T02:40:06.000Z",
+      "uid": "35240-adc2f1e5-65b1-4773-ac0b-18ce4c4fb4d4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://api.powerplatform.com/.default",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.powerplatform.com"
+    }
+  ]
+}

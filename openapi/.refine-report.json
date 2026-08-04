@@ -1,0 +1,20 @@
+{
+  "provider": "power-platform",
+  "sources": [
+    "power-platform-applications-api-openapi.yml",
+    "power-platform-environments-api-openapi.yml",
+    "power-platform-flow-runs-api-openapi.yml",
+    "power-platform-licensing-api-openapi.yml"
+  ],
+  "outputs": [
+    "power-platform-applications-api-openapi.yml",
+    "power-platform-environments-api-openapi.yml",
+    "power-platform-flow-runs-api-openapi.yml",
+    "power-platform-licensing-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
