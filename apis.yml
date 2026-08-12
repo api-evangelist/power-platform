@@ -365,6 +365,9 @@ apis:
   - type: SDKs
     url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/microsoft/PowerPlatformConnectors/blob/dev/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/microsoft-power-platform-apis/overview
   - type: AgenticAccess
