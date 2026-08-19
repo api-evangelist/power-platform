@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Power Platform REST Applications Environments API",
+    "version": "2022-03-01-preview"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments",
+            "params": [
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of related properties to expand. Supported values include properties.capacity and properties.addons."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all Power Platform environments for the tenant. The response includes environment properties such as display name, location, SKU type, provisioning state, capacity, linked Dataverse metadata, and runtime endpoints. Requires tenant admin or Power Platform admin permissions."
+        },
+        {
+          "info": {
+            "name": "Get Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the environment."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of related properties to expand."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific Power Platform environment by its identifier, including properties, capacity, linked Dataverse metadata, and runtime endpoints."
+        },
+        {
+          "info": {
+            "name": "Delete Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.powerplatform.com/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the environment to delete."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Deletes a Power Platform environment. This action is irreversible and removes all apps, flows, and data within the environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

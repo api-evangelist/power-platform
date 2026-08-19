@@ -1,0 +1,1487 @@
+{
+  "item": [
+    {
+      "id": "47b0af74-ca63-4de7-9e98-5b48dd96c056",
+      "name": "Licensing",
+      "description": {
+        "content": "Operations for managing billing policies and licensing across the Power Platform tenant.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ba7235d-1cc8-411d-a210-a0c469f84aa8",
+          "name": "List Billing Policies",
+          "request": {
+            "name": "List Billing Policies",
+            "description": {
+              "content": "Retrieves the list of billing policies configured for the tenant. Billing policies define the association between Azure subscriptions and Power Platform environments for pay-as-you-go billing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licensing",
+                "billingPolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2022-03-01-preview",
+                  "description": "(Required) The API version to use for this request."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "The maximum number of billing policies to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e72541ce-246f-46b2-ab4a-ca329b349938",
+              "name": "A list of billing policies for the tenant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.nextLink\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6dce9b9-c967-4eec-999a-ef23100ca9ab",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ab09daa-5278-4937-a248-56ae02c18537",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b33ba209-6265-469c-89d7-74aa8e3a6a68",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b858d7d-c5f3-4cf7-8194-4d11b848a5e4",
+          "name": "Create Billing Policy",
+          "request": {
+            "name": "Create Billing Policy",
+            "description": {
+              "content": "Creates a new billing policy that links a Power Platform environment to an Azure subscription for pay-as-you-go billing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licensing",
+                "billingPolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2022-03-01-preview",
+                  "description": "(Required) The API version to use for this request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"location\": \"<string>\",\n  \"billingInstrument\": {\n    \"id\": \"<string>\",\n    \"resourceGroup\": \"<string>\",\n    \"subscriptionId\": \"<uuid>\"\n  },\n  \"status\": \"Enabled\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c04f797-9db6-4bf5-9905-2d05a2ecf3e4",
+              "name": "The billing policy was created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"6afbd2e4-e40e-669f-c5f2-2a9d51b85939\"\n  },\n  \"status\": \"Enabled\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"b95f0266-b9fd-01c4-d80c-5f9e06a0f777\"\n  },\n  \"createdBy\": {\n    \"id\": \"18eb3407-1f58-ac81-c9ac-91269155f444\",\n    \"displayName\": \"example_value\",\n    \"type\": \"None\",\n    \"tenantId\": \"295793f2-882e-8cc0-bd14-6ea193ab7ee5\"\n  },\n  \"createdOn\": \"2026-01-15T10:30:00Z\",\n  \"lastModifiedBy\": {\n    \"id\": \"e5842ee8-2e46-0588-727d-7c9821358047\",\n    \"displayName\": \"example_value\",\n    \"type\": \"None\",\n    \"tenantId\": \"f9da7ba2-c83d-6c1b-d092-4f2435664627\"\n  },\n  \"lastModifiedOn\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a967b629-9ae9-4d3e-9c5b-f342cadcfe0b",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"6afbd2e4-e40e-669f-c5f2-2a9d51b85939\"\n  },\n  \"status\": \"Enabled\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52f6cfd8-8332-489c-b0d6-08a18d466b3a",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"6afbd2e4-e40e-669f-c5f2-2a9d51b85939\"\n  },\n  \"status\": \"Enabled\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e16337ff-7c00-4c5b-b0a9-2de8d6f57bbc",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"6afbd2e4-e40e-669f-c5f2-2a9d51b85939\"\n  },\n  \"status\": \"Enabled\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f593dba2-1b38-4355-a664-0478ace8b0be",
+          "name": "Get Billing Policy",
+          "request": {
+            "name": "Get Billing Policy",
+            "description": {
+              "content": "Retrieves details for a specific billing policy by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licensing",
+                "billingPolicies",
+                ":billingPolicyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2022-03-01-preview",
+                  "description": "(Required) The API version to use for this request."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "billingPolicyId",
+                  "description": "(Required) The unique identifier of the billing policy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "881ca700-f6f0-46fa-b893-791bc1753d72",
+              "name": "The billing policy resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"b95f0266-b9fd-01c4-d80c-5f9e06a0f777\"\n  },\n  \"createdBy\": {\n    \"id\": \"18eb3407-1f58-ac81-c9ac-91269155f444\",\n    \"displayName\": \"example_value\",\n    \"type\": \"None\",\n    \"tenantId\": \"295793f2-882e-8cc0-bd14-6ea193ab7ee5\"\n  },\n  \"createdOn\": \"2026-01-15T10:30:00Z\",\n  \"lastModifiedBy\": {\n    \"id\": \"e5842ee8-2e46-0588-727d-7c9821358047\",\n    \"displayName\": \"example_value\",\n    \"type\": \"None\",\n    \"tenantId\": \"f9da7ba2-c83d-6c1b-d092-4f2435664627\"\n  },\n  \"lastModifiedOn\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c2bf57c-6599-4ee8-a86a-6ed96199aac8",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1de1bbf7-d0cd-45f9-b6ad-7df96538acf0",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5072a6cc-f855-4024-bf33-001f1bc8ab2c",
+              "name": "Billing policy not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f04d655d-75fb-4982-8a87-7cee836f363a",
+          "name": "Update Billing Policy",
+          "request": {
+            "name": "Update Billing Policy",
+            "description": {
+              "content": "Updates an existing billing policy with new values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licensing",
+                "billingPolicies",
+                ":billingPolicyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2022-03-01-preview",
+                  "description": "(Required) The API version to use for this request."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "billingPolicyId",
+                  "description": "(Required) The unique identifier of the billing policy to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"billingInstrument\": {\n    \"id\": \"<string>\",\n    \"resourceGroup\": \"<string>\",\n    \"subscriptionId\": \"<uuid>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bef51341-33be-48e1-a41e-2599e162ea11",
+              "name": "The billing policy was updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"7cb57ed9-d273-b7fd-2338-225c9b9322de\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"location\": \"example_value\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"b95f0266-b9fd-01c4-d80c-5f9e06a0f777\"\n  },\n  \"createdBy\": {\n    \"id\": \"18eb3407-1f58-ac81-c9ac-91269155f444\",\n    \"displayName\": \"example_value\",\n    \"type\": \"None\",\n    \"tenantId\": \"295793f2-882e-8cc0-bd14-6ea193ab7ee5\"\n  },\n  \"createdOn\": \"2026-01-15T10:30:00Z\",\n  \"lastModifiedBy\": {\n    \"id\": \"e5842ee8-2e46-0588-727d-7c9821358047\",\n    \"displayName\": \"example_value\",\n    \"type\": \"None\",\n    \"tenantId\": \"f9da7ba2-c83d-6c1b-d092-4f2435664627\"\n  },\n  \"lastModifiedOn\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10061ef6-5311-4a51-9825-45eb56b3c17f",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"7cb57ed9-d273-b7fd-2338-225c9b9322de\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04bd3b00-2337-4efe-a196-81d633a64ab9",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"7cb57ed9-d273-b7fd-2338-225c9b9322de\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "356bb1f4-fcbb-4966-a1a3-e27e268458ae",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"7cb57ed9-d273-b7fd-2338-225c9b9322de\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3647e4f3-53b2-4be9-a50a-affb39213df0",
+              "name": "Billing policy not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"status\": \"Enabled\",\n  \"billingInstrument\": {\n    \"id\": \"abc123\",\n    \"resourceGroup\": \"example_value\",\n    \"subscriptionId\": \"7cb57ed9-d273-b7fd-2338-225c9b9322de\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2e15f85-0eb6-409d-adb8-c470241b677a",
+          "name": "Delete Billing Policy",
+          "request": {
+            "name": "Delete Billing Policy",
+            "description": {
+              "content": "Deletes a billing policy by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licensing",
+                "billingPolicies",
+                ":billingPolicyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2022-03-01-preview",
+                  "description": "(Required) The API version to use for this request."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "billingPolicyId",
+                  "description": "(Required) The unique identifier of the billing policy to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b5c0938-82d8-4218-81cf-22e19fbd5dfd",
+              "name": "The billing policy was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0952d35a-6041-4b43-9835-f49d917f6232",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa364a1a-32c2-4c69-8e4c-b75db13629e4",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2fad4d5-2945-42ba-afde-93253fbc57f7",
+              "name": "Billing policy not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licensing",
+                    "billingPolicies",
+                    ":billingPolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2022-03-01-preview"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "billingPolicyId",
+                      "description": "(Required) The unique identifier of the billing policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.powerplatform.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://api.powerplatform.com/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c65b78c5-8ebc-4a2c-99e4-bd8ca5716851",
+    "name": "Microsoft Power Platform REST Applications Licensing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.\n\nContact Support:\n Name: Microsoft Power Platform Support",
+      "type": "text/plain"
+    }
+  }
+}

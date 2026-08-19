@@ -1,0 +1,851 @@
+{
+  "item": [
+    {
+      "id": "9acb46de-f886-412c-b7ce-0d43eb12f62b",
+      "name": "Environments",
+      "description": {
+        "content": "Operations for listing, creating, and managing Power Platform environments. Environments are containers that store apps, flows, data, and other resources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99797b0c-c5fb-4f87-9bdc-1f3845e03943",
+          "name": "List Environments",
+          "request": {
+            "name": "List Environments",
+            "description": {
+              "content": "Retrieves a list of all Power Platform environments for the tenant. The response includes environment properties such as display name, location, SKU type, provisioning state, capacity, linked Dataverse metadata, and runtime endpoints. Requires tenant admin or Power Platform admin permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "providers",
+                "Microsoft.BusinessAppPlatform",
+                "scopes",
+                "admin",
+                "environments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2020-10-01",
+                  "description": "(Required) The API version to use for this request."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related properties to expand. Supported values include properties.capacity and properties.addons."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a57399e-40c5-4b3a-80f8-8cfd40c1b17e",
+              "name": "A list of environments for the tenant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "properties.capacity,properties.addons"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e77c0aa7-25ce-49fb-a91b-be4b1c763254",
+              "name": "Unauthorized. The request requires valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "properties.capacity,properties.addons"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0fe8a18-0c12-4b0b-9648-525103e6dc98",
+              "name": "Forbidden. The caller does not have sufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "properties.capacity,properties.addons"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bd5c3c0-105e-43a8-908f-2d8a3595ebe2",
+          "name": "Get Environment",
+          "request": {
+            "name": "Get Environment",
+            "description": {
+              "content": "Retrieves details for a specific Power Platform environment by its identifier, including properties, capacity, linked Dataverse metadata, and runtime endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "providers",
+                "Microsoft.BusinessAppPlatform",
+                "scopes",
+                "admin",
+                "environments",
+                ":environmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2020-10-01",
+                  "description": "(Required) The API version to use for this request."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related properties to expand."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "environmentId",
+                  "description": "(Required) The unique identifier of the environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6181391a-7152-4c48-a131-2d664a995fd3",
+              "name": "The environment resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee\",\n  \"type\": \"Microsoft.BusinessAppPlatform/scopes/environments\",\n  \"location\": \"unitedstates\",\n  \"name\": \"640fde64-ba7c-2349-1f72-cca6d49c7fdb\",\n  \"properties\": {\n    \"azureRegion\": \"westus\",\n    \"displayName\": \"My Power Platform Environment\",\n    \"description\": \"A sample description.\",\n    \"createdTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": {\n      \"id\": \"8374bc91-63dd-7e8b-dc21-1d1f7c31ecb8\",\n      \"displayName\": \"example_value\",\n      \"type\": \"None\",\n      \"tenantId\": \"9c92bfad-717e-e1f6-59b2-1f84cc8293c1\"\n    },\n    \"lastModifiedTime\": \"2026-01-15T10:30:00Z\",\n    \"provisioningState\": \"Succeeded\",\n    \"creationType\": \"User\",\n    \"environmentSku\": \"Production\",\n    \"isDefault\": true,\n    \"clientUris\": {\n      \"admin\": \"http://YKTc.cmhrmkHNEyxm4delzWTcLVe3z7dos,ewsn\",\n      \"maker\": \"https://RBRREnPpVpNEA.edkuQ70srQu0937AGRYSm+x\"\n    },\n    \"runtimeEndpoints\": {\n      \"microsoft.BusinessAppPlatform\": \"http://sagUFcAxUpMsWLXFsoJkKEfqzT.gtjFSkeT6LDiVJb8zyLRh+NSGRA-NJtDPAG\",\n      \"microsoft.CommonDataModel\": \"https://bHujOrVBBMQkwqBTEEwJNOh.walEUNfy0BPl2Zco8Z-G.rgyg4W0dQSTyh,kzfcV\",\n      \"microsoft.PowerApps\": \"http://sDNkWouoKgTRawZHempldHiQOwMmCFYYn.daoNfWBb2Y7Lcm8qRDncOAcR+lKUpLDvsbW66L7oYwceDY7vt3OaeTfDbyJ\",\n      \"microsoft.Flow\": \"https://RFGzBOmjx.mtF7BQ5XqOeKmmp8NERbe3PQcvXAOoXLa0FC-ImiwRRPmQI9W\",\n      \"microsoft.PowerAppsAdvisor\": \"http://ITl.evKWBPLk6TZ8Xok08\",\n      \"microsoft.ApiManagement\": \"https://NbUAsoAjXKhdpKoznNVyFkoj.loZe\"\n    },\n    \"databaseType\": \"CommonDataService\",\n    \"linkedEnvironmentMetadata\": {\n      \"resourceId\": \"0bd36880-74fa-3872-61a5-f7e38ec2aba4\",\n      \"friendlyName\": \"example_value\",\n      \"uniqueName\": \"example_value\",\n      \"domainName\": \"example_value\",\n      \"version\": \"9.2.21013.00152\",\n      \"instanceUrl\": \"https://www.example.com\",\n      \"instanceApiUrl\": \"https://www.example.com\",\n      \"baseLanguage\": 1033,\n      \"instanceState\": \"Ready\",\n      \"createdTime\": \"2026-01-15T10:30:00Z\",\n      \"backgroundOperationsState\": \"Enabled\",\n      \"scaleGroup\": \"example_value\",\n      \"platformSku\": \"Standard\"\n    },\n    \"retentionPeriod\": \"P7D\",\n    \"states\": {\n      \"management\": {\n        \"id\": \"Ready\"\n      },\n      \"runtime\": {\n        \"id\": \"Enabled\"\n      }\n    },\n    \"updateCadence\": {\n      \"id\": \"Frequent\"\n    },\n    \"protectionStatus\": {\n      \"keyManagedBy\": \"Customer\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fd3017e-d69a-425f-9cd7-67a19980ccb0",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b27cbb07-eb80-482f-9654-a2e569db6e2f",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7e9b969-8dbd-4296-aaa4-b10a00fd22dd",
+              "name": "Environment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a229cf5-3e52-4bb9-9221-4feb984b651b",
+          "name": "Delete Environment",
+          "request": {
+            "name": "Delete Environment",
+            "description": {
+              "content": "Deletes a Power Platform environment. This action is irreversible and removes all apps, flows, and data within the environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "providers",
+                "Microsoft.BusinessAppPlatform",
+                "scopes",
+                "admin",
+                "environments",
+                ":environmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2020-10-01",
+                  "description": "(Required) The API version to use for this request."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "environmentId",
+                  "description": "(Required) The unique identifier of the environment to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce43c737-ca98-4daf-9bd5-6a3cee26e86c",
+              "name": "Accepted. The environment deletion has been initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "522bd80e-80b4-4661-b2b2-d28093142734",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3420478-f0d3-4927-b23a-13fddd0570a8",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8ba8a0c-d0da-42b5-b845-5f7c746e10f9",
+              "name": "Environment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.BusinessAppPlatform",
+                    "scopes",
+                    "admin",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2020-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "environmentId",
+                      "description": "(Required) The unique identifier of the environment to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.powerplatform.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://api.powerplatform.com/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d779097f-f896-41b8-b236-8b38c470e402",
+    "name": "Microsoft Power Platform REST Applications Environments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.\n\nContact Support:\n Name: Microsoft Power Platform Support",
+      "type": "text/plain"
+    }
+  }
+}

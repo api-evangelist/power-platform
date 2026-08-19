@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Power Platform REST Applications Licensing API",
+    "version": "2022-03-01-preview"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Licensing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Billing Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/licensing/billingPolicies",
+            "params": [
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of billing policies to return."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of billing policies configured for the tenant. Billing policies define the association between Azure subscriptions and Power Platform environments for pay-as-you-go billing."
+        },
+        {
+          "info": {
+            "name": "Create Billing Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.powerplatform.com/licensing/billingPolicies",
+            "params": [
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new billing policy that links a Power Platform environment to an Azure subscription for pay-as-you-go billing."
+        },
+        {
+          "info": {
+            "name": "Get Billing Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/licensing/billingPolicies/:billingPolicyId",
+            "params": [
+              {
+                "name": "billingPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the billing policy."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific billing policy by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update Billing Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.powerplatform.com/licensing/billingPolicies/:billingPolicyId",
+            "params": [
+              {
+                "name": "billingPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the billing policy to update."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing billing policy with new values."
+        },
+        {
+          "info": {
+            "name": "Delete Billing Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.powerplatform.com/licensing/billingPolicies/:billingPolicyId",
+            "params": [
+              {
+                "name": "billingPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the billing policy to delete."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Deletes a billing policy by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

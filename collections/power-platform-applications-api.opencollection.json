@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Power Platform REST Applications API",
+    "version": "2022-03-01-preview"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Environment Application Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/appmanagement/environments/:environmentId/applicationPackages",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the target environment."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of application packages available for installation in a specific Power Platform environment. Returns packages with their current installation status, version information, and metadata."
+        },
+        {
+          "info": {
+            "name": "Install Application Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.powerplatform.com/appmanagement/environments/:environmentId/applicationPackages/:applicationPackageId/install",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the target environment."
+              },
+              {
+                "name": "applicationPackageId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the application package to install."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Initiates the installation of a specific application package in the target Power Platform environment. Returns an operation ID that can be used to poll for installation status."
+        },
+        {
+          "info": {
+            "name": "Get Application Package Install Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/appmanagement/environments/:environmentId/operations/:operationId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the target environment."
+              },
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the installation operation."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Retrieves the polling status for a previously triggered application package installation. Use this operation to check whether an install has completed, is still in progress, or has failed."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Application Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.powerplatform.com/appmanagement/applicationPackages",
+            "params": [
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this request."
+              }
+            ]
+          },
+          "docs": "Lists the installable application packages available for the tenant. Returns Microsoft-provided application packages that can be deployed to environments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
