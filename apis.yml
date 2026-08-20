@@ -147,6 +147,12 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview
   tags:
   - Dataverse
+  - Portal
+  - Power Pages
+  - Web API
+  - Websites
+  tags_raw:
+  - Dataverse
   - Portals
   - Power Pages
   - Web API
@@ -167,6 +173,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://api.powerapps.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
