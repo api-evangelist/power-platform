@@ -2,6 +2,20 @@ name: Microsoft Power Platform APIs
 description: >-
   Collection of APIs for Microsoft Power Platform services including Power Apps, Power Automate, Power BI, Copilot
   Studio, Power Pages, and Dataverse.
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -373,6 +387,12 @@ apis:
   - type: SDKs
     url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
 common:
+  - type: IssueTracker
+    url: https://github.com/microsoft/PowerPlatformConnectors/issues
+  - type: SecurityPolicy
+    url: https://github.com/microsoft/PowerPlatformConnectors/blob/dev/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/microsoft/.github/blob/main/CODE_OF_CONDUCT.md
   - type: License
     name: MIT
     url: https://github.com/microsoft/PowerPlatformConnectors/blob/dev/LICENSE
