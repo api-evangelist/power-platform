@@ -1,0 +1,170 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  Direct HTTPS probes of /.well-known/ paths on every host this record knows, run 2026-09-06
+  with a browser User-Agent and redirects followed.
+description: >-
+  Well-known discovery documents served by Microsoft Power Platform hosts. Only
+  www.microsoft.com / microsoft.com serve a real document (RFC 9116 security.txt, saved
+  verbatim). make.powerapps.com and powerapps.com answer HTTP 200 to every /.well-known/*
+  path with an HTML single-page-app shell - those 200s are NOT documents and are recorded as
+  misses. api.bap.microsoft.com requires a bearer token and answers 401 to everything.
+hosts:
+- host: www.microsoft.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: microsoft-power-platform-security.txt
+    content_type: text/plain
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: microsoft.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: microsoft-power-platform-security.txt
+    note: redirects to www.microsoft.com and serves the same document.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: learn.microsoft.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: api.powerplatform.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: api.bap.microsoft.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+    note: WWW-Authenticate Bearer on every path; the host admits no anonymous request.
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/ai-plugin.json
+    status: 401
+  - path: /.well-known/agent-card.json
+    status: 401
+  - path: /.well-known/agent.json
+    status: 401
+- host: powerplatform.microsoft.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: make.powerapps.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: >-
+      SPA catch-all - the body is the Power Apps maker portal HTML shell
+      (<!doctype html> ... <title>Power Apps</title>), not a document. Treated as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: SPA shell, not a document.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: SPA shell, not a document.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: SPA shell, not a document.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: SPA shell, not a document.
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: SPA shell, not a document. Rejected as an agent card.
+  - path: /.well-known/agent.json
+    status: 200
+    note: SPA shell, not a document. Rejected as an agent card.
+- host: powerapps.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: marketing-site catch-all returning HTML, not a document. Treated as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: HTML catch-all, not a document.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: HTML catch-all, not a document.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: HTML catch-all, not a document.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: HTML catch-all, not a document.
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: HTML catch-all, not a document. Rejected as an agent card.
+  - path: /.well-known/agent.json
+    status: 200
+    note: HTML catch-all, not a document. Rejected as an agent card.
+findings:
+  security_txt: served
+  api_catalog: absent
+  agent_card: absent
+  openid_configuration: >-
+    absent at the corporate root. Power Platform authenticates against Microsoft Entra ID, whose
+    OIDC discovery document lives on the identity host
+    (https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration), not on a
+    Power Platform host. See authentication/.

@@ -1,0 +1,69 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Microsoft Power Platform Records API
+  version: 1.0.0
+x-generated: '2026-09-06'
+x-method: generated
+x-source: >-
+  Derived from artifacts in this repository - conventions/, rate-limits/, errors/,
+  authentication/ and lifecycle/ - all of which were read from Microsoft's own published
+  documentation on 2026-09-06. This overlay does not modify the underlying document.
+x-extends: openapi/microsoft-power-platform-records-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      contact:
+        name: Microsoft Power Platform documentation
+        url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+      x-api-evangelist:
+        odata-version: '4.0'
+        metadata-document: '{org}.api.crm.dynamics.com/api/data/v9.2/$metadata'
+        error-format: odata-error
+        idempotency-coverage: partial
+        idempotency-mechanism: ETag conditional requests (If-Match / If-None-Match); no Idempotency-Key header
+  - target: $
+    update:
+      x-rate-limits:
+        status: 429
+        retry-header: Retry-After
+        service-protection:
+          requests: 6000 per 300s sliding window per user per web server
+          execution-time: 1200s per 300s sliding window
+          concurrency: 52 or higher
+        entitlement:
+          standard-paid-licence: 40000 per 24h
+          per-app-or-seeded-licence: 6000 per 24h
+        docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits
+      x-pagination:
+        style: server-driven
+        next-field: '@odata.nextLink'
+        count-field: '@odata.count'
+        page-size-header: 'Prefer: odata.maxpagesize'
+      x-reversibility:
+        record-level: none
+        environment-level: restore from backup within 7 days (28 days for production managed environments)
+        docs: https://learn.microsoft.com/en-us/power-platform/admin/backup-restore-environments
+  - target: $.paths['/{entitySetName}'].post
+    update:
+      x-agentic-access:
+        action-class: acting
+        consequence: write
+      x-idempotency:
+        safe-to-retry: false
+        reason: >-
+          A POST create carries no client-supplied idempotency key. A retry after an ambiguous
+          failure creates a second record. Generate the GUID client-side and PATCH-upsert instead.
+  - target: $.paths['/{entitySetName}({id})'].patch
+    update:
+      x-idempotency:
+        safe-to-retry: true
+        mechanism: 'If-Match: <etag> for optimistic concurrency; If-None-Match: * for insert-only upsert'
+        failure-status: 412
+  - target: $.paths['/{entitySetName}({id})'].delete
+    update:
+      x-agentic-access:
+        action-class: acting
+        consequence: destructive
+      x-reversibility:
+        reversal: none at the record level
+        note: Recovery requires restoring the whole environment from a backup inside the 7-day window.

@@ -1,0 +1,87 @@
+generated: '2026-09-06'
+method: searched
+source: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-webhooks (HTTP 200, fetched 2026-09-06)
+description: >-
+  Dataverse has a real, documented outbound event surface, but it is registration-driven rather
+  than catalog-driven: there is no fixed list of event types a consumer subscribes to. A
+  developer registers a step against any Dataverse message (Create, Update, Delete, Assign,
+  custom actions) on any table, at a chosen pipeline stage, and Dataverse POSTs the execution
+  context to the registered endpoint. No AsyncAPI document is published for this surface, and
+  none is authored here.
+asyncapi_published: false
+asyncapi_note: >-
+  No AsyncAPI 2.x/3.x document was found on any Microsoft host, in the microsoft GitHub org, or
+  at /asyncapi.yaml on the API hosts. The webhook surface is documented in prose plus the
+  RemoteExecutionContext .NET type; fabricating an AsyncAPI from that would be authoring a
+  contract Microsoft does not publish.
+webhooks:
+  registration:
+    mechanism: >-
+      Register a webhook service endpoint and an sdkmessageprocessingstep, via the Plugin
+      Registration Tool or the serviceendpoint table.
+    docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/register-web-hook
+    scope: per-environment; there is no tenant-wide subscription API
+  transport: HTTP POST
+  content_type: application/json
+  payload:
+    schema: RemoteExecutionContext (serialized)
+    reference: https://learn.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.remoteexecutioncontext
+    key_fields:
+    - MessageName
+    - PrimaryEntityName
+    - PrimaryEntityId
+    - InputParameters
+    - PreEntityImages
+    - PostEntityImages
+    - Stage
+    - Mode
+    - CorrelationId
+    - OrganizationId
+    - InitiatingUserId
+    size_limit: 256 KB
+    truncation: >-
+      Above 256 KB the x-ms-dynamics-msg-size-exceeded header is sent and ParentContext,
+      InputParameters, PreEntityImages and PostEntityImages are stripped from the body.
+  headers_sent:
+  - name: x-ms-dynamics-organization
+    description: Domain name of the environment sending the request.
+  - name: x-ms-dynamics-entity-name
+    description: Logical name of the table in the execution context.
+  - name: x-ms-dynamics-request-name
+    description: Name of the event the step was registered for.
+  - name: x-ms-correlation-request-id
+    description: Correlation id used by the platform for infinite-loop prevention and support telemetry.
+  - name: x-ms-dynamics-msg-size-exceeded
+    description: Present only when the payload exceeds 256 KB.
+  authentication:
+    options:
+    - HttpHeader - caller-defined key/value pairs sent as request headers
+    - WebhookKey - shared key sent on the query string
+    - HttpQueryString - caller-defined query string parameters
+    note: >-
+      Microsoft frames this as deliberately simpler than the SAS model used for Azure Service Bus
+      integration. There is no HMAC request signature and no replay nonce.
+  delivery:
+    modes: [synchronous, asynchronous]
+    timeout: 60 seconds
+    success_criteria: response StatusCode in the 2xx range; the response body is never parsed
+    retry: >-
+      Exactly one additional attempt, and only for 502 Bad Gateway, 503 Service Unavailable or
+      504 Gateway Timeout. Every other failure - including a timeout - is terminal.
+    ordering: not guaranteed
+    caveat: >-
+      For a synchronous step the request is sent before the transaction commits; if the operation
+      later rolls back, the request already delivered cannot be recalled. This is an at-least-once
+      surface with a documented phantom-event case.
+  observability:
+    async_failures: System Jobs record the error for asynchronous steps.
+    sync_failures: The end user sees an "Endpoint unavailable" dialog with a downloadable log.
+alternatives:
+- name: Azure Service Bus integration
+  when: high-scale event volumes needing a real queue
+  limits: asynchronous only
+- name: Azure Synapse Link / Fabric link for Dataverse
+  when: continuous data replication rather than per-event handling
+  note: Low-latency Dataverse-to-Fabric sync reached GA in June 2026 per the Power Platform blog.
+- name: Power Automate triggers
+  when: no-code reaction to Dataverse and connector events

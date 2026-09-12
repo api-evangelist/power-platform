@@ -1,0 +1,86 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits and
+  https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/compose-http-requests-handle-errors
+  (fetched 2026-09-06), plus the 4xx/5xx responses declared in openapi/*.yml
+format: odata-error
+rfc9457: false
+description: >-
+  Error semantics for the Dataverse Web API and the Power Platform API. Dataverse does not use
+  application/problem+json; it returns the OData v4 error object. Error identity is carried by a
+  hexadecimal code, and the same condition surfaces as a signed decimal code through the SDK for
+  .NET.
+envelope:
+  media_type: application/json
+  shape: |
+    {
+      "error": {
+        "code": "0x80072322",
+        "message": "Number of requests exceeded the limit of 6000 over time window of 300 seconds."
+      }
+    }
+  fields:
+    code: hexadecimal error code as a string
+    message: human-readable message, explicitly documented as NOT intended for display to end users
+  sdk_equivalent: >-
+    OrganizationServiceFault with a signed decimal ErrorCode and an ErrorDetails dictionary that
+    carries Retry-After for throttling faults.
+statuses:
+- status: 400
+  meaning: Bad request - malformed OData query, invalid payload or unknown property.
+  source: openapi/microsoft-power-platform-records-api-openapi.yml
+- status: 401
+  meaning: Missing or invalid Microsoft Entra ID bearer token.
+  observed: >-
+    api.powerplatform.com returned 401 with WWW-Authenticate Bearer error="invalid_token" on an
+    anonymous probe 2026-09-06.
+- status: 403
+  meaning: Authenticated but the principal lacks the Dataverse security role or Power Platform permission.
+  remediation: https://learn.microsoft.com/en-us/power-platform/admin/programmability-permission-reference
+- status: 404
+  meaning: Entity set, record or metadata item does not exist.
+  source: openapi/microsoft-power-platform-metadata-api-openapi.yml
+- status: 412
+  meaning: Precondition failed - the If-Match ETag did not match, or If-None-Match `*` found an existing record.
+  see_also: conventions/microsoft-power-platform-conventions.yml
+- status: 429
+  meaning: Service protection limit exceeded. Carries Retry-After in seconds.
+- status: 503
+  meaning: Service unavailable / transient platform fault; retry with backoff.
+problem_types:
+- code: '0x80072322'
+  sdk_code: '-2147015902'
+  status: 429
+  title: Number of requests exceeded
+  detail: Number of requests exceeded the limit of 6000 over time window of 300 seconds.
+  remediation: >-
+    Honor Retry-After. Reduce the number of records a bulk action can select, or combine
+    operations into a $batch of up to 1,000 - accepting that batching shifts load onto the
+    execution-time limit.
+- code: '0x80072321'
+  sdk_code: '-2147015903'
+  status: 429
+  title: Combined execution time exceeded
+  detail: >-
+    Combined execution time of incoming requests exceeded limit of 1,200,000 milliseconds over
+    time window of 300 seconds.
+  remediation: >-
+    Reduce request duration or concurrency. Large $batch payloads and complex queries are the
+    usual cause.
+- code: '0x80072326'
+  sdk_code: '-2147015898'
+  status: 429
+  title: Concurrent requests exceeded
+  detail: Number of concurrent requests exceeded the limit of 52.
+  remediation: >-
+    Cap parallelism explicitly (for example ParallelOptions.MaxDegreeOfParallelism). This error
+    is returned immediately rather than after the sliding window.
+notes:
+- >-
+  Microsoft is explicit that these messages are not end-user copy: "Client application developers
+  shouldn't just throw the error to display the message to the user."
+- >-
+  The full Dataverse web service error-code registry is large and published per code under the
+  Dataverse developer documentation; only the service protection family is enumerated here
+  because those are the codes an unattended API client will actually hit.

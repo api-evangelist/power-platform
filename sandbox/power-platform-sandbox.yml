@@ -1,0 +1,57 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.microsoft.com/en-us/power-platform/products/power-apps/free (HTTP 200),
+  https://learn.microsoft.com/en-us/power-platform/admin/trial-environments (HTTP 200),
+  https://learn.microsoft.com/en-us/power-platform/admin/backup-restore-environments (HTTP 200)
+description: >-
+  Power Platform's non-production surface is environment-shaped rather than key-shaped. There is
+  no test-mode API key and no test/live key prefix; you get an isolated tenant environment whose
+  API surface is byte-identical to production, and you point the same OAuth-authenticated client
+  at a different org host.
+model: isolated-environment
+key_prefixes: none
+key_prefix_note: >-
+  Dataverse and the Power Platform API authenticate with Microsoft Entra ID bearer tokens. There
+  is no publishable/secret or test/live key pair to distinguish, so the usual test-key signal
+  does not exist here - environment identity does the same job.
+offerings:
+- name: Power Apps Developer Plan
+  price: free
+  signup: https://www.microsoft.com/en-us/power-platform/products/power-apps/free
+  environments: 3 developer environments
+  capacity: 2 GB Dataverse database
+  automation: 750 flows per month
+  restrictions:
+  - Development and evaluation only; not licensed for production use.
+  - Full API surface, including the Dataverse Web API and the Dataverse MCP server (which must be enabled per environment).
+- name: Developer environment type
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/create-environment
+  backed_up: true
+  retention: 7 days
+- name: Sandbox environment type
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/backup-restore-environments
+  backed_up: true
+  retention: 7 days system and manual backups
+  note: >-
+    The only environment type you can restore a production backup INTO. A production environment
+    must be switched to sandbox type before it can be restored over.
+- name: Trial environment
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/trial-environments
+  backed_up: false
+  warning: >-
+    Trial-type environments (standard and subscription-based) are NOT backed up and support no
+    restore. Trial environments are also allocated only a single web server, which means the
+    Dataverse service-protection limits bite far sooner than in a multi-server environment.
+sample_data:
+  available: true
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/add-remove-sample-data
+  note: >-
+    Dataverse ships an add/remove sample data feature; Microsoft's own MCP walkthrough uses it as
+    the fixture set ("show me the tables in Dataverse", "how many accounts do I have").
+test_values:
+  published: false
+  note: >-
+    No published magic test identifiers, test cards or simulator values. Nothing is invented here.
+time_simulation:
+  available: false

@@ -1,0 +1,85 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support,
+  https://learn.microsoft.com/en-us/power-platform/important-changes-coming,
+  https://learn.microsoft.com/en-us/power-platform/release-plan/,
+  https://learn.microsoft.com/en-us/power-platform/admin/programmability-whats-new-changed
+  (all fetched 2026-09-06, HTTP 200)
+description: >-
+  Versioning, deprecation, release-planning and service-health posture for the Power Platform
+  API surface.
+versioning:
+  dataverse:
+    scheme: path segment
+    current: v9.2
+    docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  power_platform_api:
+    scheme: api-version query parameter
+    example: '2022-03-01-preview'
+    docs: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
+  cadence: >-
+    Monthly. Microsoft ships new Power Platform API endpoints and matching C#/Python SDK releases
+    on a monthly rhythm and publishes the diff (see changelog/).
+deprecation_policy:
+  published: true
+  url: https://learn.microsoft.com/en-us/power-platform/important-changes-coming
+  title: Important changes (deprecations) coming in Power Platform
+  mechanism: >-
+    Deprecations are announced ahead of removal on a single running "Important changes coming"
+    page, and reinforced through the semi-annual release plans. Preview API surfaces carry an
+    explicit no-production-use notice and Microsoft reserves the right to change preview tool
+    names and parameters without notice.
+  sunset_headers: false
+  sunset_header_note: >-
+    No RFC 8594 Sunset or Deprecation response headers were found documented for either API
+    family; deprecation is communicated in documentation and release plans, not in the response.
+  examples:
+  - item: OrganizationServiceProxy class and Office365 authentication type
+    status: deprecated
+    replacement: ServiceClient (Microsoft.PowerPlatform.Dataverse.Client)
+  - item: pac test command group
+    status: deprecated
+    source: https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/
+roadmap:
+  published: true
+  url: https://learn.microsoft.com/en-us/power-platform/release-plan/
+  title: Power Platform release plans
+  cadence: semi-annual waves (for example 2026 release wave 1), with dated feature availability per feature
+  note: >-
+    Microsoft also publishes a combined always-on roadmap covering Dynamics 365, Power Platform
+    and Microsoft 365 Copilot (announced on the Power Platform blog, 2026-08-25).
+status_page:
+  public_url: null
+  admin_url: https://admin.powerplatform.microsoft.com/
+  detail: >-
+    No public Power Platform status page was found. The pointer this record previously carried,
+    https://status.powerplatform.microsoft.com/, does NOT RESOLVE (DNS failure, probed
+    2026-09-06) and has been removed. Service health for Power Platform is published inside the
+    Power Platform admin center and the Microsoft 365 Service health dashboard, both of which
+    require tenant sign-in. Microsoft's general public health page,
+    https://status.cloud.microsoft/ (HTTP 200), renders its service list client-side and could
+    not be confirmed to cover Power Platform, so no StatusPage pointer is asserted.
+  probed:
+  - url: https://status.powerplatform.microsoft.com/
+    status: 000
+    result: DNS does not resolve
+  - url: https://status.cloud.microsoft/
+    status: 200
+    result: reachable, service coverage not confirmable without executing the page
+  - url: https://admin.powerplatform.microsoft.com/
+    status: 200
+    result: sign-in required
+sla:
+  published: true
+  note: >-
+    Availability commitments are carried in the Microsoft Online Services SLA and the Product
+    Terms rather than on a per-API page.
+  url: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+support_lifecycle:
+  preview_surfaces:
+  - Dataverse MCP server (preview; tool names and parameters may change)
+  - Several Power Platform API namespaces ship endpoints marked (Preview) in the changelog
+  ga_surfaces:
+  - Dataverse Web API v9.2
+  - Power Platform API licensing / environmentmanagement / governance namespaces

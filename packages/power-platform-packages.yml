@@ -1,0 +1,95 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  registry.npmjs.org, api.nuget.org, pypi.org queried directly 2026-09-06, plus the
+  Microsoft Learn SDK links on
+  https://learn.microsoft.com/en-us/power-platform/admin/programmability-whats-new-changed
+description: >-
+  First-party Microsoft client libraries, CLIs and MCP proxies for the Power Platform and
+  Dataverse API surface. Versions and publish dates were read from each registry's own
+  metadata endpoint on 2026-09-06.
+summary:
+  total: 7
+  official: 7
+  registries:
+  - npm
+  - nuget
+  - pypi
+packages:
+- name: '@microsoft/dataverse'
+  registry: npm
+  url: https://www.npmjs.com/package/@microsoft/dataverse
+  language: javascript
+  official: true
+  version: 1.0.77
+  published: '2026-09-03'
+  description: >-
+    CLI tool for Dataverse, including the stdio MCP server proxy. Preview. This is the package
+    Microsoft documents for connecting non-Microsoft MCP clients to Dataverse
+    (npx -y @microsoft/dataverse mcp https://yourorg.crm.dynamics.com).
+  source_repository: https://dev.azure.com/dynamicscrm/OneCRM/_git/DataverseCLI
+- name: Microsoft.PowerPlatform.Dataverse.Client
+  registry: nuget
+  url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Dataverse.Client
+  language: dotnet
+  official: true
+  version: 1.2.27
+  published: '2026-09-04'
+  description: >-
+    The Dataverse SDK for .NET. ServiceClient implements IOrganizationService and handles
+    service protection 429 / Retry-After behavior automatically.
+  source_repository: https://github.com/microsoft/PowerPlatform-DataverseServiceClient
+- name: Microsoft.PowerPlatform.Management
+  registry: nuget
+  url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
+  language: dotnet
+  official: true
+  version: 2.0.3503.299
+  published: '2026-08-05'
+  description: >-
+    .NET implementation of the Power Platform API (api.powerplatform.com). Ships on the same
+    monthly cadence as the REST surface; each release is listed in the programmability changelog.
+- name: powerplatform-management
+  registry: pypi
+  url: https://pypi.org/project/powerplatform-management/
+  language: python
+  official: true
+  version: 2.0.3503.299
+  published: '2026-08-05'
+  description: >-
+    Microsoft Power Platform Management SDK for Python, released monthly alongside the C#
+    package (initial release September 2025, 2.0.3203.1269). PyPI metadata names the author
+    as Microsoft Corporation.
+- name: powerplatform-dataverse-client
+  registry: pypi
+  url: https://pypi.org/project/powerplatform-dataverse-client/
+  language: python
+  official: true
+  version: 1.0.0
+  published: '2026-05-29'
+  description: >-
+    Dataverse client for Python. PyPI metadata names the author as Microsoft Corporation; the
+    source lives at github.com/microsoft/PowerPlatform-DataverseClient-Python.
+  source_repository: https://github.com/microsoft/PowerPlatform-DataverseClient-Python
+- name: Microsoft.PowerApps.CLI
+  registry: nuget
+  url: https://www.nuget.org/packages/Microsoft.PowerApps.CLI
+  language: dotnet
+  official: true
+  version: 2.11.2
+  published: '2026-08-13'
+  description: The Power Platform CLI (pac) distributed as a NuGet package. See cli/ for the command surface.
+- name: Microsoft.PowerApps.CLI.Tool
+  registry: nuget
+  url: https://www.nuget.org/packages/Microsoft.PowerApps.CLI.Tool
+  language: dotnet
+  official: true
+  version: 2.11.2
+  published: '2026-08-13'
+  description: >-
+    The Power Platform CLI packaged as a .NET global tool
+    (dotnet tool install --global Microsoft.PowerApps.CLI.Tool).
+absent:
+- name: '@microsoft/powerplatform-cli'
+  registry: npm
+  note: probed 2026-09-06, npm returns "Not found" - the CLI is distributed via NuGet, MSI and the VS Code extension, not npm.

@@ -1,0 +1,41 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://learn.microsoft.com/en-us/power-apps/developer/component-framework/overview (HTTP 200),
+  https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/ (HTTP 200)
+description: >-
+  Power Platform's client-side component story is Power Apps component framework (PCF) - a
+  first-party framework for authoring reusable TypeScript/React components that render inside
+  model-driven apps, canvas apps and Power Pages. It is a component AUTHORING framework rather
+  than a hosted embeddable widget library, which is the usual shape in this artifact.
+families:
+- name: Power Apps component framework (PCF)
+  kind: component-authoring-framework
+  docs: https://learn.microsoft.com/en-us/power-apps/developer/component-framework/overview
+  languages: [typescript, javascript]
+  surfaces:
+  - model-driven apps
+  - canvas apps
+  - Power Pages
+  tooling:
+    scaffold: pac pcf init
+    build: pac pcf push
+    cli_group: pac pcf
+  note: >-
+    Components are packaged into a Dataverse solution and deployed to an environment; they are
+    not delivered from a public CDN, so there is no loader script or pinned CDN URL to record.
+- name: Power Pages web templates and Liquid
+  kind: server-rendered templating
+  docs: https://learn.microsoft.com/en-us/power-pages/
+  note: >-
+    Power Pages extends Liquid with server-side logic (announced on the Power Platform blog
+    2026-08-11) and ships a Bootstrap 5 enhanced data model.
+- name: Code apps
+  kind: preview
+  cli_group: pac code
+  note: (Preview) command group for managing Code apps; documented only as a CLI surface at time of writing.
+loader_libraries: []
+cdn_distribution: false
+cdn_note: >-
+  No CDN-hosted embed bundle was found. Components ship inside solutions, so the version a
+  consumer runs is the solution version deployed to their environment, not a pinned script URL.

@@ -1,0 +1,31 @@
+generated: '2026-09-06'
+method: generated
+source: >-
+  Authored from this repository's OpenAPI documents and derived artifacts. Every operationId
+  referenced in a skill was verified against the spec it names; nothing was invented.
+description: >-
+  Packaged Agent Skills for the Microsoft Power Platform API surface. Microsoft publishes no
+  AGENTS.md or skills directory of its own (searched 2026-09-06), so these are generated, not
+  harvested.
+skills:
+- name: dataverse-record-operations
+  file: microsoft-power-platform-dataverse-record-operations.md
+  api: microsoft-power-platform:microsoft-power-platform-records-api
+  operations: [listRecords, getRecord, createRecord, updateRecord, deleteRecord]
+  summary: >-
+    Safe CRUD against Dataverse - ETag conditional writes instead of a non-existent
+    Idempotency-Key, Retry-After discipline, and the fact that a record delete has no undo.
+- name: dataverse-schema-discovery
+  file: microsoft-power-platform-dataverse-schema-discovery.md
+  api: microsoft-power-platform:microsoft-power-platform-metadata-api
+  operations: [whoAmI, listEntityDefinitions, getEntityDefinition]
+  summary: >-
+    Resolve the environment's actual table and column set before querying, because Dataverse
+    schema is per-environment and EntitySetName is not LogicalName.
+- name: power-platform-enterprise-policy-governance
+  file: microsoft-power-platform-enterprise-policy-governance.md
+  api: microsoft-power-platform:microsoft-power-platform-enterprise-policies
+  operations: [Operations_List, EnterprisePolicies_ListBySubscription, EnterprisePolicies_ListByResourceGroup, EnterprisePolicies_Get, EnterprisePolicies_CreateOrUpdate, EnterprisePolicies_Update, EnterprisePolicies_Delete, PrivateEndpointConnections_ListByEnterprisePolicy, PrivateLinkResources_ListByEnterprisePolicy, Accounts_CreateOrUpdate]
+  summary: >-
+    Customer-managed keys, customer lockbox and VNet injection through the Microsoft.PowerPlatform
+    ARM provider - grounded in Microsoft's own harvested Swagger.

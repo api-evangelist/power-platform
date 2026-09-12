@@ -1,0 +1,51 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.microsoft.com/en-us/trust-center (HTTP 200),
+  https://www.microsoft.com/en-us/trust-center/product-overview (HTTP 200),
+  https://servicetrust.microsoft.com/ (HTTP 200),
+  https://learn.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy (HTTP 200)
+description: >-
+  Microsoft operates a public Trust Center and a Service Trust Portal, and the Power Platform
+  compliance documentation names both as the authoritative source for Power Apps, Power Automate
+  and Power BI trust information.
+trust_center:
+  url: https://www.microsoft.com/en-us/trust-center
+  product_overview: https://www.microsoft.com/en-us/trust-center/product-overview
+  status: 200
+service_trust_portal:
+  url: https://servicetrust.microsoft.com/
+  status: 200
+  gated: true
+  note: >-
+    Audit reports, certificates and attestation documents are downloadable from the Service
+    Trust Portal behind sign-in. Because the documents themselves were not retrieved, no
+    individual certification name is asserted in this artifact.
+published_controls:
+- name: Encryption at rest
+  detail: SQL Server Transparent Data Encryption on every Dataverse database environment.
+- name: Customer-managed encryption keys
+  detail: Self-managed database encryption keys via the Power Platform admin center manage-keys feature.
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/customer-managed-key
+- name: TLS 1.2 or higher
+  detail: Required for all server endpoints; TLSv1.3 observed on probe 2026-09-06.
+- name: Geo-scoped data residency
+  detail: Data stays within the environment's geo except for documented legal and support cases.
+- name: Customer Lockbox
+  detail: >-
+    Exposed as a property (PropertiesLockbox) on the Microsoft.PowerPlatform enterprise policy
+    resource in the ARM contract saved to openapi/_original/.
+- name: Virtual Network injection and Private Link
+  detail: >-
+    Enterprise policies of kind NetworkInjection plus privateEndpointConnections /
+    privateLinkResources operations in the ARM contract.
+- name: GDPR data subject rights procedures
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy
+- name: US Government cloud (GCC / GCC High)
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/powerapps-us-government
+certifications_named: []
+certifications_note: >-
+  Left deliberately empty. The Power Platform compliance page routes to the Trust Center and
+  Service Trust Portal rather than listing certificates, and the Service Trust Portal requires
+  sign-in. Naming ISO/SOC/FedRAMP numbers here without having read the attestation would be a
+  claim this pass did not verify.

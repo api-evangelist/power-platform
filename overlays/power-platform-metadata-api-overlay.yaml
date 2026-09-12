@@ -1,0 +1,47 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Microsoft Power Platform Metadata API
+  version: 1.0.0
+x-generated: '2026-09-06'
+x-method: generated
+x-source: >-
+  Derived from artifacts in this repository - conventions/, rate-limits/ and conformance/ - read
+  from Microsoft's published documentation on 2026-09-06. Does not modify the underlying document.
+x-extends: openapi/microsoft-power-platform-metadata-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      contact:
+        name: Microsoft Power Platform documentation
+        url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+      x-api-evangelist:
+        odata-version: '4.0'
+        authoritative-schema: >-
+          The OData CSDL document at {org}.api.crm.dynamics.com/api/data/v9.2/$metadata is the
+          authoritative machine-readable schema for a Dataverse environment. It is per-tenant and
+          requires a bearer token, so it cannot be harvested into this repository.
+  - target: $
+    update:
+      x-rate-limits:
+        status: 429
+        retry-header: Retry-After
+        docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits
+        note: >-
+          Microsoft documents that a small set of internal system metadata operations is excluded
+          from licence entitlement counting; service protection limits still apply.
+  - target: $.paths['/EntityDefinitions'].get
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+      x-discovery: >-
+        This is the runtime table catalogue. An agent should call it before attempting any typed
+        read or write, because the Dataverse entity set is defined per environment.
+  - target: $.paths['/WhoAmI'].get
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+      x-purpose: >-
+        Resolves the calling principal (UserId, BusinessUnitId, OrganizationId). Use it as the
+        connection smoke test before any write, and to attribute audit trails.

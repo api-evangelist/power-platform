@@ -1,0 +1,87 @@
+openapi: 3.2.0
+info:
+  title: Microsoft Dataverse Web Metadata API
+  description: The Microsoft Dataverse Web API implements OData v4 over the Dataverse data platform that powers Microsoft Power Platform (Power Apps, Power Automate, Dynamics 365). It supports CRUD operations on tables, execution of actions and functions, and metadata queries. Authentication is via Microsoft Entra ID OAuth 2.0 against the org URL.
+  version: '9.2'
+servers:
+- url: https://{org}.api.crm.dynamics.com/api/data/v9.2
+  description: Dataverse Web API for a specific environment
+  variables:
+    org:
+      default: contoso
+      description: The Dataverse organization name (subdomain).
+security:
+- oauth2: []
+tags:
+- name: Metadata
+paths:
+  /EntityDefinitions:
+    get:
+      tags:
+      - Metadata
+      summary: List all table (entity) definitions
+      operationId: listEntityDefinitions
+      responses:
+        '200':
+          description: Collection of EntityMetadata
+          content:
+            application/json:
+              schema:
+                type: object
+  /EntityDefinitions(LogicalName='{logicalName}'):
+    get:
+      tags:
+      - Metadata
+      summary: Get metadata for a specific table by logical name
+      operationId: getEntityDefinition
+      parameters:
+      - name: logicalName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: EntityMetadata
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not found
+  /WhoAmI:
+    get:
+      tags:
+      - Metadata
+      summary: Identifies the currently authenticated user
+      operationId: whoAmI
+      responses:
+        '200':
+          description: WhoAmIResponse
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  UserId:
+                    type: string
+                    format: uuid
+                  BusinessUnitId:
+                    type: string
+                    format: uuid
+                  OrganizationId:
+                    type: string
+                    format: uuid
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0. Use the resource/scope corresponding to the Dataverse environment, e.g. https://{org}.api.crm.dynamics.com/.default for client credentials.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://{org}.api.crm.dynamics.com/.default: Full Dataverse access scoped to the environment
+x-generated-from: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+x-generated-by: claude-genwave10-08-2026-05-23

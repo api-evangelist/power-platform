@@ -1,0 +1,159 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/perform-conditional-operations-using-web-api,
+  https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/query/page-results,
+  https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits,
+  https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support,
+  https://learn.microsoft.com/en-us/power-platform/admin/backup-restore-environments
+  (all fetched 2026-09-06, HTTP 200)
+description: >-
+  Cross-cutting runtime semantics for the two Power Platform API families - the Dataverse Web
+  API (OData v4, per-environment host) and the Power Platform API (api.powerplatform.com,
+  tenant-scoped admin surface).
+auth:
+  style: oauth2
+  provider: Microsoft Entra ID
+  header: 'Authorization: Bearer <token>'
+  detail: >-
+    Dataverse tokens are scoped to the environment resource ({org}.api.crm.dynamics.com/.default).
+    Power Platform API tokens are scoped to the api.powerplatform.com audience and the tenant is
+    inferred from the token rather than passed in the path.
+  docs: https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2
+versioning:
+  dataverse:
+    style: path
+    current: v9.2
+    form: /api/data/v9.2/
+  power_platform_api:
+    style: query-parameter
+    parameter: api-version
+    example: '2022-03-01-preview'
+    docs: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
+pagination:
+  style: server-driven continuation token
+  request:
+    parameter: $top
+    header: 'Prefer: odata.maxpagesize=<n>'
+  response:
+    next_field: '@odata.nextLink'
+    count_field: '@odata.count'
+  detail: >-
+    Dataverse returns a fully-formed @odata.nextLink URL containing an opaque paging cookie.
+    Clients follow the link; they do not construct offsets. $skip is not supported for paging
+    on most collections.
+  docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/query/page-results
+field_selection:
+  select: $select
+  expand: $expand
+  filter: $filter
+  order: $orderby
+  count: $count
+  detail: Standard OData v4 system query options; there is no bespoke sparse-fieldset syntax.
+idempotency:
+  mechanism: >-
+    ETag-based conditional requests (RFC 7232 If-Match / If-None-Match), not an Idempotency-Key
+    header. Dataverse returns an @odata.etag on every retrieved record; a client replays a write
+    safely by asserting the version it expects.
+  header: If-Match / If-None-Match
+  coverage: partial
+  scope:
+  - 'PATCH <entity>(<id>) with If-Match: <etag> - optimistic concurrency on update; a stale etag returns 412 Precondition Failed instead of overwriting.'
+  - 'PATCH <entity>(<id>) with If-None-Match: * - insert-only upsert; returns 412 if the record already exists.'
+  - 'PATCH <entity>(<id>) with If-Match: * - update-only upsert; returns 404 if the record does not exist.'
+  - 'DELETE <entity>(<id>) with If-Match: <etag> - conditional delete.'
+  - 'GET <entity>(<id>) with If-None-Match: <etag> - conditional read, returns 304.'
+  not_covered:
+  - >-
+    POST creates. There is no client-supplied idempotency key for a create, so a retried POST
+    after an ambiguous failure creates a second row. The documented workaround is to generate the
+    GUID client-side and use an upsert (PATCH with the chosen id) instead of POST.
+  - >-
+    Actions and functions invoked through /api/data (bound and unbound), which carry no
+    conditional-request semantics.
+  - >-
+    The Power Platform API (api.powerplatform.com) publishes no idempotency mechanism at all;
+    long-running admin operations return an operation id to poll instead.
+  retention: n/a - ETags are record version tokens, not stored request keys, so there is no replay window.
+  docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/perform-conditional-operations-using-web-api
+reversibility:
+  grade: verified
+  summary: >-
+    Power Platform has no per-request undo, but it publishes stated windows at the environment
+    level, and those windows are exposed as first-class API operations in the Power Platform API.
+  surfaces:
+  - write_surface: environment deletion
+    reversal: Recover Environment
+    operationId: Recover Environment (power-platform/environmentmanagement/environment-recover)
+    window: >-
+      within 7 days of deletion; production environments that have Dynamics 365 applications are
+      recoverable for up to 28 days
+    docs: https://learn.microsoft.com/en-us/power-platform/admin/backup-restore-environments
+  - write_surface: any data change inside an environment
+    reversal: Restore Environment from a system or manual backup
+    operationId: Restore Environment (power-platform/environmentmanagement/environment-restore)
+    window: >-
+      7 days by default for system and manual backups across production, sandbox, developer,
+      Teams and default environments; extendable to 14, 21 or 28 days for production managed
+      environments only. Trial environments are not backed up at all.
+    constraints:
+    - You cannot restore directly onto a production environment - it must first be switched to sandbox type.
+    - Restore must target the same region as the backup.
+    - Restoring requires 1 GB of free capacity.
+    docs: https://learn.microsoft.com/en-us/power-platform/admin/backup-restore-environments
+  - write_surface: record delete via the Web API or the MCP delete_record tool
+    reversal: none at the record level
+    window: null
+    note: >-
+      A DELETE on a Dataverse row has no published per-record undo window. The only documented
+      recovery is restoring the whole environment from a backup inside the 7-day window above,
+      which Microsoft explicitly documents as "restore the backup to a NEW organization" when you
+      want the deleted rows back without losing subsequent writes.
+  - write_surface: environment backup (manual)
+    reversal: none
+    window: null
+    note: System backups cannot be deleted; manual backups can, and that deletion is final.
+dry_run_mode:
+  available: false
+  note: >-
+    No documented dry-run/preview parameter on either API family. The nearest equivalent is a
+    developer environment from the free Power Apps Developer Plan - see sandbox/.
+request_tracing:
+  headers:
+  - x-ms-service-request-id
+  - x-ms-correlation-id
+  - x-ms-activity-vector
+  observed: >-
+    Returned on live 401 responses from api.powerplatform.com probed 2026-09-06; treat as the
+    identifiers to quote in a support ticket.
+error_envelope:
+  format: odata-error
+  shape: '{"error": {"code": "<string>", "message": "<string>"}}'
+  rfc9457: false
+  detail: >-
+    Dataverse returns the OData v4 error object, not application/problem+json. Codes are
+    hexadecimal (for example 0x80072322). See errors/.
+  docs: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/compose-http-requests-handle-errors
+rate_limit_signaling:
+  status: 429
+  retry_header: Retry-After
+  observability_headers:
+  - x-ms-ratelimit-burst-remaining-xrm-requests
+  - x-ms-ratelimit-time-remaining-xrm-requests
+  caveat: >-
+    Microsoft explicitly says not to depend on the two x-ms-ratelimit-* values to pace traffic -
+    "they're intended for debugging purposes" and they reset when a client reconnects to a
+    different server. Retry-After is the authoritative signal.
+  see_also: rate-limits/microsoft-power-platform-rate-limits.yml
+batching:
+  style: OData $batch (Web API) / ExecuteMultipleRequest (SDK for .NET)
+  max_operations: 1000
+  caveat: >-
+    Batching avoids the request-count limit but accrues against the combined execution-time
+    limit, and does not bypass licence entitlement limits.
+cross_links:
+  errors: errors/microsoft-power-platform-problem-types.yml
+  lifecycle: lifecycle/microsoft-power-platform-lifecycle.yml
+  authentication: authentication/microsoft-power-platform-authentication.yml
+  rate_limits: rate-limits/microsoft-power-platform-rate-limits.yml
+  scopes: scopes/microsoft-power-platform-scopes.yml

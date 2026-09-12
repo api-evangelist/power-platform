@@ -1,0 +1,111 @@
+generated: '2026-09-06'
+method: derived
+source: >-
+  mcp/microsoft-power-platform-mcp.yml (documented tool list) bound against the operationIds in
+  openapi/microsoft-power-platform-records-api-openapi.yml and
+  openapi/microsoft-power-platform-metadata-api-openapi.yml
+description: >-
+  Binds each documented Dataverse MCP tool to the Dataverse Web API operation(s) that back it.
+  Confidence is capped at medium everywhere because the live MCP schema is auth-gated - the
+  mapping is by name and documented semantics, not by comparing inputSchema to parameters.
+surfaces:
+  openapi:
+  - openapi/microsoft-power-platform-records-api-openapi.yml
+  - openapi/microsoft-power-platform-metadata-api-openapi.yml
+  openapi_note: >-
+    These two documents are API Evangelist renderings of the Dataverse Web API from Microsoft's
+    documentation, not a Microsoft-published spec. Dataverse's own machine-readable contract is
+    the OData v4 CSDL served per environment at {org}.api.crm.dynamics.com/api/data/v9.2/$metadata,
+    which requires a tenant token.
+  graphql: null
+  mcp:
+    url: https://{org}.crm.dynamics.com/api/mcp
+    gated: true
+    gate: Microsoft Entra ID bearer token for a specific customer environment
+crosswalk:
+- tool: read_query
+  category: read
+  rest:
+  - listRecords
+  binding: semantic
+  confidence: medium
+  note: >-
+    read_query takes T-SQL SELECT; listRecords takes OData $select/$filter/$orderby/$top/$expand.
+    Same capability, different query language - not a parameter-for-parameter mapping.
+- tool: fetch
+  category: read
+  rest:
+  - getRecord
+  binding: direct
+  confidence: medium
+- tool: create_record
+  category: write
+  rest:
+  - createRecord
+  binding: direct
+  confidence: medium
+- tool: update_record
+  category: write
+  rest:
+  - updateRecord
+  binding: direct
+  confidence: medium
+- tool: delete_record
+  category: destructive
+  rest:
+  - deleteRecord
+  binding: direct
+  confidence: medium
+- tool: list_tables
+  category: read
+  rest:
+  - listEntityDefinitions
+  binding: direct
+  confidence: medium
+- tool: describe_table
+  category: read
+  rest:
+  - getEntityDefinition
+  binding: semantic
+  confidence: medium
+  note: >-
+    describe_table returns a T-SQL schema projection; getEntityDefinition returns Dataverse
+    EntityMetadata. Same subject, different representation.
+- tool: create_table
+  category: write
+  rest:
+  - listEntityDefinitions
+  binding: none
+  confidence: low
+  note: >-
+    Table creation is a POST to /EntityDefinitions in the Dataverse Web API metadata surface.
+    That operation is not present in the repo's spec, so no operationId can honestly be named.
+- tool: update_table
+  category: write
+  rest: []
+  binding: none
+  confidence: low
+  note: PUT/PATCH on /EntityDefinitions - not present in the repo's spec.
+- tool: delete_table
+  category: destructive
+  rest: []
+  binding: none
+  confidence: low
+  note: DELETE on /EntityDefinitions - not present in the repo's spec.
+mcp_only:
+- tool: search
+  reason: >-
+    Dataverse keyword search is served by a different endpoint family (api/search, not api/data)
+    with its own throttling rules, and is not represented in the repo's Web API spec.
+rest_only:
+- operationId: whoAmI
+  reason: >-
+    Identity of the calling principal. No MCP tool exposes it; the MCP server resolves identity
+    from the Entra token before any tool runs.
+coverage:
+  mcp_tools: 11
+  mapped_to_rest: 7
+  mcp_only: 1
+  unmapped_metadata_writes: 3
+  rest_operations: 8
+  rest_only: 1

@@ -1,0 +1,102 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction and
+  https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/ (both HTTP 200,
+  fetched 2026-09-06)
+name: Microsoft Power Platform CLI
+binary: pac
+description: >-
+  A single first-party developer CLI covering environment lifecycle, authentication, Dataverse,
+  solution packages, Power Pages and code components. Ships monthly; version 2.11.2 was the
+  latest NuGet release as of 2026-08-13.
+version: 2.11.2
+released: '2026-08-13'
+install:
+- method: dotnet-tool
+  command: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+  platforms: [windows, linux, macos]
+  package: https://www.nuget.org/packages/Microsoft.PowerApps.CLI.Tool
+  limitations: >-
+    Does not enable `pac data`, `pac package deploy` or `pac package show` - those are
+    Windows-only and require the VS Code extension or the MSI.
+- method: vscode-extension
+  name: Power Platform Tools
+  platforms: [windows, linux, macos]
+  docs: https://learn.microsoft.com/en-us/power-platform/developer/howto/install-vs-code-extension
+- method: windows-msi
+  platforms: [windows]
+  docs: https://learn.microsoft.com/en-us/power-platform/developer/howto/install-cli-msi
+  note: The only method that supports managing installed versions side by side.
+authentication:
+  command: pac auth create
+  flows:
+  - interactive browser sign-in
+  - --deviceCode for headless / Codespaces environments
+  profiles: multiple named auth profiles, switched with `pac auth list` and `pac auth select --index <n>`
+  clouds: Public plus GCC and GCC High via `pac auth create --cloud`
+command_groups:
+- name: pac admin
+  purpose: Work with your Power Platform admin account.
+- name: pac application
+  purpose: List and install available Dataverse applications from Microsoft Marketplace.
+- name: pac auth
+  purpose: Manage how you authenticate to various services.
+- name: pac canvas
+  purpose: Operate on Power Apps .msapp files.
+- name: pac catalog
+  purpose: Work with Catalog in Power Platform.
+- name: pac code
+  purpose: (Preview) Manage Code apps.
+- name: pac connection
+  purpose: Work with Dataverse connections.
+- name: pac connector
+  purpose: Work with Power Platform connectors.
+- name: pac copilot
+  purpose: Tools and utilities for copilot management.
+- name: pac data
+  purpose: Import and export data from Dataverse. (Windows only)
+- name: pac env
+  purpose: Work with your Dataverse organization.
+- name: pac help
+  purpose: Show help for the CLI.
+- name: pac managed-identity
+  purpose: Manage Managed Identity records for Dataverse components.
+- name: pac model
+  purpose: Work with model-driven apps.
+- name: pac modelbuilder
+  purpose: Code generator for Dataverse APIs and tables.
+- name: pac package
+  purpose: Work with Dataverse package projects.
+- name: pac pages
+  purpose: Work with Power Pages websites.
+- name: pac pcf
+  purpose: Work with Power Apps component framework projects.
+- name: pac pipeline
+  purpose: Work with pipelines.
+- name: pac plugin
+  purpose: Work with Dataverse plug-in class libraries.
+- name: pac power-fx
+  purpose: (Preview) Work with Power Fx.
+- name: pac solution
+  purpose: Work with Dataverse solution projects.
+- name: pac telemetry
+  purpose: Manage telemetry settings.
+- name: pac test
+  purpose: (Deprecated) Execute automated tests for a Power App.
+- name: pac tool
+  purpose: Install and launch Power Platform tools.
+key_flows:
+- name: Connect to an environment
+  steps:
+  - pac auth create --environment "HR-Dev"
+  - pac env list
+- name: Export and unpack a solution for source control
+  steps:
+  - pac solution export --name MySolution --path ./out
+  - pac solution unpack --zipfile ./out/MySolution.zip --folder ./src
+- name: Generate strongly-typed Dataverse classes
+  steps:
+  - pac modelbuilder build
+feedback: https://github.com/microsoft/powerplatform-build-tools/discussions
+tab_completion: pac complete (PowerShell, bash, zsh, fish, nushell)

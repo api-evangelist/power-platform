@@ -1,0 +1,118 @@
+generated: '2026-09-06'
+method: derived
+source: >-
+  openapi/_original/microsoft-power-platform-enterprise-policies-openapi.json (definitions and
+  $ref graph), openapi/microsoft-power-platform-records-api-openapi.yml,
+  openapi/microsoft-power-platform-metadata-api-openapi.yml
+description: >-
+  Two distinct data models sit behind Power Platform, and only one of them is enumerable from a
+  contract. The Azure Resource Manager enterprise-policy model is fully typed in Microsoft's own
+  Swagger and is derived here from its $ref graph. The Dataverse model is open-ended by design -
+  its entities are defined per environment and discovered at runtime through EntityDefinitions
+  and the OData $metadata document - so it is described structurally rather than enumerated.
+models:
+- name: Power Platform enterprise policies (Azure Resource Manager)
+  source_contract: openapi/_original/microsoft-power-platform-enterprise-policies-openapi.json
+  definition_count: 25
+  entities:
+  - name: Account
+    id_field: accountName
+    path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/accounts/{accountName}
+    operations: [Accounts_Get, Accounts_CreateOrUpdate, Accounts_Update, Accounts_Delete, Accounts_ListByResourceGroup, Accounts_ListBySubscription]
+    relationships:
+    - type: has_one
+      target: AccountProperties
+      via: properties
+  - name: EnterprisePolicy
+    id_field: enterprisePolicyName
+    path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/enterprisePolicies/{enterprisePolicyName}
+    operations: [EnterprisePolicies_Get, EnterprisePolicies_CreateOrUpdate, EnterprisePolicies_Update, EnterprisePolicies_Delete, EnterprisePolicies_ListByResourceGroup, EnterprisePolicies_ListBySubscription]
+    relationships:
+    - type: has_one
+      target: EnterprisePolicyIdentity
+      via: identity
+    - type: has_one
+      target: Properties
+      via: properties
+    - type: has_one
+      target: EnterprisePolicyKind
+      via: kind
+    - type: has_many
+      target: PrivateEndpointConnection
+      via: privateEndpointConnections
+    - type: has_many
+      target: PrivateLinkResource
+      via: privateLinkResources
+  - name: Properties
+    relationships:
+    - type: has_one
+      target: PropertiesEncryption
+      via: encryption
+    - type: has_one
+      target: PropertiesLockbox
+      via: lockbox
+    - type: has_one
+      target: PropertiesNetworkInjection
+      via: networkInjection
+  - name: PropertiesEncryption
+    relationships:
+    - type: has_one
+      target: KeyVaultProperties
+      via: keyVault
+    - type: has_one
+      target: State
+      via: state
+  - name: KeyVaultProperties
+    relationships:
+    - type: has_one
+      target: keyProperties
+      via: key
+  - name: PropertiesNetworkInjection
+    relationships:
+    - type: has_one
+      target: VirtualNetworkProperties
+      via: virtualNetworks
+  - name: VirtualNetworkProperties
+    relationships:
+    - type: has_one
+      target: SubnetProperties
+      via: subnet
+  - name: PrivateEndpointConnection
+    id_field: privateEndpointConnectionName
+    belongs_to: EnterprisePolicy
+    operations: [PrivateEndpointConnections_Get, PrivateEndpointConnections_CreateOrUpdate, PrivateEndpointConnections_Delete, PrivateEndpointConnections_ListByEnterprisePolicy]
+  - name: PrivateLinkResource
+    id_field: groupName
+    belongs_to: EnterprisePolicy
+    operations: [PrivateLinkResources_Get, PrivateLinkResources_ListByEnterprisePolicy]
+  id_format: Azure Resource Manager resource id path (/subscriptions/{id}/resourceGroups/{rg}/providers/Microsoft.PowerPlatform/...)
+- name: Dataverse
+  source_contract: openapi/microsoft-power-platform-records-api-openapi.yml
+  enumerable: false
+  reason: >-
+    Dataverse tables are defined per environment. There is no fixed entity list to derive: the
+    schema is discovered at runtime.
+  discovery:
+  - operation: listEntityDefinitions
+    returns: EntityMetadata collection - every table in the environment
+  - operation: getEntityDefinition
+    returns: EntityMetadata for one table by logical name
+  - document: '{org}.api.crm.dynamics.com/api/data/v9.2/$metadata'
+    format: OData CSDL XML
+    gated: true
+    note: The authoritative machine-readable schema; requires a tenant bearer token.
+  identity:
+    record_id: GUID per row, addressed as <entitySetName>(<guid>)
+    concurrency_token: '@odata.etag'
+  relationship_model:
+    single_valued: navigation property expanded with $expand, written by setting <nav>@odata.bind to a record URI
+    collection_valued: navigation collection, expanded with $expand
+    note: >-
+      Relationships are declared in EntityMetadata (OneToMany, ManyToOne, ManyToMany), not in
+      the OpenAPI, so no has_one/has_many edges are asserted here.
+  well_known_tables:
+    note: >-
+      Standard tables such as account, contact, systemuser and incident ship with most
+      environments, but the set depends on which first-party apps are installed - so they are
+      named only as examples, not as a model.
+render: null

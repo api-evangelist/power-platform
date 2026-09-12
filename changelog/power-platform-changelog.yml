@@ -1,0 +1,87 @@
+generated: '2026-09-06'
+method: searched
+source: https://learn.microsoft.com/en-us/power-platform/admin/programmability-whats-new-changed (HTTP 200, fetched 2026-09-06)
+description: >-
+  Microsoft publishes a dated, per-month changelog for the Power Platform API and admin SDKs.
+  Each entry names the endpoint added or fixed and links its reference page; SDK releases ship
+  on the same monthly rhythm. Recent window only - the source page carries entries back to
+  December 2024.
+scheme:
+  api_versioning: api-version query parameter (for example 2022-03-01-preview)
+  cadence: monthly
+  breaking_change_channel: https://learn.microsoft.com/en-us/power-platform/important-changes-coming
+current:
+  page_last_updated: '2026-08-15'
+  latest_entry: '2026-07'
+entries:
+- date: '2026-07'
+  additions: 25
+  breaking: 0
+  highlights:
+  - Copilot Studio - Download Agent Channel Manifest
+  - Dynamics finance and operations properties, versions, apply-version and operation-errors endpoints
+  - Environment management - Perform Failback, Reset Environment
+  - 'Licensing - allocations by environment (list/get/update), Put Allocations V2, entitlement insight endpoints: environment resources, tenant license trends, tenant users, per-user consumption'
+  - Power Pages - Update Waf Policy Settings
+  sdk:
+  - Microsoft.PowerPlatform.Management 2.0.3503.299 (C#)
+  - powerplatform-management 2.0.3503.299 (Python)
+- date: '2026-06'
+  additions: 2
+  breaking: 0
+  highlights:
+  - Copilot Studio - Get/Set Connector Consent Bypass
+  sdk:
+  - Microsoft.PowerPlatform.Management 2.0.3474.290
+- date: '2026-05'
+  additions: 11
+  breaking: 0
+  highlights:
+  - Power Pages custom domain, certificate and SSL-binding management endpoints
+  - Environment management - Get Environment Operation By ID (Preview)
+- date: '2026-04'
+  additions: 16
+  breaking: 0
+  highlights:
+  - Environment provisioning - Provision New Environment, Link Dataverse, supported locations / currencies / languages / templates
+  - Copilot Studio maker evaluation test runs and test sets
+  - Governance - Patch Rule Based Policy, Remove Rule From Rule Based Policy
+- date: '2026-03'
+  additions: 0
+  breaking: 0
+  highlights:
+  - Bug fixes only - DSR compliance endpoints, Reassign Copilot Agent, Query Resources
+- date: '2026-02'
+  additions: 24
+  breaking: 0
+  highlights:
+  - Role-based access control for environments and environment groups (Preview)
+  - Connectivity - List Connections
+  - A large DSR (data subject rights) compliance endpoint family for Power Automate flows, approvals, connections, transcripts and AI prompts
+- date: '2026-01'
+  additions: 14
+  breaking: 0
+  highlights:
+  - Rule sets - create, get, update, delete, list for tenant
+  - Power Pages - Convert Trial To Production
+  - Licensing - user per flow capacity source endpoints
+- date: '2025-10'
+  additions: 21
+  breaking: 0
+  highlights:
+  - Environment lifecycle - Restore, Copy, Recover, Enable/Disable Environment
+  - Business continuity - Enable/Disable Disaster Recovery, Perform Force Failover, Perform DR Drill
+  - Environment backup - create, get, delete
+- date: '2025-09'
+  additions: 0
+  breaking: 0
+  highlights:
+  - New Environment Management MCP Server shipped in the Power Platform for Admins V2 connector
+  - Initial release of the powerplatform-management Python SDK (2.0.3203.1269)
+observations:
+- >-
+  The changelog records no breaking changes in the window covered - it is additive month over
+  month, with deprecations handled separately on the "Important changes coming" page.
+- >-
+  Endpoint additions and SDK releases are published together, so the C# and Python SDK version
+  numbers double as a release marker for the REST surface.

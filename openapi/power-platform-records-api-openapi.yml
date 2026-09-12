@@ -1,0 +1,185 @@
+openapi: 3.2.0
+info:
+  title: Microsoft Dataverse Web Metadata Records API
+  description: The Microsoft Dataverse Web API implements OData v4 over the Dataverse data platform that powers Microsoft Power Platform (Power Apps, Power Automate, Dynamics 365). It supports CRUD operations on tables, execution of actions and functions, and metadata queries. Authentication is via Microsoft Entra ID OAuth 2.0 against the org URL.
+  version: '9.2'
+servers:
+- url: https://{org}.api.crm.dynamics.com/api/data/v9.2
+  description: Dataverse Web API for a specific environment
+  variables:
+    org:
+      default: contoso
+      description: The Dataverse organization name (subdomain).
+security:
+- oauth2: []
+tags:
+- name: Records
+paths:
+  /{entitySetName}:
+    get:
+      tags:
+      - Records
+      summary: Retrieve records from a Dataverse table
+      operationId: listRecords
+      parameters:
+      - name: entitySetName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: accounts
+      - name: $select
+        in: query
+        schema:
+          type: string
+      - name: $filter
+        in: query
+        schema:
+          type: string
+      - name: $orderby
+        in: query
+        schema:
+          type: string
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $expand
+        in: query
+        schema:
+          type: string
+      - name: $count
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Collection of records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordCollection'
+    post:
+      tags:
+      - Records
+      summary: Create a record
+      operationId: createRecord
+      parameters:
+      - name: entitySetName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '204':
+          description: Created (no content)
+        '201':
+          description: Created
+  /{entitySetName}({id}):
+    get:
+      tags:
+      - Records
+      summary: Retrieve a record by id
+      operationId: getRecord
+      parameters:
+      - name: entitySetName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: $select
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Record
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not found
+    patch:
+      tags:
+      - Records
+      summary: Update or upsert a record
+      operationId: updateRecord
+      parameters:
+      - name: entitySetName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '204':
+          description: Updated
+    delete:
+      tags:
+      - Records
+      summary: Delete a record
+      operationId: deleteRecord
+      parameters:
+      - name: entitySetName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Deleted
+components:
+  schemas:
+    RecordCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0. Use the resource/scope corresponding to the Dataverse environment, e.g. https://{org}.api.crm.dynamics.com/.default for client credentials.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://{org}.api.crm.dynamics.com/.default: Full Dataverse access scoped to the environment
+x-generated-from: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+x-generated-by: claude-genwave10-08-2026-05-23
