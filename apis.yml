@@ -44,7 +44,9 @@ tags:
 - Power Platform
 apis:
 - name: Dataverse API (Common Data Service)
-  description: OData v4.0 compliant Web API for Microsoft Dataverse, providing RESTful data storage, business logic, and entity management capabilities across the Power Platform.
+  description: >-
+    OData v4.0 compliant Web API for Microsoft Dataverse, providing RESTful data storage, business logic,
+    and entity management capabilities across the Power Platform.
   image: https://powerplatform.microsoft.com/images/dataverse-logo.png
   baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
@@ -58,22 +60,28 @@ apis:
   - type: Documentation
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   - type: APIReference
-    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/about
+    url: >-
+      https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/about
   - type: Documentation
-    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/web-api-types-operations
+    url: >-
+      https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/web-api-types-operations
     title: OData Types and Operations
   - type: Authentication
-    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/authenticate-web-api
+    url: >-
+      https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/authenticate-web-api
   - type: SDKs
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/developer-tools
   contact:
   - type: Support
     url: https://powerapps.microsoft.com/support/
 - name: Microsoft Copilot Studio API (formerly Power Virtual Agents)
-  description: API for building, managing, and deploying AI agents and conversational chatbots. Power Virtual Agents has been rebranded to Microsoft Copilot Studio with expanded AI agent capabilities.
+  description: >-
+    API for building, managing, and deploying AI agents and conversational chatbots. Power Virtual Agents
+    has been rebranded to Microsoft Copilot Studio with expanded AI agent capabilities.
   image: https://powerplatform.microsoft.com/images/pva-logo.png
   baseURL: https://api.powerva.microsoft.com
-  humanURL: https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio
   tags:
   - AI Agents
   - Chatbots
@@ -83,9 +91,11 @@ apis:
   - Virtual Agents
   properties:
   - type: Documentation
-    url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio
   - type: Authentication
-    url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/configuration-end-user-authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-copilot-studio/configuration-end-user-authentication
   - type: Pricing
     url: https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio#pricing
   - type: Console
@@ -94,7 +104,9 @@ apis:
   - type: Support
     url: https://learn.microsoft.com/en-us/microsoft-copilot-studio/
 - name: Power Platform Admin API
-  description: API for administrative operations across Power Platform environments including environment management, governance, capacity, and licensing via the BAP (Business Application Platform) endpoint.
+  description: >-
+    API for administrative operations across Power Platform environments including environment management,
+    governance, capacity, and licensing via the BAP (Business Application Platform) endpoint.
   image: https://powerplatform.microsoft.com/images/admin-logo.png
   baseURL: https://api.bap.microsoft.com
   humanURL: https://learn.microsoft.com/en-us/power-platform/admin/admin-documentation
@@ -115,7 +127,9 @@ apis:
   - type: Support
     url: https://admin.powerplatform.microsoft.com/support
 - name: Power Platform Connectors API
-  description: API for custom and certified connectors that extend Power Platform capabilities across Power Apps, Power Automate, Logic Apps, and Copilot Studio.
+  description: >-
+    API for custom and certified connectors that extend Power Platform capabilities across Power Apps,
+    Power Automate, Logic Apps, and Copilot Studio.
   image: https://powerplatform.microsoft.com/images/connectors-logo.png
   baseURL: https://api.connectors.microsoft.com
   humanURL: https://learn.microsoft.com/en-us/connectors/
@@ -138,7 +152,9 @@ apis:
   - type: Support
     url: https://powerapps.microsoft.com/support/
 - name: Power Pages Web API
-  description: Web API for Power Pages (formerly Power Apps Portals) enabling CRUD operations on Microsoft Dataverse tables from portal webpages for richer user experiences.
+  description: >-
+    Web API for Power Pages (formerly Power Apps Portals) enabling CRUD operations on Microsoft Dataverse
+    tables from portal webpages for richer user experiences.
   image: https://powerplatform.microsoft.com/images/power-platform-logo.png
   baseURL: https://[site].powerappsportals.com/_api
   humanURL: https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview
@@ -164,7 +180,9 @@ apis:
     url: https://powerapps.microsoft.com/support/
 - aid: power-platform:power-platform-applications-api
   name: Microsoft Power Platform APIs Applications API
-  description: Operations for managing application packages within Power Platform environments, including listing available packages, installing applications, and checking installation status.
+  description: >-
+    Operations for managing application packages within Power Platform environments, including listing
+    available packages, installing applications, and checking installation status.
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://api.powerapps.com
   tags:
@@ -193,7 +211,8 @@ apis:
   - type: Pricing
     url: https://powerautomate.microsoft.com/pricing/
   - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/power-bi/
   - type: Authentication
@@ -209,12 +228,15 @@ apis:
   - type: Authentication
     url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2
   - type: Versioning
-    url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
+    url: >-
+      https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
   - type: SDKs
     url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
 - aid: power-platform:power-platform-environments-api
   name: Microsoft Power Platform APIs Environments API
-  description: Operations for listing, creating, and managing Power Platform environments. Environments are containers that store apps, flows, data, and other resources.
+  description: >-
+    Operations for listing, creating, and managing Power Platform environments. Environments are containers
+    that store apps, flows, data, and other resources.
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://api.powerapps.com
   tags:
@@ -241,7 +263,8 @@ apis:
   - type: Pricing
     url: https://powerautomate.microsoft.com/pricing/
   - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/power-bi/
   - type: Authentication
@@ -257,12 +280,14 @@ apis:
   - type: Authentication
     url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2
   - type: Versioning
-    url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
+    url: >-
+      https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
   - type: SDKs
     url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
 - aid: power-platform:power-platform-flow-runs-api
   name: Microsoft Power Platform APIs Flow Runs API
-  description: Operations for monitoring and retrieving Power Automate flow run history within environments.
+  description: >-
+    Operations for monitoring and retrieving Power Automate flow run history within environments.
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://api.powerapps.com
   tags:
@@ -289,7 +314,8 @@ apis:
   - type: Pricing
     url: https://powerautomate.microsoft.com/pricing/
   - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/power-bi/
   - type: Authentication
@@ -305,7 +331,8 @@ apis:
   - type: Authentication
     url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2
   - type: Versioning
-    url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
+    url: >-
+      https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
   - type: SDKs
     url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
 - aid: power-platform:power-platform-licensing-api
@@ -337,7 +364,8 @@ apis:
   - type: Pricing
     url: https://powerautomate.microsoft.com/pricing/
   - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/power-platform/powerautomate/flow-runs/list-flow-runs
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/power-bi/
   - type: Authentication
@@ -353,7 +381,8 @@ apis:
   - type: Authentication
     url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-authentication-v2
   - type: Versioning
-    url: https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
+    url: >-
+      https://learn.microsoft.com/en-us/power-platform/admin/programmability-versioning-support
   - type: SDKs
     url: https://www.nuget.org/packages/Microsoft.PowerPlatform.Management
 - aid: microsoft-power-platform:dataverse-api
@@ -368,7 +397,10 @@ apis:
   properties:
   - url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
     type: Documentation
-  description: The Microsoft Dataverse Web API provides OData v4 RESTful access to the Dataverse data platform that underpins Power Platform. Developers can perform CRUD operations on tables, execute actions and functions, manage metadata, and query data using standard OData conventions.
+  description: >-
+    The Microsoft Dataverse Web API provides OData v4 RESTful access to the Dataverse data platform that
+    underpins Power Platform. Developers can perform CRUD operations on tables, execute actions and functions,
+    manage metadata, and query data using standard OData conventions.
 - aid: microsoft-power-platform:connectors-api
   name: Power Platform Connectors
   tags:
@@ -381,11 +413,15 @@ apis:
   properties:
   - url: https://learn.microsoft.com/en-us/connectors/overview
     type: Documentation
-  - url: https://learn.microsoft.com/en-us/rest/api/power-platform/connectivity/connectors/list-connectors
+  - url: >-
+      https://learn.microsoft.com/en-us/rest/api/power-platform/connectivity/connectors/list-connectors
     type: APIReference
   - url: https://learn.microsoft.com/en-us/connectors/custom-connectors/
     type: GettingStarted
-  description: Power Platform Connectors provide pre-built integrations with hundreds of external services and enable developers to create custom connectors using OpenAPI definitions. Connectors abstract API authentication and data access, making external services available to Power Apps, Power Automate, and Logic Apps.
+  description: >-
+    Power Platform Connectors provide pre-built integrations with hundreds of external services and enable
+    developers to create custom connectors using OpenAPI definitions. Connectors abstract API authentication
+    and data access, making external services available to Power Apps, Power Automate, and Logic Apps.
 - aid: microsoft-power-platform:microsoft-power-platform-metadata-api
   name: Microsoft Power Platform Metadata API
   description: The Metadata API from Microsoft Power Platform — 3 operation(s) for metadata.
@@ -433,26 +469,78 @@ apis:
     type: Authentication
   - url: changelog/power-platform-changelog.yml
     type: ChangeLog
-  description: 'The unified REST API for Power Platform administration, at https://api.powerplatform.com/{namespace}/{resource}?api-version={version}. Namespaces include licensing, appmanagement, environmentmanagement, governance, authorization, connectivity, powerpages, powerautomate, copilotstudio and resourcequery. The host was probed 2026-09-06: it is live and returns 401 with WWW-Authenticate Bearer to anonymous callers. Microsoft publishes a rendered reference on Microsoft Learn but no downloadable OpenAPI document for this surface.'
-- aid: microsoft-power-platform:microsoft-power-platform-enterprise-policies
-  name: Power Platform Enterprise Policies (Azure Resource Manager)
+  description: >-
+    The unified REST API for Power Platform administration, at https://api.powerplatform.com/{namespace}/{resource}?api-version={version}.
+    Namespaces include licensing, appmanagement, environmentmanagement, governance, authorization, connectivity,
+    powerpages, powerautomate, copilotstudio and resourcequery. The host was probed 2026-09-06: it is
+    live and returns 401 with WWW-Authenticate Bearer to anonymous callers. Microsoft publishes a rendered
+    reference on Microsoft Learn but no downloadable OpenAPI document for this surface.
+- aid: power-platform:power-platform-accounts-api
+  name: Microsoft Power Platform APIs Accounts API
+  description: The Accounts API from Microsoft Power Platform APIs — 3 operation(s) for accounts.
+  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
   tags:
-  - Governance
-  - Security
-  - Encryption
-  - Private Link
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://management.azure.com/
-  humanURL: https://learn.microsoft.com/en-us/power-platform/admin/customer-managed-key
+  - Accounts
   properties:
   - type: OpenAPI
-    url: openapi/_original/power-platform-enterprise-policies-openapi.json
+    url: openapi/power-platform-accounts-api-openapi.yml
   - type: DataModel
     url: data-model/power-platform-data-model.yml
-  - type: AgentSkill
-    url: skills/power-platform-enterprise-policy-governance.md
-  description: The Microsoft.PowerPlatform Azure Resource Manager provider - 19 operations over enterprisePolicies, accounts, privateEndpointConnections and privateLinkResources, covering customer-managed encryption keys, customer lockbox and virtual network injection for Power Platform environments. The contract is Microsoft-published Swagger 2.0, harvested verbatim from Azure/azure-rest-api-specs on 2026-09-06 (info.title "PowerPlatform", host management.azure.com). It is served from management.azure.com rather than a Power Platform host because it is an Azure resource provider - that is how Microsoft exposes Power Platform security posture as governable Azure resources.
+- aid: power-platform:power-platform-enterprisepolicies-api
+  name: Microsoft Power Platform APIs Enterprise Policies API
+  description: >-
+    The EnterprisePolicies API from Microsoft Power Platform APIs — 3 operation(s) for enterprisepolicies.
+  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+  tags:
+  - EnterprisePolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/power-platform-enterprisepolicies-api-openapi.yml
+  - type: DataModel
+    url: data-model/power-platform-data-model.yml
+- aid: power-platform:power-platform-operations-api
+  name: Microsoft Power Platform APIs Operations API
+  description: The Operations API from Microsoft Power Platform APIs — 1 operation(s) for operations.
+  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+  tags:
+  - Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/power-platform-operations-api-openapi.yml
+  - type: DataModel
+    url: data-model/power-platform-data-model.yml
+- aid: power-platform:power-platform-privateendpointconnections-api
+  name: Microsoft Power Platform APIs Private Endpoint Connections API
+  description: >-
+    The PrivateEndpointConnections API from Microsoft Power Platform APIs — 2 operation(s) for privateendpointconnections.
+  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+  tags:
+  - PrivateEndpointConnections
+  properties:
+  - type: OpenAPI
+    url: openapi/power-platform-privateendpointconnections-api-openapi.yml
+  - type: DataModel
+    url: data-model/power-platform-data-model.yml
+- aid: power-platform:power-platform-privatelinkresources-api
+  name: Microsoft Power Platform APIs Private Link Resources API
+  description: >-
+    The PrivateLinkResources API from Microsoft Power Platform APIs — 2 operation(s) for privatelinkresources.
+  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+  tags:
+  - PrivateLinkResources
+  properties:
+  - type: OpenAPI
+    url: openapi/power-platform-privatelinkresources-api-openapi.yml
+  - type: DataModel
+    url: data-model/power-platform-data-model.yml
 common:
+- type: AgentSkill
+  url: skills/power-platform-enterprise-policy-governance.md
 - type: Portal
   url: https://make.powerapps.com/
 - type: Pricing
