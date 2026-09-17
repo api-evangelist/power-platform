@@ -512,19 +512,6 @@ apis:
     url: openapi/power-platform-operations-api-openapi.yml
   - type: DataModel
     url: data-model/power-platform-data-model.yml
-- aid: power-platform:power-platform-privateendpointconnections-api
-  name: Microsoft Power Platform APIs Private Endpoint Connections API
-  description: >-
-    The PrivateEndpointConnections API from Microsoft Power Platform APIs — 2 operation(s) for privateendpointconnections.
-  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
-  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
-  tags:
-  - PrivateEndpointConnections
-  properties:
-  - type: OpenAPI
-    url: openapi/power-platform-privateendpointconnections-api-openapi.yml
-  - type: DataModel
-    url: data-model/power-platform-data-model.yml
 - aid: power-platform:power-platform-privatelinkresources-api
   name: Microsoft Power Platform APIs Private Link Resources API
   description: >-
@@ -536,6 +523,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/power-platform-privatelinkresources-api-openapi.yml
+  - type: DataModel
+    url: data-model/power-platform-data-model.yml
+- aid: power-platform:power-platform-private-endpoint-connections-api
+  name: Microsoft Power Platform APIs Private Endpoint Connections API
+  description: >-
+    The Private Endpoint Connections API from Microsoft Power Platform APIs — 2 operation(s) for private
+    endpoint connections.
+  humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
+  baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
+  tags:
+  - Private Endpoint Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/power-platform-private-endpoint-connections-api-openapi.yml
   - type: DataModel
     url: data-model/power-platform-data-model.yml
 common:
