@@ -112,6 +112,12 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-platform/admin/admin-documentation
   tags:
   - Administration
+  - Environment
+  - Governance
+  - Licensing
+  - Management
+  tags_raw:
+  - Administration
   - Environments
   - Governance
   - Licensing
@@ -240,6 +246,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://api.powerapps.com
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
@@ -456,6 +464,11 @@ apis:
   name: Power Platform API
   tags:
   - Administration
+  - Environment
+  - Governance
+  - Licensing
+  tags_raw:
+  - Administration
   - Environments
   - Governance
   - Licensing
@@ -481,6 +494,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -505,7 +520,8 @@ apis:
   description: The Operations API from Microsoft Power Platform APIs — 1 operation(s) for operations.
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
@@ -533,6 +549,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
   tags:
+  - PrivateEndpointConnections
+  tags_raw:
   - Private Endpoint Connections
   properties:
   - type: OpenAPI
