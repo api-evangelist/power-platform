@@ -1,0 +1,206 @@
+openapi: 3.2.0
+info:
+  title: PowerPlatform Private Endpoint Connections API
+  version: 2020-10-30-preview
+  description: // (missing-service-description) Add service description
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+servers:
+- url: https://management.azure.com
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Private Endpoint Connections
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/enterprisePolicies/{enterprisePolicyName}/privateEndpointConnections
+  : get:
+      operationId: PrivateEndpointConnections_ListByEnterprisePolicy
+      tags:
+      - Private Endpoint Connections
+      description: List all private endpoint connections on an EnterprisePolicy.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnectionListResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Gets private endpoint connection.:
+          $ref: ./examples/PrivateEndpointConnectionListGet.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+      summary: Private endpoint connections list by enterprise policy
+      x-summary-source: derived
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/enterprisePolicies/{enterprisePolicyName}/privateEndpointConnections/{privateEndpointConnectionName}
+  : get:
+      operationId: PrivateEndpointConnections_Get
+      tags:
+      - Private Endpoint Connections
+      description: Gets a private endpoint connection.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      - name: privateEndpointConnectionName
+        in: path
+        description: The name of the private endpoint connection.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnection'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Gets private endpoint connection.:
+          $ref: ./examples/PrivateEndpointConnectionGet.json
+      summary: Private endpoint connections get
+      x-summary-source: derived
+    put:
+      operationId: PrivateEndpointConnections_CreateOrUpdate
+      tags:
+      - Private Endpoint Connections
+      description: Approve or reject a private endpoint connection with a given name.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      - name: privateEndpointConnectionName
+        in: path
+        description: The name of the private endpoint connection.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource 'PrivateEndpointConnection' update operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnection'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Approve or reject a private endpoint connection with a given name.:
+          $ref: ./examples/PrivateEndpointConnectionUpdate.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateEndpointConnection'
+        description: Parameters supplied to create or update a private endpoint connection.
+        required: true
+      summary: Private endpoint connections create or update
+      x-summary-source: derived
+    delete:
+      operationId: PrivateEndpointConnections_Delete
+      tags:
+      - Private Endpoint Connections
+      description: Deletes a private endpoint connection with a given name.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      - name: privateEndpointConnectionName
+        in: path
+        description: The name of the private endpoint connection.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Deletes a private endpoint connection with a given name.:
+          $ref: ./examples/PrivateEndpointConnectionDelete.json
+      summary: Private endpoint connections delete
+      x-summary-source: derived
+components:
+  schemas:
+    PrivateEndpointConnection:
+      type: object
+      description: A private endpoint connection
+      properties:
+        properties:
+          $ref: ../../../../../../common-types/resource-management/v3/privatelinks.json#/definitions/PrivateEndpointConnectionProperties
+          description: Resource properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ProxyResource
+    PrivateEndpointConnectionListResult:
+      type: object
+      description: A list of private endpoint connections
+      properties:
+        value:
+          type: array
+          description: Array of private endpoint connections
+          items:
+            $ref: '#/components/schemas/PrivateEndpointConnection'
+        nextLink:
+          type: string
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      flows:
+        implicit:
+          scopes:
+            user_impersonation: impersonate your user account
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+      description: Azure Active Directory OAuth2 Flow.

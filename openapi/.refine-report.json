@@ -1,20 +1,48 @@
 {
   "provider": "power-platform",
   "sources": [
-    "power-platform-applications-api-openapi.yml",
-    "power-platform-environments-api-openapi.yml",
-    "power-platform-flow-runs-api-openapi.yml",
-    "power-platform-licensing-api-openapi.yml"
+    "_original/power-platform-api-openapi.json",
+    "_original/power-platform-enterprise-policies-openapi.json",
+    "power-platform-metadata-api-openapi.yml",
+    "power-platform-records-api-openapi.yml"
   ],
   "outputs": [
     "power-platform-applications-api-openapi.yml",
     "power-platform-environments-api-openapi.yml",
     "power-platform-flow-runs-api-openapi.yml",
-    "power-platform-licensing-api-openapi.yml"
+    "power-platform-licensing-api-openapi.yml",
+    "power-platform-accounts-api-openapi.yml",
+    "power-platform-enterprisepolicies-api-openapi.yml",
+    "power-platform-operations-api-openapi.yml",
+    "power-platform-privateendpointconnections-api-openapi.yml",
+    "power-platform-privatelinkresources-api-openapi.yml",
+    "power-platform-metadata-api-openapi.yml",
+    "power-platform-records-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "power-platform-metadata-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /EntityDefinitions get, /EntityDefinitions(LogicalName='{logicalName}') get, /WhoAmI get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "power-platform-records-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /{entitySetName} get, /{entitySetName} post, /{entitySetName}({id}) delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "power-platform-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "power-platform-enterprise-policies-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: power-platform-private-endpoint-connections-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 19 total)"
+  ],
+  "skipped": [
+    "power-platform-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-enterprisepolicies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-flow-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-licensing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-private-endpoint-connections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "power-platform-privatelinkresources-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,0 +1,493 @@
+openapi: 3.2.0
+info:
+  title: PowerPlatform Enterprise Policies API
+  version: 2020-10-30-preview
+  description: // (missing-service-description) Add service description
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+servers:
+- url: https://management.azure.com
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: EnterprisePolicies
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.PowerPlatform/enterprisePolicies:
+    get:
+      operationId: EnterprisePolicies_ListBySubscription
+      tags:
+      - EnterprisePolicies
+      description: Retrieve a list of EnterprisePolicies within a subscription
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterprisePolicyList'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        List EnterprisePolicies by subscription:
+          $ref: ./examples/listEnterprisePoliciesBySubscription.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+      summary: Enterprise policies list by subscription
+      x-summary-source: derived
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/enterprisePolicies:
+    get:
+      operationId: EnterprisePolicies_ListByResourceGroup
+      tags:
+      - EnterprisePolicies
+      description: Retrieve a list of EnterprisePolicies within a given resource group
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterprisePolicyList'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        List EnterprisePolicies by resource group:
+          $ref: ./examples/listEnterprisePoliciesByResourceGroup.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+      summary: Enterprise policies list by resource group
+      x-summary-source: derived
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/enterprisePolicies/{enterprisePolicyName}
+  : get:
+      operationId: EnterprisePolicies_Get
+      tags:
+      - EnterprisePolicies
+      description: Get information about an EnterprisePolicy
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterprisePolicy'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Get an EnterprisePolicy:
+          $ref: ./examples/getEnterprisePolicy.json
+      summary: Enterprise policies get
+      x-summary-source: derived
+    put:
+      operationId: EnterprisePolicies_CreateOrUpdate
+      tags:
+      - EnterprisePolicies
+      description: Creates an EnterprisePolicy
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource 'EnterprisePolicy' update operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterprisePolicy'
+        '201':
+          description: Resource 'EnterprisePolicy' create operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterprisePolicy'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Create or update EnterprisePolicy:
+          $ref: ./examples/createOrUpdateEnterprisePolicy.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnterprisePolicy'
+        description: Parameters supplied to create or update EnterprisePolicy.
+        required: true
+      summary: Enterprise policies create or update
+      x-summary-source: derived
+    patch:
+      operationId: EnterprisePolicies_Update
+      tags:
+      - EnterprisePolicies
+      description: Updates an EnterprisePolicy
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterprisePolicy'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Update EnterprisePolicy:
+          $ref: ./examples/updateEnterprisePolicy.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEnterprisePolicy'
+        description: Parameters supplied to update EnterprisePolicy.
+        required: true
+      summary: Enterprise policies update
+      x-summary-source: derived
+    delete:
+      operationId: EnterprisePolicies_Delete
+      tags:
+      - EnterprisePolicies
+      description: Delete an EnterprisePolicy
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: enterprisePolicyName
+        in: path
+        description: The EnterprisePolicy name.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Delete an EnterprisePolicy:
+          $ref: ./examples/deleteEnterprisePolicy.json
+      summary: Enterprise policies delete
+      x-summary-source: derived
+components:
+  schemas:
+    EnterprisePolicyList:
+      type: object
+      description: The response of the list EnterprisePolicy operation.
+      properties:
+        value:
+          type: array
+          description: The collection value.
+          items:
+            $ref: '#/components/schemas/EnterprisePolicy'
+        nextLink:
+          type: string
+          description: The next page link.
+    Properties:
+      type: object
+      description: The properties that define configuration for the enterprise policy.
+      properties:
+        systemId:
+          type: string
+          description: The internally assigned unique identifier of the resource.
+          readOnly: true
+        lockbox:
+          $ref: '#/components/schemas/PropertiesLockbox'
+          description: Settings concerning lockbox.
+        encryption:
+          $ref: '#/components/schemas/PropertiesEncryption'
+          description: The encryption settings for a configuration store.
+        networkInjection:
+          $ref: '#/components/schemas/PropertiesNetworkInjection'
+          description: Settings concerning network injection.
+        healthStatus:
+          $ref: '#/components/schemas/HealthStatus'
+          description: The health status of the resource.
+    EnterprisePolicyKind:
+      type: string
+      description: The Kind (type) of Enterprise Policy
+      enum:
+      - Lockbox
+      - PrivateEndpoint
+      - Encryption
+      - NetworkInjection
+      - Identity
+      x-ms-enum:
+        name: EnterprisePolicyKind
+        modelAsString: true
+        values:
+        - name: Lockbox
+          value: Lockbox
+          description: Lockbox
+        - name: PrivateEndpoint
+          value: PrivateEndpoint
+          description: PrivateEndpoint
+        - name: Encryption
+          value: Encryption
+          description: Encryption
+        - name: NetworkInjection
+          value: NetworkInjection
+          description: NetworkInjection
+        - name: Identity
+          value: Identity
+          description: Identity
+    KeyVaultProperties:
+      type: object
+      description: Settings concerning key vault encryption for a configuration store.
+      properties:
+        id:
+          type: string
+          description: Uri of KeyVault
+        key:
+          $ref: '#/components/schemas/keyProperties'
+          description: Identity of the secret that includes name and version.
+    VirtualNetworkProperties:
+      type: object
+      description: Settings concerning the virtual network.
+      properties:
+        id:
+          type: string
+          description: Uri of the virtual network.
+        subnet:
+          $ref: '#/components/schemas/SubnetProperties'
+          description: Properties of a subnet.
+    EnterprisePolicyIdentity:
+      type: object
+      description: The identity of the EnterprisePolicy.
+      properties:
+        systemAssignedIdentityPrincipalId:
+          type: string
+          description: The principal id of EnterprisePolicy identity.
+          readOnly: true
+        tenantId:
+          type: string
+          description: The tenant id associated with the EnterprisePolicy.
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/ResourceIdentityType'
+          description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
+    PatchEnterprisePolicy:
+      type: object
+      description: Definition of the EnterprisePolicy.
+      properties:
+        identity:
+          $ref: '#/components/schemas/EnterprisePolicyIdentity'
+          description: The identity of the EnterprisePolicy.
+        kind:
+          $ref: '#/components/schemas/EnterprisePolicyKind'
+          description: The kind (type) of Enterprise Policy.
+        properties:
+          $ref: '#/components/schemas/Properties'
+          description: The properties that define configuration for the enterprise policy
+          x-ms-client-flatten: true
+        systemData:
+          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
+          description: Metadata pertaining to creation and last modification of the resource.
+          readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/PatchTrackedResource'
+    PropertiesEncryption:
+      type: object
+      description: The encryption settings for a configuration store.
+      properties:
+        keyVault:
+          $ref: '#/components/schemas/KeyVaultProperties'
+          description: Key vault properties.
+        state:
+          $ref: '#/components/schemas/State'
+          description: The state of onboarding, which only appears in the response.
+    HealthStatus:
+      type: string
+      description: The health status of the resource.
+      enum:
+      - Undetermined
+      - Healthy
+      - Warning
+      - Unhealthy
+      x-ms-enum:
+        name: HealthStatus
+        modelAsString: true
+        values:
+        - name: Undetermined
+          value: Undetermined
+          description: Undetermined
+        - name: Healthy
+          value: Healthy
+          description: Healthy
+        - name: Warning
+          value: Warning
+          description: Warning
+        - name: Unhealthy
+          value: Unhealthy
+          description: Unhealthy
+    SubnetProperties:
+      type: object
+      description: Properties of a subnet.
+      properties:
+        name:
+          type: string
+          description: Subnet name.
+    keyProperties:
+      type: object
+      description: Url and version of the KeyVault Secret
+      properties:
+        name:
+          type: string
+          description: The identifier of the key vault key used to encrypt data.
+        version:
+          type: string
+          description: The version of the identity which will be used to access key vault.
+    ResourceIdentityType:
+      type: string
+      description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
+      enum:
+      - SystemAssigned
+      - None
+      x-ms-enum:
+        name: ResourceIdentityType
+        modelAsString: false
+        values:
+        - name: SystemAssigned
+          value: SystemAssigned
+          description: SystemAssigned
+        - name: None
+          value: None
+          description: None
+    PatchTrackedResource:
+      type: object
+      description: The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'
+      properties:
+        tags:
+          type: object
+          description: Resource tags.
+          additionalProperties:
+            type: string
+          x-ms-mutability:
+          - read
+          - update
+          - create
+        location:
+          type: string
+          description: The geo-location where the resource lives
+          x-ms-mutability:
+          - read
+          - create
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource
+    PropertiesLockbox:
+      type: object
+      description: Settings concerning lockbox.
+      properties:
+        state:
+          $ref: '#/components/schemas/State'
+          description: lockbox configuration
+    State:
+      type: string
+      description: The state of onboarding, which only appears in the response.
+      enum:
+      - Enabled
+      - Disabled
+      - NotConfigured
+      x-ms-enum:
+        name: State
+        modelAsString: true
+        values:
+        - name: Enabled
+          value: Enabled
+          description: Enabled
+        - name: Disabled
+          value: Disabled
+          description: Disabled
+        - name: NotConfigured
+          value: NotConfigured
+          description: NotConfigured
+    PropertiesNetworkInjection:
+      type: object
+      description: Settings concerning network injection.
+      properties:
+        virtualNetworks:
+          type: array
+          description: Network injection configuration
+          items:
+            $ref: '#/components/schemas/VirtualNetworkProperties'
+    EnterprisePolicy:
+      type: object
+      description: Definition of the EnterprisePolicy.
+      properties:
+        properties:
+          $ref: '#/components/schemas/Properties'
+          description: The properties that define configuration for the enterprise policy
+          x-ms-client-flatten: true
+        identity:
+          $ref: '#/components/schemas/EnterprisePolicyIdentity'
+          description: The identity of the EnterprisePolicy.
+        kind:
+          $ref: '#/components/schemas/EnterprisePolicyKind'
+          description: The kind (type) of Enterprise Policy.
+      required:
+      - kind
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      flows:
+        implicit:
+          scopes:
+            user_impersonation: impersonate your user account
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+      description: Azure Active Directory OAuth2 Flow.

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Microsoft Power Platform REST Applications Licensing API
+  title: Microsoft Power Platform REST Licensing API
   description: Unified RESTful API for Microsoft Power Platform administrative capabilities including environment management, application package management, flow run monitoring, and licensing governance. Provides a single endpoint at api.powerplatform.com for programmatic access to Power Platform resources across tenants and environments.
   version: 2022-03-01-preview
   contact:
@@ -212,6 +212,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BillingInstrument:
+      type: object
+      description: The billing instrument information linking to an Azure subscription.
+      properties:
+        id:
+          type: string
+          description: The identifier of the billing instrument.
+          example: abc123
+        resourceGroup:
+          type: string
+          description: The resource group within the Azure subscription.
+          example: example_value
+        subscriptionId:
+          type: string
+          format: uuid
+          description: The Azure subscription ID.
+          example: '500123'
     BillingPolicyCreateRequest:
       type: object
       description: Request body for creating a new billing policy.
@@ -238,57 +255,6 @@ components:
           example: Enabled
         billingInstrument:
           $ref: '#/components/schemas/BillingInstrument'
-    BillingPolicyUpdateRequest:
-      type: object
-      description: Request body for updating an existing billing policy.
-      properties:
-        name:
-          type: string
-          description: The updated display name.
-          example: Example Title
-        status:
-          type: string
-          description: The updated status.
-          enum:
-          - Enabled
-          - Disabled
-          example: Enabled
-        billingInstrument:
-          $ref: '#/components/schemas/BillingInstrument'
-    BillingPolicyListResponse:
-      type: object
-      description: Response containing a list of billing policies.
-      properties:
-        value:
-          type: array
-          description: Array of billing policy resources.
-          items:
-            $ref: '#/components/schemas/BillingPolicy'
-          example: []
-        '@odata.nextLink':
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to retrieve the next page of results.
-          example: https://www.example.com
-    BillingInstrument:
-      type: object
-      description: The billing instrument information linking to an Azure subscription.
-      properties:
-        id:
-          type: string
-          description: The identifier of the billing instrument.
-          example: abc123
-        resourceGroup:
-          type: string
-          description: The resource group within the Azure subscription.
-          example: example_value
-        subscriptionId:
-          type: string
-          format: uuid
-          description: The Azure subscription ID.
-          example: '500123'
     BillingPolicy:
       type: object
       description: A billing policy that defines the association between an Azure subscription and Power Platform environments for pay-as-you-go billing.
@@ -360,6 +326,40 @@ components:
           format: uuid
           description: The tenant ID of the principal.
           example: '500123'
+    BillingPolicyUpdateRequest:
+      type: object
+      description: Request body for updating an existing billing policy.
+      properties:
+        name:
+          type: string
+          description: The updated display name.
+          example: Example Title
+        status:
+          type: string
+          description: The updated status.
+          enum:
+          - Enabled
+          - Disabled
+          example: Enabled
+        billingInstrument:
+          $ref: '#/components/schemas/BillingInstrument'
+    BillingPolicyListResponse:
+      type: object
+      description: Response containing a list of billing policies.
+      properties:
+        value:
+          type: array
+          description: Array of billing policy resources.
+          items:
+            $ref: '#/components/schemas/BillingPolicy'
+          example: []
+        '@odata.nextLink':
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to retrieve the next page of results.
+          example: https://www.example.com
   securitySchemes:
     oauth2:
       type: oauth2

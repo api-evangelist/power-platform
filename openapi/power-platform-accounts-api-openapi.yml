@@ -1,0 +1,304 @@
+openapi: 3.2.0
+info:
+  title: PowerPlatform Accounts API
+  version: 2020-10-30-preview
+  description: // (missing-service-description) Add service description
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+servers:
+- url: https://management.azure.com
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Accounts
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.PowerPlatform/accounts:
+    get:
+      operationId: Accounts_ListBySubscription
+      tags:
+      - Accounts
+      description: Retrieve a list of accounts within a subscription.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountList'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        List accounts by subscription:
+          $ref: ./examples/listAccountsBySubscription.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+      summary: Accounts list by subscription
+      x-summary-source: derived
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/accounts:
+    get:
+      operationId: Accounts_ListByResourceGroup
+      tags:
+      - Accounts
+      description: Retrieve a list of accounts within a given resource group.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountList'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        List accounts by resource group:
+          $ref: ./examples/listAccountsByResourceGroup.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+      summary: Accounts list by resource group
+      x-summary-source: derived
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerPlatform/accounts/{accountName}
+  : get:
+      operationId: Accounts_Get
+      tags:
+      - Accounts
+      description: Get information about an account.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: accountName
+        in: path
+        description: Name of the account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Get account:
+          $ref: ./examples/getAccount.json
+      summary: Accounts get
+      x-summary-source: derived
+    put:
+      operationId: Accounts_CreateOrUpdate
+      tags:
+      - Accounts
+      description: Creates an account.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: accountName
+        in: path
+        description: Name of the account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource 'Account' update operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '201':
+          description: Resource 'Account' create operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Create or update account:
+          $ref: ./examples/createOrUpdateAccount.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+        description: Parameters supplied to create or update an account.
+        required: true
+      summary: Accounts create or update
+      x-summary-source: derived
+    patch:
+      operationId: Accounts_Update
+      tags:
+      - Accounts
+      description: Updates an account.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: accountName
+        in: path
+        description: Name of the account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Update account:
+          $ref: ./examples/updateAccount.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchAccount'
+        description: Parameters supplied to update an account.
+        required: true
+      summary: Accounts update
+      x-summary-source: derived
+    delete:
+      operationId: Accounts_Delete
+      tags:
+      - Accounts
+      description: Delete an account.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter
+      - name: accountName
+        in: path
+        description: Name of the account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse
+      x-ms-examples:
+        Delete account:
+          $ref: ./examples/deleteAccount.json
+      summary: Accounts delete
+      x-summary-source: derived
+components:
+  schemas:
+    PatchTrackedResource:
+      type: object
+      description: The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'
+      properties:
+        tags:
+          type: object
+          description: Resource tags.
+          additionalProperties:
+            type: string
+          x-ms-mutability:
+          - read
+          - update
+          - create
+        location:
+          type: string
+          description: The geo-location where the resource lives
+          x-ms-mutability:
+          - read
+          - create
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource
+    AccountList:
+      type: object
+      description: The response of the list accounts operation.
+      properties:
+        value:
+          type: array
+          description: The collection value.
+          items:
+            $ref: '#/components/schemas/Account'
+        nextLink:
+          type: string
+          description: The next page link.
+    Account:
+      type: object
+      description: Definition of the account.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AccountProperties'
+          description: The properties that define configuration for the account.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
+    AccountProperties:
+      type: object
+      description: The properties that define configuration for the account.
+      properties:
+        systemId:
+          type: string
+          description: The internally assigned unique identifier of the resource.
+          readOnly: true
+        description:
+          type: string
+          description: The description of the account.
+    PatchAccount:
+      type: object
+      description: Definition of the account.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AccountProperties'
+          description: The properties that define configuration for the account.
+          x-ms-client-flatten: true
+        systemData:
+          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
+          description: Metadata pertaining to creation and last modification of the resource.
+          readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/PatchTrackedResource'
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      flows:
+        implicit:
+          scopes:
+            user_impersonation: impersonate your user account
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+      description: Azure Active Directory OAuth2 Flow.
