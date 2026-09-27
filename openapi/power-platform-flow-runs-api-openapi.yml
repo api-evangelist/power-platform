@@ -159,23 +159,6 @@ components:
               type: string
               description: A human-readable description of the error.
           example: example_value
-    FlowRunListResponse:
-      type: object
-      description: Response containing a list of flow runs.
-      properties:
-        value:
-          type: array
-          description: Array of flow run records.
-          items:
-            $ref: '#/components/schemas/FlowRun'
-          example: []
-        '@odata.nextLink':
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to retrieve the next page of results.
-          example: https://www.example.com
     FlowRun:
       type: object
       description: A record of a Power Automate flow run execution.
@@ -195,6 +178,23 @@ components:
           - Microsoft.ProcessSimple/environments/flows/runs
         properties:
           $ref: '#/components/schemas/FlowRunProperties'
+    FlowRunListResponse:
+      type: object
+      description: Response containing a list of flow runs.
+      properties:
+        value:
+          type: array
+          description: Array of flow run records.
+          items:
+            $ref: '#/components/schemas/FlowRun'
+          example: []
+        '@odata.nextLink':
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to retrieve the next page of results.
+          example: https://www.example.com
   securitySchemes:
     oauth2:
       type: oauth2

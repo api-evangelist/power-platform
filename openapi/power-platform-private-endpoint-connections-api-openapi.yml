@@ -174,16 +174,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PrivateEndpointConnection:
-      type: object
-      description: A private endpoint connection
-      properties:
-        properties:
-          $ref: ../../../../../../common-types/resource-management/v3/privatelinks.json#/definitions/PrivateEndpointConnectionProperties
-          description: Resource properties.
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ProxyResource
     PrivateEndpointConnectionListResult:
       type: object
       description: A list of private endpoint connections
@@ -195,6 +185,16 @@ components:
             $ref: '#/components/schemas/PrivateEndpointConnection'
         nextLink:
           type: string
+    PrivateEndpointConnection:
+      type: object
+      description: A private endpoint connection
+      properties:
+        properties:
+          $ref: ../../../../../../common-types/resource-management/v3/privatelinks.json#/definitions/PrivateEndpointConnectionProperties
+          description: Resource properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ProxyResource
   securitySchemes:
     azure_auth:
       type: oauth2

@@ -246,18 +246,20 @@ components:
           - create
       allOf:
       - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource
-    AccountList:
+    PatchAccount:
       type: object
-      description: The response of the list accounts operation.
+      description: Definition of the account.
       properties:
-        value:
-          type: array
-          description: The collection value.
-          items:
-            $ref: '#/components/schemas/Account'
-        nextLink:
-          type: string
-          description: The next page link.
+        properties:
+          $ref: '#/components/schemas/AccountProperties'
+          description: The properties that define configuration for the account.
+          x-ms-client-flatten: true
+        systemData:
+          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
+          description: Metadata pertaining to creation and last modification of the resource.
+          readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/PatchTrackedResource'
     Account:
       type: object
       description: Definition of the account.
@@ -279,20 +281,18 @@ components:
         description:
           type: string
           description: The description of the account.
-    PatchAccount:
+    AccountList:
       type: object
-      description: Definition of the account.
+      description: The response of the list accounts operation.
       properties:
-        properties:
-          $ref: '#/components/schemas/AccountProperties'
-          description: The properties that define configuration for the account.
-          x-ms-client-flatten: true
-        systemData:
-          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
-          description: Metadata pertaining to creation and last modification of the resource.
-          readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/PatchTrackedResource'
+        value:
+          type: array
+          description: The collection value.
+          items:
+            $ref: '#/components/schemas/Account'
+        nextLink:
+          type: string
+          description: The next page link.
   securitySchemes:
     azure_auth:
       type: oauth2

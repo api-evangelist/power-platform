@@ -137,174 +137,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CapacityInfo:
-      type: object
-      description: Capacity consumption information for an environment.
-      properties:
-        capacityType:
-          type: string
-          description: The type of capacity.
-          enum:
-          - Database
-          - File
-          - Log
-          example: Database
-        actualConsumption:
-          type: number
-          description: The actual capacity consumption.
-          example: 42.5
-        ratedConsumption:
-          type: number
-          description: The rated capacity consumption.
-          example: 42.5
-        capacityUnit:
-          type: string
-          description: The unit of measurement for capacity.
-          examples:
-          - MB
-          - GB
-        updatedOn:
-          type: string
-          format: date-time
-          description: The timestamp when the capacity data was last updated.
-          example: '2026-01-15T10:30:00Z'
-    Environment:
-      type: object
-      description: A Power Platform environment resource. Environments are containers that store apps, flows, data, and other resources.
-      properties:
-        id:
-          type: string
-          description: The fully qualified resource ID of the environment.
-          examples:
-          - /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee
-        type:
-          type: string
-          description: The resource type.
-          examples:
-          - Microsoft.BusinessAppPlatform/scopes/environments
-        location:
-          type: string
-          description: The geographic location of the environment.
-          examples:
-          - unitedstates
-          - europe
-          - asia
-        name:
-          type: string
-          format: uuid
-          description: The environment identifier (GUID).
-          example: Example Title
-        properties:
-          $ref: '#/components/schemas/EnvironmentProperties'
-    LinkedEnvironmentMetadata:
-      type:
-      - object
-      - 'null'
-      description: Metadata about the linked Dataverse instance.
-      properties:
-        resourceId:
-          type: string
-          format: uuid
-          description: The resource identifier of the Dataverse instance.
-          example: '500123'
-        friendlyName:
-          type: string
-          description: The friendly name of the Dataverse instance.
-          example: example_value
-        uniqueName:
-          type: string
-          description: The unique name identifier for the Dataverse organization.
-          example: example_value
-        domainName:
-          type: string
-          description: The domain name prefix for the Dataverse instance.
-          example: example_value
-        version:
-          type: string
-          description: The Dataverse platform version.
-          examples:
-          - 9.2.21013.00152
-        instanceUrl:
-          type: string
-          format: uri
-          description: The URL of the Dataverse instance.
-          example: https://www.example.com
-        instanceApiUrl:
-          type: string
-          format: uri
-          description: The API URL for the Dataverse instance.
-          example: https://www.example.com
-        baseLanguage:
-          type: integer
-          description: The LCID of the base language for the Dataverse instance.
-          examples:
-          - 1033
-        instanceState:
-          type: string
-          description: The state of the Dataverse instance.
-          enum:
-          - Ready
-          - NotReady
-          - Disabled
-          example: Ready
-        createdTime:
-          type: string
-          format: date-time
-          description: The timestamp when the Dataverse instance was created.
-          example: '2026-01-15T10:30:00Z'
-        backgroundOperationsState:
-          type: string
-          description: Whether background operations are enabled.
-          enum:
-          - Enabled
-          - Disabled
-          example: Enabled
-        scaleGroup:
-          type: string
-          description: The scale group identifier.
-          example: example_value
-        platformSku:
-          type: string
-          description: The platform SKU of the Dataverse instance.
-          enum:
-          - Standard
-          - Premium
-          example: Standard
-    AddonInfo:
-      type: object
-      description: Add-on allocation information for an environment.
-      properties:
-        addonType:
-          type: string
-          description: The type of add-on.
-          enum:
-          - AppPass
-          - PerFlowPlan
-          - PortalViews
-          - PortalLogins
-          - AI
-          - AppPassForTeams
-          - PAUnattendedRPA
-          example: AppPass
-        allocated:
-          type: number
-          description: The number of allocated add-on units.
-          example: 42.5
-        addonUnit:
-          type: string
-          description: The unit of measurement for the add-on.
-          examples:
-          - Unit
-    EnvironmentListResponse:
-      type: object
-      description: Response containing a list of Power Platform environments.
-      properties:
-        value:
-          type: array
-          description: Array of environment resources.
-          items:
-            $ref: '#/components/schemas/Environment'
-          example: []
     Principal:
       type: object
       description: Represents a principal (user or service principal) that performed an action.
@@ -513,6 +345,174 @@ components:
               - Customer
               description: Whether the encryption key is managed by Microsoft or by the customer.
           example: example_value
+    EnvironmentListResponse:
+      type: object
+      description: Response containing a list of Power Platform environments.
+      properties:
+        value:
+          type: array
+          description: Array of environment resources.
+          items:
+            $ref: '#/components/schemas/Environment'
+          example: []
+    Environment:
+      type: object
+      description: A Power Platform environment resource. Environments are containers that store apps, flows, data, and other resources.
+      properties:
+        id:
+          type: string
+          description: The fully qualified resource ID of the environment.
+          examples:
+          - /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee
+        type:
+          type: string
+          description: The resource type.
+          examples:
+          - Microsoft.BusinessAppPlatform/scopes/environments
+        location:
+          type: string
+          description: The geographic location of the environment.
+          examples:
+          - unitedstates
+          - europe
+          - asia
+        name:
+          type: string
+          format: uuid
+          description: The environment identifier (GUID).
+          example: Example Title
+        properties:
+          $ref: '#/components/schemas/EnvironmentProperties'
+    AddonInfo:
+      type: object
+      description: Add-on allocation information for an environment.
+      properties:
+        addonType:
+          type: string
+          description: The type of add-on.
+          enum:
+          - AppPass
+          - PerFlowPlan
+          - PortalViews
+          - PortalLogins
+          - AI
+          - AppPassForTeams
+          - PAUnattendedRPA
+          example: AppPass
+        allocated:
+          type: number
+          description: The number of allocated add-on units.
+          example: 42.5
+        addonUnit:
+          type: string
+          description: The unit of measurement for the add-on.
+          examples:
+          - Unit
+    LinkedEnvironmentMetadata:
+      type:
+      - object
+      - 'null'
+      description: Metadata about the linked Dataverse instance.
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+          description: The resource identifier of the Dataverse instance.
+          example: '500123'
+        friendlyName:
+          type: string
+          description: The friendly name of the Dataverse instance.
+          example: example_value
+        uniqueName:
+          type: string
+          description: The unique name identifier for the Dataverse organization.
+          example: example_value
+        domainName:
+          type: string
+          description: The domain name prefix for the Dataverse instance.
+          example: example_value
+        version:
+          type: string
+          description: The Dataverse platform version.
+          examples:
+          - 9.2.21013.00152
+        instanceUrl:
+          type: string
+          format: uri
+          description: The URL of the Dataverse instance.
+          example: https://www.example.com
+        instanceApiUrl:
+          type: string
+          format: uri
+          description: The API URL for the Dataverse instance.
+          example: https://www.example.com
+        baseLanguage:
+          type: integer
+          description: The LCID of the base language for the Dataverse instance.
+          examples:
+          - 1033
+        instanceState:
+          type: string
+          description: The state of the Dataverse instance.
+          enum:
+          - Ready
+          - NotReady
+          - Disabled
+          example: Ready
+        createdTime:
+          type: string
+          format: date-time
+          description: The timestamp when the Dataverse instance was created.
+          example: '2026-01-15T10:30:00Z'
+        backgroundOperationsState:
+          type: string
+          description: Whether background operations are enabled.
+          enum:
+          - Enabled
+          - Disabled
+          example: Enabled
+        scaleGroup:
+          type: string
+          description: The scale group identifier.
+          example: example_value
+        platformSku:
+          type: string
+          description: The platform SKU of the Dataverse instance.
+          enum:
+          - Standard
+          - Premium
+          example: Standard
+    CapacityInfo:
+      type: object
+      description: Capacity consumption information for an environment.
+      properties:
+        capacityType:
+          type: string
+          description: The type of capacity.
+          enum:
+          - Database
+          - File
+          - Log
+          example: Database
+        actualConsumption:
+          type: number
+          description: The actual capacity consumption.
+          example: 42.5
+        ratedConsumption:
+          type: number
+          description: The rated capacity consumption.
+          example: 42.5
+        capacityUnit:
+          type: string
+          description: The unit of measurement for capacity.
+          examples:
+          - MB
+          - GB
+        updatedOn:
+          type: string
+          format: date-time
+          description: The timestamp when the capacity data was last updated.
+          example: '2026-01-15T10:30:00Z'
   securitySchemes:
     oauth2:
       type: oauth2
