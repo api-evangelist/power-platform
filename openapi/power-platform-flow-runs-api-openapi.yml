@@ -82,6 +82,56 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    FlowRunListResponse:
+      type: object
+      description: Response containing a list of flow runs.
+      properties:
+        value:
+          type: array
+          description: Array of flow run records.
+          items:
+            $ref: '#/components/schemas/FlowRun'
+          example: []
+        '@odata.nextLink':
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to retrieve the next page of results.
+          example: https://www.example.com
+    ErrorResponse:
+      type: object
+      description: The standard error response object.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code for the failure type (e.g., BadRequest, NotFound).
+            message:
+              type: string
+              description: A human-readable description of the error.
+          example: example_value
+    FlowRun:
+      type: object
+      description: A record of a Power Automate flow run execution.
+      properties:
+        name:
+          type: string
+          description: The unique identifier of the flow run.
+          example: Example Title
+        id:
+          type: string
+          description: The fully qualified resource ID of the flow run.
+          example: abc123
+        type:
+          type: string
+          description: The resource type.
+          examples:
+          - Microsoft.ProcessSimple/environments/flows/runs
+        properties:
+          $ref: '#/components/schemas/FlowRunProperties'
     FlowRunProperties:
       type: object
       description: Properties of a flow run.
@@ -145,56 +195,6 @@ components:
               - Failed
               - Skipped
           example: example_value
-    ErrorResponse:
-      type: object
-      description: The standard error response object.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Error code for the failure type (e.g., BadRequest, NotFound).
-            message:
-              type: string
-              description: A human-readable description of the error.
-          example: example_value
-    FlowRun:
-      type: object
-      description: A record of a Power Automate flow run execution.
-      properties:
-        name:
-          type: string
-          description: The unique identifier of the flow run.
-          example: Example Title
-        id:
-          type: string
-          description: The fully qualified resource ID of the flow run.
-          example: abc123
-        type:
-          type: string
-          description: The resource type.
-          examples:
-          - Microsoft.ProcessSimple/environments/flows/runs
-        properties:
-          $ref: '#/components/schemas/FlowRunProperties'
-    FlowRunListResponse:
-      type: object
-      description: Response containing a list of flow runs.
-      properties:
-        value:
-          type: array
-          description: Array of flow run records.
-          items:
-            $ref: '#/components/schemas/FlowRun'
-          example: []
-        '@odata.nextLink':
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to retrieve the next page of results.
-          example: https://www.example.com
   securitySchemes:
     oauth2:
       type: oauth2

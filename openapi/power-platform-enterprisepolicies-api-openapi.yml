@@ -225,199 +225,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    EnterprisePolicyIdentity:
-      type: object
-      description: The identity of the EnterprisePolicy.
-      properties:
-        systemAssignedIdentityPrincipalId:
-          type: string
-          description: The principal id of EnterprisePolicy identity.
-          readOnly: true
-        tenantId:
-          type: string
-          description: The tenant id associated with the EnterprisePolicy.
-          readOnly: true
-        type:
-          $ref: '#/components/schemas/ResourceIdentityType'
-          description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
-    EnterprisePolicyList:
-      type: object
-      description: The response of the list EnterprisePolicy operation.
-      properties:
-        value:
-          type: array
-          description: The collection value.
-          items:
-            $ref: '#/components/schemas/EnterprisePolicy'
-        nextLink:
-          type: string
-          description: The next page link.
-    State:
-      type: string
-      description: The state of onboarding, which only appears in the response.
-      enum:
-      - Enabled
-      - Disabled
-      - NotConfigured
-      x-ms-enum:
-        name: State
-        modelAsString: true
-        values:
-        - name: Enabled
-          value: Enabled
-          description: Enabled
-        - name: Disabled
-          value: Disabled
-          description: Disabled
-        - name: NotConfigured
-          value: NotConfigured
-          description: NotConfigured
-    ResourceIdentityType:
-      type: string
-      description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
-      enum:
-      - SystemAssigned
-      - None
-      x-ms-enum:
-        name: ResourceIdentityType
-        modelAsString: false
-        values:
-        - name: SystemAssigned
-          value: SystemAssigned
-          description: SystemAssigned
-        - name: None
-          value: None
-          description: None
-    PatchEnterprisePolicy:
-      type: object
-      description: Definition of the EnterprisePolicy.
-      properties:
-        identity:
-          $ref: '#/components/schemas/EnterprisePolicyIdentity'
-          description: The identity of the EnterprisePolicy.
-        kind:
-          $ref: '#/components/schemas/EnterprisePolicyKind'
-          description: The kind (type) of Enterprise Policy.
-        properties:
-          $ref: '#/components/schemas/Properties'
-          description: The properties that define configuration for the enterprise policy
-          x-ms-client-flatten: true
-        systemData:
-          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
-          description: Metadata pertaining to creation and last modification of the resource.
-          readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/PatchTrackedResource'
-    Properties:
-      type: object
-      description: The properties that define configuration for the enterprise policy.
-      properties:
-        systemId:
-          type: string
-          description: The internally assigned unique identifier of the resource.
-          readOnly: true
-        lockbox:
-          $ref: '#/components/schemas/PropertiesLockbox'
-          description: Settings concerning lockbox.
-        encryption:
-          $ref: '#/components/schemas/PropertiesEncryption'
-          description: The encryption settings for a configuration store.
-        networkInjection:
-          $ref: '#/components/schemas/PropertiesNetworkInjection'
-          description: Settings concerning network injection.
-        healthStatus:
-          $ref: '#/components/schemas/HealthStatus'
-          description: The health status of the resource.
-    EnterprisePolicy:
-      type: object
-      description: Definition of the EnterprisePolicy.
-      properties:
-        properties:
-          $ref: '#/components/schemas/Properties'
-          description: The properties that define configuration for the enterprise policy
-          x-ms-client-flatten: true
-        identity:
-          $ref: '#/components/schemas/EnterprisePolicyIdentity'
-          description: The identity of the EnterprisePolicy.
-        kind:
-          $ref: '#/components/schemas/EnterprisePolicyKind'
-          description: The kind (type) of Enterprise Policy.
-      required:
-      - kind
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
-    PropertiesLockbox:
-      type: object
-      description: Settings concerning lockbox.
-      properties:
-        state:
-          $ref: '#/components/schemas/State'
-          description: lockbox configuration
-    VirtualNetworkProperties:
-      type: object
-      description: Settings concerning the virtual network.
-      properties:
-        id:
-          type: string
-          description: Uri of the virtual network.
-        subnet:
-          $ref: '#/components/schemas/SubnetProperties'
-          description: Properties of a subnet.
-    EnterprisePolicyKind:
-      type: string
-      description: The Kind (type) of Enterprise Policy
-      enum:
-      - Lockbox
-      - PrivateEndpoint
-      - Encryption
-      - NetworkInjection
-      - Identity
-      x-ms-enum:
-        name: EnterprisePolicyKind
-        modelAsString: true
-        values:
-        - name: Lockbox
-          value: Lockbox
-          description: Lockbox
-        - name: PrivateEndpoint
-          value: PrivateEndpoint
-          description: PrivateEndpoint
-        - name: Encryption
-          value: Encryption
-          description: Encryption
-        - name: NetworkInjection
-          value: NetworkInjection
-          description: NetworkInjection
-        - name: Identity
-          value: Identity
-          description: Identity
-    keyProperties:
-      type: object
-      description: Url and version of the KeyVault Secret
-      properties:
-        name:
-          type: string
-          description: The identifier of the key vault key used to encrypt data.
-        version:
-          type: string
-          description: The version of the identity which will be used to access key vault.
-    SubnetProperties:
-      type: object
-      description: Properties of a subnet.
-      properties:
-        name:
-          type: string
-          description: Subnet name.
-    PropertiesEncryption:
-      type: object
-      description: The encryption settings for a configuration store.
-      properties:
-        keyVault:
-          $ref: '#/components/schemas/KeyVaultProperties'
-          description: Key vault properties.
-        state:
-          $ref: '#/components/schemas/State'
-          description: The state of onboarding, which only appears in the response.
     HealthStatus:
       type: string
       description: The health status of the resource.
@@ -463,6 +270,24 @@ components:
           - create
       allOf:
       - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource
+    EnterprisePolicy:
+      type: object
+      description: Definition of the EnterprisePolicy.
+      properties:
+        properties:
+          $ref: '#/components/schemas/Properties'
+          description: The properties that define configuration for the enterprise policy
+          x-ms-client-flatten: true
+        identity:
+          $ref: '#/components/schemas/EnterprisePolicyIdentity'
+          description: The identity of the EnterprisePolicy.
+        kind:
+          $ref: '#/components/schemas/EnterprisePolicyKind'
+          description: The kind (type) of Enterprise Policy.
+      required:
+      - kind
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
     PropertiesNetworkInjection:
       type: object
       description: Settings concerning network injection.
@@ -472,6 +297,145 @@ components:
           description: Network injection configuration
           items:
             $ref: '#/components/schemas/VirtualNetworkProperties'
+    EnterprisePolicyList:
+      type: object
+      description: The response of the list EnterprisePolicy operation.
+      properties:
+        value:
+          type: array
+          description: The collection value.
+          items:
+            $ref: '#/components/schemas/EnterprisePolicy'
+        nextLink:
+          type: string
+          description: The next page link.
+    State:
+      type: string
+      description: The state of onboarding, which only appears in the response.
+      enum:
+      - Enabled
+      - Disabled
+      - NotConfigured
+      x-ms-enum:
+        name: State
+        modelAsString: true
+        values:
+        - name: Enabled
+          value: Enabled
+          description: Enabled
+        - name: Disabled
+          value: Disabled
+          description: Disabled
+        - name: NotConfigured
+          value: NotConfigured
+          description: NotConfigured
+    PatchEnterprisePolicy:
+      type: object
+      description: Definition of the EnterprisePolicy.
+      properties:
+        identity:
+          $ref: '#/components/schemas/EnterprisePolicyIdentity'
+          description: The identity of the EnterprisePolicy.
+        kind:
+          $ref: '#/components/schemas/EnterprisePolicyKind'
+          description: The kind (type) of Enterprise Policy.
+        properties:
+          $ref: '#/components/schemas/Properties'
+          description: The properties that define configuration for the enterprise policy
+          x-ms-client-flatten: true
+        systemData:
+          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
+          description: Metadata pertaining to creation and last modification of the resource.
+          readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/PatchTrackedResource'
+    SubnetProperties:
+      type: object
+      description: Properties of a subnet.
+      properties:
+        name:
+          type: string
+          description: Subnet name.
+    keyProperties:
+      type: object
+      description: Url and version of the KeyVault Secret
+      properties:
+        name:
+          type: string
+          description: The identifier of the key vault key used to encrypt data.
+        version:
+          type: string
+          description: The version of the identity which will be used to access key vault.
+    PropertiesLockbox:
+      type: object
+      description: Settings concerning lockbox.
+      properties:
+        state:
+          $ref: '#/components/schemas/State'
+          description: lockbox configuration
+    EnterprisePolicyKind:
+      type: string
+      description: The Kind (type) of Enterprise Policy
+      enum:
+      - Lockbox
+      - PrivateEndpoint
+      - Encryption
+      - NetworkInjection
+      - Identity
+      x-ms-enum:
+        name: EnterprisePolicyKind
+        modelAsString: true
+        values:
+        - name: Lockbox
+          value: Lockbox
+          description: Lockbox
+        - name: PrivateEndpoint
+          value: PrivateEndpoint
+          description: PrivateEndpoint
+        - name: Encryption
+          value: Encryption
+          description: Encryption
+        - name: NetworkInjection
+          value: NetworkInjection
+          description: NetworkInjection
+        - name: Identity
+          value: Identity
+          description: Identity
+    VirtualNetworkProperties:
+      type: object
+      description: Settings concerning the virtual network.
+      properties:
+        id:
+          type: string
+          description: Uri of the virtual network.
+        subnet:
+          $ref: '#/components/schemas/SubnetProperties'
+          description: Properties of a subnet.
+    PropertiesEncryption:
+      type: object
+      description: The encryption settings for a configuration store.
+      properties:
+        keyVault:
+          $ref: '#/components/schemas/KeyVaultProperties'
+          description: Key vault properties.
+        state:
+          $ref: '#/components/schemas/State'
+          description: The state of onboarding, which only appears in the response.
+    EnterprisePolicyIdentity:
+      type: object
+      description: The identity of the EnterprisePolicy.
+      properties:
+        systemAssignedIdentityPrincipalId:
+          type: string
+          description: The principal id of EnterprisePolicy identity.
+          readOnly: true
+        tenantId:
+          type: string
+          description: The tenant id associated with the EnterprisePolicy.
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/ResourceIdentityType'
+          description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
     KeyVaultProperties:
       type: object
       description: Settings concerning key vault encryption for a configuration store.
@@ -482,6 +446,42 @@ components:
         key:
           $ref: '#/components/schemas/keyProperties'
           description: Identity of the secret that includes name and version.
+    ResourceIdentityType:
+      type: string
+      description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
+      enum:
+      - SystemAssigned
+      - None
+      x-ms-enum:
+        name: ResourceIdentityType
+        modelAsString: false
+        values:
+        - name: SystemAssigned
+          value: SystemAssigned
+          description: SystemAssigned
+        - name: None
+          value: None
+          description: None
+    Properties:
+      type: object
+      description: The properties that define configuration for the enterprise policy.
+      properties:
+        systemId:
+          type: string
+          description: The internally assigned unique identifier of the resource.
+          readOnly: true
+        lockbox:
+          $ref: '#/components/schemas/PropertiesLockbox'
+          description: Settings concerning lockbox.
+        encryption:
+          $ref: '#/components/schemas/PropertiesEncryption'
+          description: The encryption settings for a configuration store.
+        networkInjection:
+          $ref: '#/components/schemas/PropertiesNetworkInjection'
+          description: Settings concerning network injection.
+        healthStatus:
+          $ref: '#/components/schemas/HealthStatus'
+          description: The health status of the resource.
   securitySchemes:
     azure_auth:
       type: oauth2

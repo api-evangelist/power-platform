@@ -91,16 +91,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PrivateLinkResource:
-      type: object
-      description: A private link resource
-      properties:
-        properties:
-          $ref: ../../../../../../common-types/resource-management/v3/privatelinks.json#/definitions/PrivateLinkResourceProperties
-          description: Resource properties.
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ProxyResource
     PrivateLinkResourceListResult:
       type: object
       description: The response of a PrivateLinkResource list operation.
@@ -116,6 +106,16 @@ components:
           description: The link to the next page of items
       required:
       - value
+    PrivateLinkResource:
+      type: object
+      description: A private link resource
+      properties:
+        properties:
+          $ref: ../../../../../../common-types/resource-management/v3/privatelinks.json#/definitions/PrivateLinkResourceProperties
+          description: Resource properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/ProxyResource
   securitySchemes:
     azure_auth:
       type: oauth2
