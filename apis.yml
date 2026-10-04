@@ -549,8 +549,6 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview
   baseURL: https://[org].api.crm.dynamics.com/api/data/v9.2
   tags:
-  - PrivateEndpointConnections
-  tags_raw:
   - Private Endpoint Connections
   properties:
   - type: OpenAPI

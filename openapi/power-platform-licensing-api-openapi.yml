@@ -212,32 +212,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BillingPolicyCreateRequest:
+    BillingInstrument:
       type: object
-      description: Request body for creating a new billing policy.
-      required:
-      - name
-      - location
-      - billingInstrument
+      description: The billing instrument information linking to an Azure subscription.
       properties:
-        name:
+        id:
           type: string
-          description: The display name of the billing policy.
-          example: Example Title
-        location:
+          description: The identifier of the billing instrument.
+          example: abc123
+        resourceGroup:
           type: string
-          description: The geographic location of the billing policy.
+          description: The resource group within the Azure subscription.
           example: example_value
-        status:
+        subscriptionId:
           type: string
-          description: The initial status of the billing policy.
-          enum:
-          - Enabled
-          - Disabled
-          default: Enabled
-          example: Enabled
-        billingInstrument:
-          $ref: '#/components/schemas/BillingInstrument'
+          format: uuid
+          description: The Azure subscription ID.
+          example: '500123'
     BillingPolicyUpdateRequest:
       type: object
       description: Request body for updating an existing billing policy.
@@ -326,23 +317,32 @@ components:
           format: uuid
           description: The tenant ID of the principal.
           example: '500123'
-    BillingInstrument:
+    BillingPolicyCreateRequest:
       type: object
-      description: The billing instrument information linking to an Azure subscription.
+      description: Request body for creating a new billing policy.
+      required:
+      - name
+      - location
+      - billingInstrument
       properties:
-        id:
+        name:
           type: string
-          description: The identifier of the billing instrument.
-          example: abc123
-        resourceGroup:
+          description: The display name of the billing policy.
+          example: Example Title
+        location:
           type: string
-          description: The resource group within the Azure subscription.
+          description: The geographic location of the billing policy.
           example: example_value
-        subscriptionId:
+        status:
           type: string
-          format: uuid
-          description: The Azure subscription ID.
-          example: '500123'
+          description: The initial status of the billing policy.
+          enum:
+          - Enabled
+          - Disabled
+          default: Enabled
+          example: Enabled
+        billingInstrument:
+          $ref: '#/components/schemas/BillingInstrument'
     BillingPolicyListResponse:
       type: object
       description: Response containing a list of billing policies.

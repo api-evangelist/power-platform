@@ -225,6 +225,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PatchAccount:
+      type: object
+      description: Definition of the account.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AccountProperties'
+          description: The properties that define configuration for the account.
+          x-ms-client-flatten: true
+        systemData:
+          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
+          description: Metadata pertaining to creation and last modification of the resource.
+          readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/PatchTrackedResource'
+    AccountProperties:
+      type: object
+      description: The properties that define configuration for the account.
+      properties:
+        systemId:
+          type: string
+          description: The internally assigned unique identifier of the resource.
+          readOnly: true
+        description:
+          type: string
+          description: The description of the account.
     PatchTrackedResource:
       type: object
       description: The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'
@@ -246,6 +271,16 @@ components:
           - create
       allOf:
       - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource
+    Account:
+      type: object
+      description: Definition of the account.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AccountProperties'
+          description: The properties that define configuration for the account.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
     AccountList:
       type: object
       description: The response of the list accounts operation.
@@ -258,41 +293,6 @@ components:
         nextLink:
           type: string
           description: The next page link.
-    Account:
-      type: object
-      description: Definition of the account.
-      properties:
-        properties:
-          $ref: '#/components/schemas/AccountProperties'
-          description: The properties that define configuration for the account.
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
-    AccountProperties:
-      type: object
-      description: The properties that define configuration for the account.
-      properties:
-        systemId:
-          type: string
-          description: The internally assigned unique identifier of the resource.
-          readOnly: true
-        description:
-          type: string
-          description: The description of the account.
-    PatchAccount:
-      type: object
-      description: Definition of the account.
-      properties:
-        properties:
-          $ref: '#/components/schemas/AccountProperties'
-          description: The properties that define configuration for the account.
-          x-ms-client-flatten: true
-        systemData:
-          $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/systemData
-          description: Metadata pertaining to creation and last modification of the resource.
-          readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/PatchTrackedResource'
   securitySchemes:
     azure_auth:
       type: oauth2

@@ -279,23 +279,6 @@ components:
               type: string
               description: A human-readable description of the error.
           example: example_value
-    ApplicationPackageListResponse:
-      type: object
-      description: Response containing a list of application packages.
-      properties:
-        value:
-          type: array
-          description: Array of application package resources.
-          items:
-            $ref: '#/components/schemas/ApplicationPackage'
-          example: []
-        '@odata.nextLink':
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to retrieve the next page of results.
-          example: https://www.example.com
     OperationStatus:
       type: object
       description: Status of a long-running operation such as an application package installation.
@@ -336,6 +319,23 @@ components:
             message:
               type: string
           example: example_value
+    ApplicationPackageListResponse:
+      type: object
+      description: Response containing a list of application packages.
+      properties:
+        value:
+          type: array
+          description: Array of application package resources.
+          items:
+            $ref: '#/components/schemas/ApplicationPackage'
+          example: []
+        '@odata.nextLink':
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to retrieve the next page of results.
+          example: https://www.example.com
   securitySchemes:
     oauth2:
       type: oauth2
