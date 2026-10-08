@@ -556,6 +556,12 @@ apis:
   - type: DataModel
     url: data-model/power-platform-data-model.yml
 common:
+- type: Plans
+  url: plans/power-platform-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/power-platform-rate-limits.yml
+- type: FinOps
+  url: finops/power-platform-finops.yml
 - type: AgentSkill
   url: skills/power-platform-enterprise-policy-governance.md
 - type: Portal
