@@ -6,8 +6,17 @@ artifacts:
   agentic-access/power-platform-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  asyncapi/power-platform-webhooks.yml:
+    method: searched
+    evidence: declared in the artifact
   authentication/power-platform-authentication.yml:
     method: derived
+    evidence: declared in the artifact
+  changelog/power-platform-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/power-platform-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/power-platform-api.opencollection.json:
     method: unknown
@@ -39,6 +48,21 @@ artifacts:
   collections/power-platform-licensing-api.postman_collection.json:
     method: derived
     evidence: openapi/power-platform-licensing-api
+  components/power-platform-components.yml:
+    method: searched
+    evidence: declared in the artifact
+  conformance/power-platform-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conventions/power-platform-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/power-platform-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/power-platform-problem-types.yml:
+    method: searched
+    evidence: declared in the artifact
   examples/power-platform-addon-info-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -99,6 +123,9 @@ artifacts:
   finops/power-platform-finops.yml:
     method: generated
     evidence: declared in the artifact
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/power-platform-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -270,55 +297,7 @@ artifacts:
   json-structure/power-platform-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -405,10 +384,147 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/power-platform-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/power-platform-llms.txt:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  mcp/power-platform-tool-crosswalk.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/_original/power-platform-api-openapi.json:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/power-platform-enterprise-policies-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/power-platform-accounts-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/power-platform-applications-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/power-platform-enterprisepolicies-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/power-platform-environments-api-openapi.yml:
@@ -420,6 +536,30 @@ artifacts:
   openapi/power-platform-licensing-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/power-platform-metadata-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/power-platform-operations-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/power-platform-private-endpoint-connections-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/power-platform-privatelinkresources-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/power-platform-records-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  overlays/power-platform-metadata-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/power-platform-records-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/power-platform-packages.yml:
+    method: searched
+    evidence: declared in the artifact
   plans/power-platform-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
@@ -444,18 +584,42 @@ artifacts:
   rules/power-platform-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  sandbox/power-platform-sandbox.yml:
+    method: searched
+    evidence: declared in the artifact
   scopes/power-platform-scopes.yml:
     method: derived
     evidence: declared in the artifact
   security/power-platform-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
+  security/power-platform-trust-center.yml:
+    method: searched
+    evidence: declared in the artifact
   security/power-platform-vulnerability-disclosure.yml:
     method: searched
+    evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/power-platform-dataverse-record-operations.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/power-platform-dataverse-schema-discovery.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/power-platform-enterprise-policy-governance.md:
+    method: generated
     evidence: declared in the artifact
   vocabulary/power-platform-vocabulary.yaml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/power-platform-vocabulary.yml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/power-platform-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/power-platform-well-known.yml:
     method: unknown
     evidence: no authorship recorded
