@@ -241,44 +241,30 @@ components:
         - name: None
           value: None
           description: None
-    VirtualNetworkProperties:
-      type: object
-      description: Settings concerning the virtual network.
-      properties:
-        id:
-          type: string
-          description: Uri of the virtual network.
-        subnet:
-          $ref: '#/components/schemas/SubnetProperties'
-          description: Properties of a subnet.
-    EnterprisePolicyKind:
+    HealthStatus:
       type: string
-      description: The Kind (type) of Enterprise Policy
+      description: The health status of the resource.
       enum:
-      - Lockbox
-      - PrivateEndpoint
-      - Encryption
-      - NetworkInjection
-      - Identity
+      - Undetermined
+      - Healthy
+      - Warning
+      - Unhealthy
       x-ms-enum:
-        name: EnterprisePolicyKind
+        name: HealthStatus
         modelAsString: true
         values:
-        - name: Lockbox
-          value: Lockbox
-          description: Lockbox
-        - name: PrivateEndpoint
-          value: PrivateEndpoint
-          description: PrivateEndpoint
-        - name: Encryption
-          value: Encryption
-          description: Encryption
-        - name: NetworkInjection
-          value: NetworkInjection
-          description: NetworkInjection
-        - name: Identity
-          value: Identity
-          description: Identity
+        - name: Undetermined
+          value: Undetermined
+          description: Undetermined
+        - name: Healthy
+          value: Healthy
+          description: Healthy
+        - name: Warning
+          value: Warning
+          description: Warning
+        - name: Unhealthy
+          value: Unhealthy
+          description: Unhealthy
     keyProperties:
       type: object
       description: Url and version of the KeyVault Secret
@@ -289,6 +275,54 @@ components:
         version:
           type: string
           description: The version of the identity which will be used to access key vault.
+    KeyVaultProperties:
+      type: object
+      description: Settings concerning key vault encryption for a configuration store.
+      properties:
+        id:
+          type: string
+          description: Uri of KeyVault
+        key:
+          $ref: '#/components/schemas/keyProperties'
+          description: Identity of the secret that includes name and version.
+    PropertiesLockbox:
+      type: object
+      description: Settings concerning lockbox.
+      properties:
+        state:
+          $ref: '#/components/schemas/State'
+          description: lockbox configuration
+    EnterprisePolicyList:
+      type: object
+      description: The response of the list EnterprisePolicy operation.
+      properties:
+        value:
+          type: array
+          description: The collection value.
+          items:
+            $ref: '#/components/schemas/EnterprisePolicy'
+        nextLink:
+          type: string
+          description: The next page link.
+    VirtualNetworkProperties:
+      type: object
+      description: Settings concerning the virtual network.
+      properties:
+        id:
+          type: string
+          description: Uri of the virtual network.
+        subnet:
+          $ref: '#/components/schemas/SubnetProperties'
+          description: Properties of a subnet.
+    PropertiesNetworkInjection:
+      type: object
+      description: Settings concerning network injection.
+      properties:
+        virtualNetworks:
+          type: array
+          description: Network injection configuration
+          items:
+            $ref: '#/components/schemas/VirtualNetworkProperties'
     Properties:
       type: object
       description: The properties that define configuration for the enterprise policy.
@@ -309,6 +343,48 @@ components:
         healthStatus:
           $ref: '#/components/schemas/HealthStatus'
           description: The health status of the resource.
+    State:
+      type: string
+      description: The state of onboarding, which only appears in the response.
+      enum:
+      - Enabled
+      - Disabled
+      - NotConfigured
+      x-ms-enum:
+        name: State
+        modelAsString: true
+        values:
+        - name: Enabled
+          value: Enabled
+          description: Enabled
+        - name: Disabled
+          value: Disabled
+          description: Disabled
+        - name: NotConfigured
+          value: NotConfigured
+          description: NotConfigured
+    SubnetProperties:
+      type: object
+      description: Properties of a subnet.
+      properties:
+        name:
+          type: string
+          description: Subnet name.
+    EnterprisePolicyIdentity:
+      type: object
+      description: The identity of the EnterprisePolicy.
+      properties:
+        systemAssignedIdentityPrincipalId:
+          type: string
+          description: The principal id of EnterprisePolicy identity.
+          readOnly: true
+        tenantId:
+          type: string
+          description: The tenant id associated with the EnterprisePolicy.
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/ResourceIdentityType'
+          description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
     PatchEnterprisePolicy:
       type: object
       description: Definition of the EnterprisePolicy.
@@ -339,40 +415,24 @@ components:
         state:
           $ref: '#/components/schemas/State'
           description: The state of onboarding, which only appears in the response.
-    PropertiesLockbox:
+    EnterprisePolicy:
       type: object
-      description: Settings concerning lockbox.
+      description: Definition of the EnterprisePolicy.
       properties:
-        state:
-          $ref: '#/components/schemas/State'
-          description: lockbox configuration
-    State:
-      type: string
-      description: The state of onboarding, which only appears in the response.
-      enum:
-      - Enabled
-      - Disabled
-      - NotConfigured
-      x-ms-enum:
-        name: State
-        modelAsString: true
-        values:
-        - name: Enabled
-          value: Enabled
-          description: Enabled
-        - name: Disabled
-          value: Disabled
-          description: Disabled
-        - name: NotConfigured
-          value: NotConfigured
-          description: NotConfigured
-    SubnetProperties:
-      type: object
-      description: Properties of a subnet.
-      properties:
-        name:
-          type: string
-          description: Subnet name.
+        properties:
+          $ref: '#/components/schemas/Properties'
+          description: The properties that define configuration for the enterprise policy
+          x-ms-client-flatten: true
+        identity:
+          $ref: '#/components/schemas/EnterprisePolicyIdentity'
+          description: The identity of the EnterprisePolicy.
+        kind:
+          $ref: '#/components/schemas/EnterprisePolicyKind'
+          description: The kind (type) of Enterprise Policy.
+      required:
+      - kind
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
     PatchTrackedResource:
       type: object
       description: The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'
@@ -394,94 +454,34 @@ components:
           - create
       allOf:
       - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource
-    PropertiesNetworkInjection:
-      type: object
-      description: Settings concerning network injection.
-      properties:
-        virtualNetworks:
-          type: array
-          description: Network injection configuration
-          items:
-            $ref: '#/components/schemas/VirtualNetworkProperties'
-    EnterprisePolicyList:
-      type: object
-      description: The response of the list EnterprisePolicy operation.
-      properties:
-        value:
-          type: array
-          description: The collection value.
-          items:
-            $ref: '#/components/schemas/EnterprisePolicy'
-        nextLink:
-          type: string
-          description: The next page link.
-    EnterprisePolicy:
-      type: object
-      description: Definition of the EnterprisePolicy.
-      properties:
-        properties:
-          $ref: '#/components/schemas/Properties'
-          description: The properties that define configuration for the enterprise policy
-          x-ms-client-flatten: true
-        identity:
-          $ref: '#/components/schemas/EnterprisePolicyIdentity'
-          description: The identity of the EnterprisePolicy.
-        kind:
-          $ref: '#/components/schemas/EnterprisePolicyKind'
-          description: The kind (type) of Enterprise Policy.
-      required:
-      - kind
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource
-    EnterprisePolicyIdentity:
-      type: object
-      description: The identity of the EnterprisePolicy.
-      properties:
-        systemAssignedIdentityPrincipalId:
-          type: string
-          description: The principal id of EnterprisePolicy identity.
-          readOnly: true
-        tenantId:
-          type: string
-          description: The tenant id associated with the EnterprisePolicy.
-          readOnly: true
-        type:
-          $ref: '#/components/schemas/ResourceIdentityType'
-          description: The type of identity used for the EnterprisePolicy. Currently, the only supported type is 'SystemAssigned', which implicitly creates an identity.
-    HealthStatus:
+    EnterprisePolicyKind:
       type: string
-      description: The health status of the resource.
+      description: The Kind (type) of Enterprise Policy
       enum:
-      - Undetermined
-      - Healthy
-      - Warning
-      - Unhealthy
+      - Lockbox
+      - PrivateEndpoint
+      - Encryption
+      - NetworkInjection
+      - Identity
       x-ms-enum:
-        name: HealthStatus
+        name: EnterprisePolicyKind
         modelAsString: true
         values:
-        - name: Undetermined
-          value: Undetermined
-          description: Undetermined
-        - name: Healthy
-          value: Healthy
-          description: Healthy
-        - name: Warning
-          value: Warning
-          description: Warning
-        - name: Unhealthy
-          value: Unhealthy
-          description: Unhealthy
-    KeyVaultProperties:
-      type: object
-      description: Settings concerning key vault encryption for a configuration store.
-      properties:
-        id:
-          type: string
-          description: Uri of KeyVault
-        key:
-          $ref: '#/components/schemas/keyProperties'
-          description: Identity of the secret that includes name and version.
+        - name: Lockbox
+          value: Lockbox
+          description: Lockbox
+        - name: PrivateEndpoint
+          value: PrivateEndpoint
+          description: PrivateEndpoint
+        - name: Encryption
+          value: Encryption
+          description: Encryption
+        - name: NetworkInjection
+          value: NetworkInjection
+          description: NetworkInjection
+        - name: Identity
+          value: Identity
+          description: Identity
   securitySchemes:
     azure_auth:
       type: oauth2

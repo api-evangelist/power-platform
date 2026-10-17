@@ -137,37 +137,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CapacityInfo:
+    EnvironmentListResponse:
       type: object
-      description: Capacity consumption information for an environment.
+      description: Response containing a list of Power Platform environments.
       properties:
-        capacityType:
-          type: string
-          description: The type of capacity.
-          enum:
-          - Database
-          - File
-          - Log
-          example: Database
-        actualConsumption:
-          type: number
-          description: The actual capacity consumption.
-          example: 42.5
-        ratedConsumption:
-          type: number
-          description: The rated capacity consumption.
-          example: 42.5
-        capacityUnit:
-          type: string
-          description: The unit of measurement for capacity.
-          examples:
-          - MB
-          - GB
-        updatedOn:
-          type: string
-          format: date-time
-          description: The timestamp when the capacity data was last updated.
-          example: '2026-01-15T10:30:00Z'
+        value:
+          type: array
+          description: Array of environment resources.
+          items:
+            $ref: '#/components/schemas/Environment'
+          example: []
     EnvironmentProperties:
       type: object
       description: Properties of a Power Platform environment.
@@ -344,41 +323,6 @@ components:
               - Customer
               description: Whether the encryption key is managed by Microsoft or by the customer.
           example: example_value
-    AddonInfo:
-      type: object
-      description: Add-on allocation information for an environment.
-      properties:
-        addonType:
-          type: string
-          description: The type of add-on.
-          enum:
-          - AppPass
-          - PerFlowPlan
-          - PortalViews
-          - PortalLogins
-          - AI
-          - AppPassForTeams
-          - PAUnattendedRPA
-          example: AppPass
-        allocated:
-          type: number
-          description: The number of allocated add-on units.
-          example: 42.5
-        addonUnit:
-          type: string
-          description: The unit of measurement for the add-on.
-          examples:
-          - Unit
-    EnvironmentListResponse:
-      type: object
-      description: Response containing a list of Power Platform environments.
-      properties:
-        value:
-          type: array
-          description: Array of environment resources.
-          items:
-            $ref: '#/components/schemas/Environment'
-          example: []
     LinkedEnvironmentMetadata:
       type:
       - object
@@ -453,6 +397,90 @@ components:
           - Standard
           - Premium
           example: Standard
+    AddonInfo:
+      type: object
+      description: Add-on allocation information for an environment.
+      properties:
+        addonType:
+          type: string
+          description: The type of add-on.
+          enum:
+          - AppPass
+          - PerFlowPlan
+          - PortalViews
+          - PortalLogins
+          - AI
+          - AppPassForTeams
+          - PAUnattendedRPA
+          example: AppPass
+        allocated:
+          type: number
+          description: The number of allocated add-on units.
+          example: 42.5
+        addonUnit:
+          type: string
+          description: The unit of measurement for the add-on.
+          examples:
+          - Unit
+    CapacityInfo:
+      type: object
+      description: Capacity consumption information for an environment.
+      properties:
+        capacityType:
+          type: string
+          description: The type of capacity.
+          enum:
+          - Database
+          - File
+          - Log
+          example: Database
+        actualConsumption:
+          type: number
+          description: The actual capacity consumption.
+          example: 42.5
+        ratedConsumption:
+          type: number
+          description: The rated capacity consumption.
+          example: 42.5
+        capacityUnit:
+          type: string
+          description: The unit of measurement for capacity.
+          examples:
+          - MB
+          - GB
+        updatedOn:
+          type: string
+          format: date-time
+          description: The timestamp when the capacity data was last updated.
+          example: '2026-01-15T10:30:00Z'
+    Environment:
+      type: object
+      description: A Power Platform environment resource. Environments are containers that store apps, flows, data, and other resources.
+      properties:
+        id:
+          type: string
+          description: The fully qualified resource ID of the environment.
+          examples:
+          - /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee
+        type:
+          type: string
+          description: The resource type.
+          examples:
+          - Microsoft.BusinessAppPlatform/scopes/environments
+        location:
+          type: string
+          description: The geographic location of the environment.
+          examples:
+          - unitedstates
+          - europe
+          - asia
+        name:
+          type: string
+          format: uuid
+          description: The environment identifier (GUID).
+          example: Example Title
+        properties:
+          $ref: '#/components/schemas/EnvironmentProperties'
     Principal:
       type: object
       description: Represents a principal (user or service principal) that performed an action.
@@ -485,34 +513,6 @@ components:
           format: uuid
           description: The tenant ID of the principal.
           example: '500123'
-    Environment:
-      type: object
-      description: A Power Platform environment resource. Environments are containers that store apps, flows, data, and other resources.
-      properties:
-        id:
-          type: string
-          description: The fully qualified resource ID of the environment.
-          examples:
-          - /providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/aaaabbbb-0000-cccc-1111-dddd2222eeee
-        type:
-          type: string
-          description: The resource type.
-          examples:
-          - Microsoft.BusinessAppPlatform/scopes/environments
-        location:
-          type: string
-          description: The geographic location of the environment.
-          examples:
-          - unitedstates
-          - europe
-          - asia
-        name:
-          type: string
-          format: uuid
-          description: The environment identifier (GUID).
-          example: Example Title
-        properties:
-          $ref: '#/components/schemas/EnvironmentProperties'
   securitySchemes:
     oauth2:
       type: oauth2
